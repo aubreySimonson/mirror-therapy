@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6336799454019229270}
   m_Layer: 0
   m_Name: FakeHandCubePrefab
-  m_TagString: Untagged
+  m_TagString: canPress
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

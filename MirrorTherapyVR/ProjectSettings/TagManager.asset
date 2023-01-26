@@ -8,6 +8,8 @@ TagManager:
   - y-forward
   - z-forward
   - twist-x
+  - RoomLight
+  - canPress
   layers:
   - Default
   - TransparentFX
