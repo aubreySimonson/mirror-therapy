@@ -44,6 +44,11 @@ public class HandPositionMirror : MonoBehaviour
       //make real Bones skeleton
       realBones = new List<OVRBone>();
       SortBones();
+
+      //turn off the points on the real hand
+      foreach(GameObject point in fakeHandPoints){
+        point.GetComponent<Collider>().enabled = false;
+      }
     }
 
     //all quaternion math stays in here-- don't touch it.

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// This script is part of MirroTherapy.cs
@@ -18,20 +19,23 @@ public class PressableButton : MonoBehaviour
   public Material highlightedMat, defaultMat;
   public ButtonsManager buttonsManager;
   private bool highlighted = false;
+  public Text debugText;
 
   public void Highlight(){
     gameObject.GetComponent<Renderer>().material = highlightedMat;
     highlighted = true;
+    //debugText.text = "highlighted";
   }
   public void UnHighlight(){
     gameObject.GetComponent<Renderer>().material = defaultMat;
     highlighted = false;
+    //debugText.text = "unhighlighted";
   }
 
   void OnTriggerEnter(Collider other){
     if(highlighted && other.gameObject.tag == "canPress"){
-      buttonsManager.NextButton();
       UnHighlight();
+      buttonsManager.NextButton();
     }
   }
 }
