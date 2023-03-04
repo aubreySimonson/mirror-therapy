@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// This script is part of MirroTherapy
+/// This script is part of MirrorTherapy
 /// This script does higher level experiment management.
 /// It switches from experimental task to experimental task,
 /// and knows about all of our quadrant lists.

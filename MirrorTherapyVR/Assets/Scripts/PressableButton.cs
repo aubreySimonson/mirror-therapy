@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// This script is part of MirroTherapy.cs
+/// This script is part of MirrorTherapy
 /// This script goes on each button.
 /// Buttons should have rigidbodies, and colliders with isTrigger checked.
 /// Remember to set the tags.

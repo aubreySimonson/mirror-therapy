@@ -30,6 +30,8 @@ public class HandPositionMirror : MonoBehaviour
 
     public GameObject worldOrigin;
 
+    private Logger logger;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,11 @@ public class HandPositionMirror : MonoBehaviour
       foreach(GameObject point in fakeHandPoints){
         point.GetComponent<Collider>().enabled = false;
       }
+
+      if(logger == null){
+        logger = (Logger)FindObjectOfType(typeof(Logger));
+      }
+      logger.SetUpDataCollection();
     }
 
     //all quaternion math stays in here-- don't touch it.
@@ -77,6 +84,10 @@ public class HandPositionMirror : MonoBehaviour
           bonesCounter++;
         }
     }//end update
+
+    public List<OVRBone> GetRealBones(){
+      return realBones;
+    }
 
     //a functon which does the recursive loop of getting all fake bones
     private void GetMoreBones(Transform bone){
