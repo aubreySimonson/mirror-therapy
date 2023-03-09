@@ -256,12 +256,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugText: {fileID: 643750375}
-  logAllRealHandPoints: 1
-  logAllFakeHandPoints: 0
+  logEssentialFakeHandPoints: 1
+  logEssentialRealHandPoints: 0
+  essentialFakeHandPoints:
+  - {fileID: 2100661079}
+  - {fileID: 2100661073}
+  - {fileID: 2100661062}
+  - {fileID: 2100661068}
+  - {fileID: 371040952}
   logHeadPose: 1
-  recordOnPlay: 0
-  isRecording: 0
+  recordOnPlay: 1
+  isRecording: 1
   handPositionMirror: {fileID: 824663424}
+  headTransform: {fileID: 2040816611}
   itemDelimiter: ;
   lineBreak: '!'
 --- !u!4 &225398835 stripped
@@ -282,6 +289,11 @@ Transform:
 --- !u!4 &360976229 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400090, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
+  m_PrefabInstance: {fileID: 2100661060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &371040952 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400148, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
   m_PrefabInstance: {fileID: 2100661060}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &464068962
@@ -852,9 +864,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114252240061623322, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114392993255165844, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114428879332287356, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: HandType
@@ -866,6 +882,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114925265787909616, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: _meshType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137619227449585070, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

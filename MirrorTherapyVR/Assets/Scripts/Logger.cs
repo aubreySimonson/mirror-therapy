@@ -27,8 +27,11 @@ public class Logger : MonoBehaviour
 
     public Text debugText;
 
-    public bool logAllRealHandPoints;
-    public bool logAllFakeHandPoints;
+    //this nasty system of booleans really should be an enum
+    public bool logEssentialFakeHandPoints;
+    public bool logEssentialRealHandPoints;
+    public List<OVRBone> essentialRealHandPoints;
+    public List<Transform> essentialFakeHandPoints;
     public bool logHeadPose;
     public bool recordOnPlay;
     public bool isRecording;
@@ -36,8 +39,9 @@ public class Logger : MonoBehaviour
     public HandPositionMirror handPositionMirror;
     List<OVRBone> realHandPoints;
     private List<Transform> fakeHandPoints;
+    public Transform headTransform;
 
-    private string recordedDataString;
+    private string recordedDataString = "";
     private string columnHeaders = "";
     public string itemDelimiter = ";";//we don't use a comma because there tend to already be commas in our data
     public string lineBreak = "!";//look, having something very weird makes data processing easier
@@ -48,6 +52,9 @@ public class Logger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+      if(recordOnPlay){
+        isRecording = true;
+      }
       //if we don't have write permission, ask for it.
       if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite))
             Permission.RequestUserPermission(Permission.ExternalStorageWrite);
@@ -61,9 +68,35 @@ public class Logger : MonoBehaviour
     }//end start
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
       //add any information we're gathering this frame to recordedDataString
+      if(isRecording){
+        recordedDataString += Time.time + itemDelimiter;//Time.time is the number of seconds since the start of the game
+        if(logHeadPose){
+          recordedDataString += headTransform.position + itemDelimiter;
+          recordedDataString += headTransform.rotation + itemDelimiter;
+        }//end if
+        if(logEssentialRealHandPoints){
+          foreach(OVRBone realHandPoint in essentialRealHandPoints){
+            recordedDataString += realHandPoint.Transform.position + itemDelimiter;
+            recordedDataString += realHandPoint.Transform.rotation + itemDelimiter;
+          }
+        }//end if
+        if(logEssentialFakeHandPoints){
+          foreach(Transform fakeHandPoint in essentialFakeHandPoints){
+            recordedDataString += fakeHandPoint.position + itemDelimiter;
+            recordedDataString += fakeHandPoint.rotation + itemDelimiter;
+          }
+        }//end if
+        recordedDataString += lineBreak;
+      }//end if
+    }//end class
+
+    //we use pause instead of quit because quit just... doesn't work? Known bug: https://forum.unity.com/threads/onapplicationquit-and-ondestroy-is-not-executed-when-exit-app-on-oculus-quest.795942/
+    void OnApplicationPause()
+    {
+      SaveData();
     }
 
     public void SetUpDataCollection(){
@@ -72,35 +105,47 @@ public class Logger : MonoBehaviour
         handPositionMirror = (HandPositionMirror)FindObjectOfType(typeof(HandPositionMirror));
       }
 
+      columnHeaders += "TimeStamp" + itemDelimiter;
       //log column headings
       if(logHeadPose){
-        columnHeaders += "HeadPos" + itemDelimiter + "headRot" + itemDelimiter;
+        columnHeaders += "HeadPos" + itemDelimiter + "HeadRot" + itemDelimiter;
       }
 
-      if(logAllRealHandPoints){
-        //get hand points from HandPositionMirror
-        realHandPoints = handPositionMirror.GetRealBones();
-        debugText.text = "real hand points are " + realHandPoints[0].ToString();
-        foreach(OVRBone handPoint in realHandPoints){
-          debugText.text = "bone name is " + handPoint.Id.ToString();
-          //we actually need to understand the order these happen in first
-          columnHeaders += handPoint.Id.ToString();
-        }
+      if(logEssentialRealHandPoints){//do this one after you do the fake hand-- maybe not at all
+        // //get hand points from HandPositionMirror
+        // realHandPoints = handPositionMirror.GetRealBones();
+        // debugText.text = "real hand points are " + realHandPoints[0].ToString();
+        // foreach(OVRBone handPoint in realHandPoints){
+        //   //we actually need to understand the order these happen in first
+        //   columnHeaders += "Real" + handPoint.Id.ToString() + "Pos" + itemDelimiter;
+        //   columnHeaders += "Real" + handPoint.Id.ToString() + "Rot" + itemDelimiter;
+        //}
       }//end real hand points
-      if(logAllFakeHandPoints){
-        debugText.text = "we haven't implemented that feature yet";
-      }
-      SaveData();//once we're up and running, we won't be calling this in the start function
-    }
+      if(logEssentialFakeHandPoints){
+        foreach(Transform fakeBone in essentialFakeHandPoints){
+          columnHeaders += "Fake " + fakeBone.gameObject.name + "Pos" + itemDelimiter;
+          columnHeaders += "Fake " + fakeBone.gameObject.name + "Rot" + itemDelimiter;
+          debugText.text = "fake hand points are " + fakeBone.gameObject.name;
+        }
+      }//end fake hand points
+
+      columnHeaders+=lineBreak;
+      InvokeRepeating("SaveData", 30.0f, 30.0f);
+    }//end det up data collection
 
     //saves any data currently in the recorded string
     public void SaveData(){
       writer = new StreamWriter(path, true);
       //write column headers again
       writer.WriteLine(columnHeaders);
+      //recording the data string and then writing the whole thing on application quit might be the wrong way to do it.
+      //the other way to do it would be to write the data to the file every frame.
+      //there's a higher chance for conflict if two things try to log information at the same time that way, though
+      writer.WriteLine(recordedDataString);
+      recordedDataString = "";
 
       //write data
       writer.Flush();
       writer.Close();
     }
-}
+}//end class
