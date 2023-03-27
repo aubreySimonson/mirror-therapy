@@ -19,15 +19,17 @@ public class VTS : MonoBehaviour
 {
     public Text debugText;
     public AudioSource metronomeSound;
-    public float tickTime;//the length of each metronome tick
+    public float tickTime;//the length of each metronome tick in seconds
     public int ticksBeforeStart;//the number of ticks before stroking starts
     public int ticksPerStroke;//how many metronome ticks the stroke should last for
     public int ticksBetweenStrokes;
+
+    [Tooltip("0 indexed")]
     public int numberOfStrokes;//the number of times we do one stroke, not the number of times we do all possible strokes
     private int numberOfStrokesCompleted = 0;
     private float startTime;//for whatever phase we're in, this is when it started
 
-    public GameObject mobileHand, fixedHand;//during VTS, we turn off the hand and replace it with an identical model that won't move
+    public GameObject mobileHand, mobileHandCollider, fixedHand;//during VTS, we turn off the hand and replace it with an identical model that won't move
     public GameObject paintbrush;
 
     public List<Transform> startPositions;
@@ -50,21 +52,26 @@ public class VTS : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      strokeSpeed = (ticksPerStroke*tickTime)/50.0f;//we're using fixedUpdate, which runs at exactly 50fps
-      if(metronomeSound==null){
-        metronomeSound = gameObject.GetComponent<AudioSource>();
-      }
+      strokeSpeed = 1.0f/ticksPerStroke/tickTime/50.0f;//we're using fixedUpdate, which runs at exactly 50fps
+      debugText.text = "stroke speed = " + strokeSpeed;
+      //if(metronomeSound==null){
+      //  metronomeSound = gameObject.GetComponent<AudioSource>();
+      //}
       currentlyStroking = false;
       phase = Phase.NotStroking;
     }
 
     void OnTriggerEnter(Collider other){
-      if(other.gameObject == mobileHand){
+      debugText.text = "collision happens";
+      if(other.gameObject == mobileHandCollider){
         StartStroking();
       }
     }
 
     public void StartStroking(){
+      debugText.text = "stroking started";
+      mobileHand.SetActive(false);
+      fixedHand.SetActive(true);
       startTime = Time.time;
       currentlyStroking = true;
       phase = Phase.BeforeStarting;
@@ -74,8 +81,11 @@ public class VTS : MonoBehaviour
     }
 
     public void EndStroking(){
-      //turn in real hand
-      //disable fake hand
+      paintbrush.SetActive(false);
+      //turn on real hand
+      mobileHand.SetActive(true);
+      //disable fake hand--do this last because this script is on it
+      fixedHand.SetActive(false);
     }
 
     // Update is called once per frame-- FixedUpdate is called exactly 50X per second
@@ -85,6 +95,7 @@ public class VTS : MonoBehaviour
         if(phase == Phase.BeforeStarting){
           if(Time.time >= startTime + (tickTime * ticksBeforeStart)){
             //start first stroke
+            paintbrush.SetActive(true);
             startTime = Time.time;
             phase = Phase.DuringStroke;
           }
@@ -98,6 +109,7 @@ public class VTS : MonoBehaviour
           }
           else{
             if(Time.time >= startTime + (tickTime * ticksBetweenStrokes)){
+              paintbrush.SetActive(true);
               startTime = Time.time;
               phase = Phase. DuringStroke;
             }
@@ -108,20 +120,21 @@ public class VTS : MonoBehaviour
 
     //we move all of the lerp stuff down here to keep fixedupdate less messy
     void HandleLerp(){
-      Debug.Log("lol you haven't written this yet");
       if(interpolationRatio<1){
         paintbrush.transform.position = Vector3.Lerp(startPositions[strokeArrayCounter].position, endPositions[strokeArrayCounter].position, interpolationRatio);
         interpolationRatio+=strokeSpeed;
       }
       else{
         interpolationRatio = 0;
-        numberOfStrokes++;
-        if(strokeArrayCounter<startPositions.Count){
+        numberOfStrokesCompleted++;
+        debugText.text = "stroke array count = " + startPositions.Count;
+        if(strokeArrayCounter<startPositions.Count-1){
           strokeArrayCounter++;
         }
         else{
           strokeArrayCounter = 0;
         }
+        paintbrush.SetActive(false);
         phase = Phase.BetweenStrokes;
       }
     }//end handle lerp
