@@ -32,6 +32,7 @@ public class ExperimentManager : MonoBehaviour
     private int quadrantCounter;
 
     public ButtonsManager buttonsManager;
+    public FireflyManager fireflyManager;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +63,8 @@ public class ExperimentManager : MonoBehaviour
       //Debug.Log("all quadrant orders: " + quadrantOrders);
       //Debug.Log("quadrant order # 7:" +quadrantOrders[7]);
 
-      buttonsManager.NextRound();//we call this from here in order to ensure that all of the quadrant orders have been loaded before we start asking for them
+      //buttonsManager.NextRound();//we call this from here in order to ensure that all of the quadrant orders have been loaded before we start asking for them
+      fireflyManager.NextRound();
     }
 
     public List<int> GetNextOrder(){

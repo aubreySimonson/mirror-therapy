@@ -10,6 +10,7 @@ TagManager:
   - twist-x
   - RoomLight
   - canPress
+  - firefly
   layers:
   - Default
   - TransparentFX

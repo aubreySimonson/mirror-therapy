@@ -135,6 +135,7 @@ public class VTS : MonoBehaviour
           strokeArrayCounter = 0;
         }
         paintbrush.SetActive(false);
+        startTime = Time.time;
         phase = Phase.BetweenStrokes;
       }
     }//end handle lerp

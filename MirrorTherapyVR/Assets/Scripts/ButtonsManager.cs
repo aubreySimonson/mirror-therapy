@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// This script is part of MirroTherapy
+/// This script is part of MirrorTherapy
 /// This script keeps track of buttons, and logs information about when they're pressed
 ///
 /// ???--> Aubrey (followspotfour@gmail.com)
@@ -14,7 +14,6 @@ using UnityEngine.UI;
 public class ButtonsManager : MonoBehaviour
 {
     //ref to logger once it exists
-    //ref to Experiement Manager once it exists
     public ExperimentManager experimentManager;
     public PressableButton button1, button2, button3, button4;
     private PressableButton currentButton;
