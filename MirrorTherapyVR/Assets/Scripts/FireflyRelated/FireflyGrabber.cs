@@ -15,7 +15,8 @@ using UnityEngine.UI;
 
 public class FireflyGrabber : MonoBehaviour
 {
-    private bool touchingFirefly = false;
+    public bool touchingFirefly = false;
+    public bool isBimanual;//if we're currently doing the bimanual task, we need to have this script not directly contact the firefly manager
     public GameObject fingerMarker;
     private GameObject firefly;
     public FireflyManager fireflyManager;
@@ -36,10 +37,12 @@ public class FireflyGrabber : MonoBehaviour
     }
 
     private void GrabFirefly(){
-      Destroy(firefly);
-      touchingFirefly = false;
-      //play win sound
-      //rell firefly manager about it
-      fireflyManager.NextFirefly();
+      if(!isBimanual){
+        Destroy(firefly);
+        touchingFirefly = false;
+        //play win sound
+        //rell firefly manager about it
+        fireflyManager.NextFirefly();
+      }
     }
 }
