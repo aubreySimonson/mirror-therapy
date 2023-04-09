@@ -35,13 +35,17 @@ public class FireflyManager : MonoBehaviour
         roundsCounter++;
         quadrantOrder = experimentManager.GetNextOrder();
         Debug.Log("quadrant order at firefly counter is " + quadrantOrder[fireflyCounter]);
-        NextFirefly();
+
+        //the following workaround is gross, and I'm sorry
+        GameObject tempFirefly = Instantiate(fireflyPrefab);
+        NextFirefly(tempFirefly);
       }
     }
 
     //firefly grabber calls this.
-    public void NextFirefly(){
+    public void NextFirefly(GameObject currentFirefly){
       goodSound.Play();
+      Destroy(currentFirefly);
       if(fireflyCounter < 9){//0 indexed, 0-9
         //TODO: log
         //figure out which button is next

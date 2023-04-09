@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 /// <summary>
 /// This script is part of MirrorTherapy
@@ -15,15 +17,21 @@ using UnityEngine;
 
 public class BimanualFirefly : MonoBehaviour
 {
-    public FireflyGrabber realHandFireflyGrabber, fakeHandFireflyGrabber;
+    public FireflyGrabber rightHandFireflyGrabber, leftHandFireflyGrabber;
     public FireflyManager fireflyManager;
+    public Text debugText;
+
 
     void Update(){
-      if(realHandFireflyGrabber.touchingFirefly && fakeHandFireflyGrabber.touchingFirefly){
-        realHandFireflyGrabber.touchingFirefly = false;
-        fakeHandFireflyGrabber.touchingFirefly = false;
-        //we never actually grab the firefly with the 
-        fireflyManager.NextFirefly();
+      if(rightHandFireflyGrabber.grabbingFirefly && leftHandFireflyGrabber.grabbingFirefly){
+        debugText.text = "both hands grabbing firefly";
+        rightHandFireflyGrabber.touchingFirefly = false;
+        leftHandFireflyGrabber.touchingFirefly = false;
+        rightHandFireflyGrabber.grabbingFirefly = false;
+        leftHandFireflyGrabber.grabbingFirefly = false;
+
+        //we never actually grab the firefly with the
+        fireflyManager.NextFirefly(rightHandFireflyGrabber.firefly);
       }
     }
 }
