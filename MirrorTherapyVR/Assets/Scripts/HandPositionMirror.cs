@@ -28,9 +28,15 @@ public class HandPositionMirror : MonoBehaviour
     public List<GameObject> fakeHandPoints;//points that match the position of all of the bones on the real hand
     public List<GameObject> fakeHandPointsMirrored;//a mirror of the fakeHandPoints
 
+    public float comfortableDistance;//distance over from the world origin that's most comfortable to keep the hand at.
+    private float adjust;//distance between hand points and comfortableDistance
+    private Vector3 adjustedPosition;
+
     public GameObject worldOrigin;
 
     private Logger logger;
+
+    public Text debugText;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +77,12 @@ public class HandPositionMirror : MonoBehaviour
     {
         //position the fake bones relative to the real bones
         int bonesCounter = 0;
+        Vector3 realWristPosition = realBones[0].Transform.position;
+        adjust = realWristPosition.x - comfortableDistance;
+        debugText.text = adjust.ToString();
+
+        Quaternion realWristRotation = realBones[0].Transform.rotation;
+
         foreach(OVRBone bone in realBones){
           //put a hand point at each bone position
           fakeHandPoints[bonesCounter].transform.position = bone.Transform.position;
@@ -78,6 +90,9 @@ public class HandPositionMirror : MonoBehaviour
 
           fakeHandPointsMirrored[bonesCounter].transform.rotation = ReflectRotation(fakeHandPoints[bonesCounter].transform.rotation, Vector3.right);
           fakeHandPointsMirrored[bonesCounter].transform.position = Vector3.Reflect(fakeHandPoints[bonesCounter].transform.position, Vector3.right);
+          //translate
+          adjustedPosition = new Vector3(fakeHandPointsMirrored[bonesCounter].transform.position.x+(adjust*2), fakeHandPointsMirrored[bonesCounter].transform.position.y, fakeHandPointsMirrored[bonesCounter].transform.position.z);
+          fakeHandPointsMirrored[bonesCounter].transform.position = adjustedPosition;
 
           fakeBones[bonesCounter].transform.position = fakeHandPointsMirrored[bonesCounter].transform.position;
           fakeBones[bonesCounter].transform.rotation = fakeHandPointsMirrored[bonesCounter].transform.rotation;

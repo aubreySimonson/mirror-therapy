@@ -534,6 +534,7 @@ MonoBehaviour:
   grabbingFirefly: 0
   isBimanual: 1
   fingerMarker: {fileID: 1900452612}
+  firefly: {fileID: 0}
   fireflyManager: {fileID: 852163277}
   debugText: {fileID: 643750375}
 --- !u!135 &159671159
@@ -1153,7 +1154,9 @@ MonoBehaviour:
   fakeHandPointPrefab: {fileID: 5650809521026702779, guid: 17b151107d1404f63ac333c438570fc7, type: 3}
   fakeHandPoints: []
   fakeHandPointsMirrored: []
+  comfortableDistance: 0.2
   worldOrigin: {fileID: 0}
+  debugText: {fileID: 1722430320}
 --- !u!4 &451165436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400092, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -2177,7 +2180,9 @@ MonoBehaviour:
   fakeHandPointPrefab: {fileID: 5650809521026702779, guid: 17b151107d1404f63ac333c438570fc7, type: 3}
   fakeHandPoints: []
   fakeHandPointsMirrored: []
+  comfortableDistance: -0.2
   worldOrigin: {fileID: 0}
+  debugText: {fileID: 944488734}
 --- !u!4 &824663425 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4453513310108136, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
@@ -3820,6 +3825,7 @@ MonoBehaviour:
   grabbingFirefly: 0
   isBimanual: 1
   fingerMarker: {fileID: 2100661085}
+  firefly: {fileID: 0}
   fireflyManager: {fileID: 852163277}
   debugText: {fileID: 643750375}
 --- !u!135 &1849046410
