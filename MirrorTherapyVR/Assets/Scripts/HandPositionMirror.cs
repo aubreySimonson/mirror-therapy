@@ -77,21 +77,22 @@ public class HandPositionMirror : MonoBehaviour
     {
         //position the fake bones relative to the real bones
         int bonesCounter = 0;
+
         Vector3 realWristPosition = realBones[0].Transform.position;
         adjust = realWristPosition.x - comfortableDistance;
-        debugText.text = adjust.ToString();
-
-        Quaternion realWristRotation = realBones[0].Transform.rotation;
 
         foreach(OVRBone bone in realBones){
           //put a hand point at each bone position
           fakeHandPoints[bonesCounter].transform.position = bone.Transform.position;
           fakeHandPoints[bonesCounter].transform.rotation = bone.Transform.rotation;//this is quaternions
 
-          fakeHandPointsMirrored[bonesCounter].transform.rotation = ReflectRotation(fakeHandPoints[bonesCounter].transform.rotation, Vector3.right);
+          if(bonesCounter!=0){//we don't mirror the rotation of the wrist-- it's hard to use and feels bad
+            fakeHandPointsMirrored[bonesCounter].transform.rotation = ReflectRotation(fakeHandPoints[bonesCounter].transform.rotation, Vector3.right);
+          }
           fakeHandPointsMirrored[bonesCounter].transform.position = Vector3.Reflect(fakeHandPoints[bonesCounter].transform.position, Vector3.right);
+
           //translate
-          adjustedPosition = new Vector3(fakeHandPointsMirrored[bonesCounter].transform.position.x+(adjust*2), fakeHandPointsMirrored[bonesCounter].transform.position.y, fakeHandPointsMirrored[bonesCounter].transform.position.z);
+          adjustedPosition = new Vector3(fakeHandPointsMirrored[bonesCounter].transform.position.x+(adjust*2.00f), fakeHandPointsMirrored[bonesCounter].transform.position.y, fakeHandPointsMirrored[bonesCounter].transform.position.z);
           fakeHandPointsMirrored[bonesCounter].transform.position = adjustedPosition;
 
           fakeBones[bonesCounter].transform.position = fakeHandPointsMirrored[bonesCounter].transform.position;
