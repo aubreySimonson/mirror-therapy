@@ -86,9 +86,7 @@ public class HandPositionMirror : MonoBehaviour
           fakeHandPoints[bonesCounter].transform.position = bone.Transform.position;
           fakeHandPoints[bonesCounter].transform.rotation = bone.Transform.rotation;//this is quaternions
 
-          if(bonesCounter!=0){//we don't mirror the rotation of the wrist-- it's hard to use and feels bad
-            fakeHandPointsMirrored[bonesCounter].transform.rotation = ReflectRotation(fakeHandPoints[bonesCounter].transform.rotation, Vector3.right);
-          }
+          fakeHandPointsMirrored[bonesCounter].transform.rotation = ReflectRotation(fakeHandPoints[bonesCounter].transform.rotation, Vector3.right);
           fakeHandPointsMirrored[bonesCounter].transform.position = Vector3.Reflect(fakeHandPoints[bonesCounter].transform.position, Vector3.right);
 
           //translate

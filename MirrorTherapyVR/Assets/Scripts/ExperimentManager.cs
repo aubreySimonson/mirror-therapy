@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 /// <summary>
 /// This script is part of MirrorTherapy
@@ -14,6 +16,22 @@ using UnityEngine;
 
 public class ExperimentManager : MonoBehaviour
 {
+
+    public VTS vts;
+    public GameObject vtsGo;
+    public ButtonsManager buttonsManager;
+    public GameObject buttonsManagerGo;
+    public FireflyManager unimanualFireflyManager;
+    public FireflyManager bimanualFireflyManager;
+    public GameObject fireflyGo;
+    public Logger logger;
+
+    public Text instructionsText;
+
+    public bool useVTS;
+    public bool mirrorHands;
+
+    public GameObject rightHandReal, leftHandReal, rightHandMirrored, leftHandMirrored;
     //these are the orders of the quadrants for each of the 10 trials in each of the tasks
     //9 are random, the 10th is staged to get us all possible movements between quadrants
     private List<int> quadrantOrder1;
@@ -30,9 +48,6 @@ public class ExperimentManager : MonoBehaviour
     public List<List<int>> quadrantOrders = new List<List<int>>();
 
     private int quadrantCounter;
-
-    public ButtonsManager buttonsManager;
-    public FireflyManager fireflyManager;
 
     // Start is called before the first frame update
     void Start()
@@ -60,12 +75,105 @@ public class ExperimentManager : MonoBehaviour
       quadrantOrders.Add(quadrantOrder10);
       quadrantCounter = -1;//we start at negative 1 so that we can increment, then return in GetNextOrder
 
-      //Debug.Log("all quadrant orders: " + quadrantOrders);
-      //Debug.Log("quadrant order # 7:" +quadrantOrders[7]);
+      instructionsText.text = "HELLO FROM THE START FUNCTION";
+      logger.Log("Experiment Start at " + Time.time);
+      logger.Log("Use VTS: " + useVTS.ToString());
+      logger.Log("Mirror Hands: " + mirrorHands.ToString());
 
-      //buttonsManager.NextRound();//we call this from here in order to ensure that all of the quadrant orders have been loaded before we start asking for them
-      fireflyManager.NextRound();
+      LoadQuadrantOrders();
+      LoadStartInstructions();
     }
+
+    public void LoadStartInstructions(){
+      if(mirrorHands){
+        rightHandMirrored.SetActive(true);
+        rightHandReal.SetActive(false);
+      }
+      else{
+        rightHandMirrored.SetActive(false);
+        rightHandReal.SetActive(true);
+      }
+
+      //we start with only the right hand, so we turn the left hand off
+      leftHandMirrored.SetActive(false);
+      leftHandReal.SetActive(false);
+
+      instructionsText.text = "Hi, and welcome to our user study! ";
+      instructionsText.text+= "This is an excellent spot for any additional instructions we might need to include at the start. ";
+      instructionsText.text += "Take a look at your hand. And try to touch your thumb to each finger.";
+
+      //make sure everything that should be turned off is turned off
+      vtsGo.SetActive(false);
+      buttonsManagerGo.SetActive(false);
+      fireflyGo.SetActive(false);
+      unimanualFireflyManager.enabled = false;
+      bimanualFireflyManager.enabled = false;
+
+    }
+
+    public void LoadVTS(){
+      if(!useVTS){//if we're not doing synchronous visuotactile stimulation, skip straight to buttons task
+        LoadButtonsTask();
+      }
+      instructionsText.text = "Some kind of explanation of how to do the VTS situation, which you plan on writing later";
+      vtsGo.SetActive(true);
+
+      //make sure everything that should be turned off is turned off
+      buttonsManagerGo.SetActive(false);
+      fireflyGo.SetActive(false);
+    }
+
+    public void LoadButtonsTask(){
+          buttonsManagerGo.SetActive(true);
+          buttonsManager.NextRound();
+          instructionsText.text = "Some kind of explanation of how to do the buttons task";
+
+          //make sure everything that should be turned off is turned off
+          vtsGo.SetActive(false);
+          fireflyGo.SetActive(false);
+        }
+
+        public void LoadUnimanualFirefliesTask(){
+          fireflyGo.SetActive(true);
+          unimanualFireflyManager.enabled = true;
+          bimanualFireflyManager.enabled = false;
+          unimanualFireflyManager.NextRound();
+
+          instructionsText.text = "Some kind of explanation of how to do the unimanual fireflies task";
+
+          //make sure everything that should be turned off is turned off
+          vtsGo.SetActive(false);
+          buttonsManagerGo.SetActive(false);
+
+        }
+
+        public void LoadBimanualFirefliesTask(){
+          fireflyGo.SetActive(true);
+          unimanualFireflyManager.enabled = false;
+          bimanualFireflyManager.enabled = true;
+          bimanualFireflyManager.NextRound();
+
+          instructionsText.text = "Some kind of explanation of how to do the bimanual fireflies task";
+
+          //make sure everything that should be turned off is turned off
+          vtsGo.SetActive(false);
+          buttonsManagerGo.SetActive(false);
+        }
+
+        private void LoadQuadrantOrders(){
+          quadrantOrders.Add(quadrantOrder1);
+          quadrantOrders.Add(quadrantOrder2);
+          quadrantOrders.Add(quadrantOrder3);
+          quadrantOrders.Add(quadrantOrder4);
+          quadrantOrders.Add(quadrantOrder5);
+          quadrantOrders.Add(quadrantOrder6);
+          quadrantOrders.Add(quadrantOrder7);
+          quadrantOrders.Add(quadrantOrder8);
+          quadrantOrders.Add(quadrantOrder9);
+          quadrantOrders.Add(quadrantOrder10);
+          quadrantCounter = -1;//we start at negative 1 so that we can increment, then return in GetNextOrder
+        }
+
 
     public List<int> GetNextOrder(){
       quadrantCounter++;

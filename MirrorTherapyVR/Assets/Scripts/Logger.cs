@@ -45,6 +45,7 @@ public class Logger : MonoBehaviour
     private string columnHeaders = "";
     public string itemDelimiter = ";";//we don't use a comma because there tend to already be commas in our data
     public string lineBreak = "!";//look, having something very weird makes data processing easier
+    public string specialFlag = "***";//for lines where we needed to mention something other than position data
 
     private string path;//path to save file
     private StreamWriter writer;
@@ -92,6 +93,17 @@ public class Logger : MonoBehaviour
         recordedDataString += lineBreak;
       }//end if
     }//end class
+
+    public void Log(string textToLog){
+      // writer = new StreamWriter(path, true);
+      // //write column headers again
+      // writer.WriteLine(textToLog);
+      //
+      // //write data
+      // writer.Flush();
+      // writer.Close();
+      recordedDataString += specialFlag + textToLog + lineBreak;
+    }
 
     //we use pause instead of quit because quit just... doesn't work? Known bug: https://forum.unity.com/threads/onapplicationquit-and-ondestroy-is-not-executed-when-exit-app-on-oculus-quest.795942/
     void OnApplicationPause()
