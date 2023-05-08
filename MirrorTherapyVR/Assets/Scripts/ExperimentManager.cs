@@ -31,7 +31,7 @@ public class ExperimentManager : MonoBehaviour
     public bool useVTS;
     public bool mirrorHands;
 
-    public GameObject rightHandReal, leftHandReal, rightHandMirrored, leftHandMirrored;
+    public Renderer rightHandReal, leftHandReal, rightHandMirrored, leftHandMirrored;
     //these are the orders of the quadrants for each of the 10 trials in each of the tasks
     //9 are random, the 10th is staged to get us all possible movements between quadrants
     private List<int> quadrantOrder1;
@@ -86,17 +86,17 @@ public class ExperimentManager : MonoBehaviour
 
     public void LoadStartInstructions(){
       if(mirrorHands){
-        rightHandMirrored.SetActive(true);
-        rightHandReal.SetActive(false);
+        rightHandMirrored.enabled = true;
+        rightHandReal.enabled = false;
       }
       else{
-        rightHandMirrored.SetActive(false);
-        rightHandReal.SetActive(true);
+        rightHandMirrored.enabled = false;
+        rightHandReal.enabled = true;
       }
 
       //we start with only the right hand, so we turn the left hand off
-      leftHandMirrored.SetActive(false);
-      leftHandReal.SetActive(false);
+      leftHandMirrored.enabled = false;
+      leftHandReal.enabled = false;
 
       instructionsText.text = "Hi, and welcome to our user study! ";
       instructionsText.text+= "This is an excellent spot for any additional instructions we might need to include at the start. ";
@@ -124,55 +124,55 @@ public class ExperimentManager : MonoBehaviour
     }
 
     public void LoadButtonsTask(){
-          buttonsManagerGo.SetActive(true);
-          buttonsManager.NextRound();
-          instructionsText.text = "Some kind of explanation of how to do the buttons task";
+        instructionsText.text = "Some kind of explanation of how to do the buttons task";
+        vtsGo.SetActive(false);//this doesn't run
+        buttonsManagerGo.SetActive(true);
+        buttonsManager.NextRound();
 
-          //make sure everything that should be turned off is turned off
-          vtsGo.SetActive(false);
-          fireflyGo.SetActive(false);
-        }
+        //make sure everything that should be turned off is turned off
+        fireflyGo.SetActive(false);
+      }
 
-        public void LoadUnimanualFirefliesTask(){
-          fireflyGo.SetActive(true);
-          unimanualFireflyManager.enabled = true;
-          bimanualFireflyManager.enabled = false;
-          unimanualFireflyManager.NextRound();
+      public void LoadUnimanualFirefliesTask(){
+        fireflyGo.SetActive(true);
+        unimanualFireflyManager.enabled = true;
+        bimanualFireflyManager.enabled = false;
+        unimanualFireflyManager.NextRound();
 
-          instructionsText.text = "Some kind of explanation of how to do the unimanual fireflies task";
+        instructionsText.text = "Some kind of explanation of how to do the unimanual fireflies task";
 
-          //make sure everything that should be turned off is turned off
-          vtsGo.SetActive(false);
-          buttonsManagerGo.SetActive(false);
+        //make sure everything that should be turned off is turned off
+        vtsGo.SetActive(false);
+        buttonsManagerGo.SetActive(false);
 
-        }
+      }
 
-        public void LoadBimanualFirefliesTask(){
-          fireflyGo.SetActive(true);
-          unimanualFireflyManager.enabled = false;
-          bimanualFireflyManager.enabled = true;
-          bimanualFireflyManager.NextRound();
+      public void LoadBimanualFirefliesTask(){
+        fireflyGo.SetActive(true);
+        unimanualFireflyManager.enabled = false;
+        bimanualFireflyManager.enabled = true;
+        bimanualFireflyManager.NextRound();
 
-          instructionsText.text = "Some kind of explanation of how to do the bimanual fireflies task";
+        instructionsText.text = "Some kind of explanation of how to do the bimanual fireflies task";
 
-          //make sure everything that should be turned off is turned off
-          vtsGo.SetActive(false);
-          buttonsManagerGo.SetActive(false);
-        }
+        //make sure everything that should be turned off is turned off
+        vtsGo.SetActive(false);
+        buttonsManagerGo.SetActive(false);
+      }
 
-        private void LoadQuadrantOrders(){
-          quadrantOrders.Add(quadrantOrder1);
-          quadrantOrders.Add(quadrantOrder2);
-          quadrantOrders.Add(quadrantOrder3);
-          quadrantOrders.Add(quadrantOrder4);
-          quadrantOrders.Add(quadrantOrder5);
-          quadrantOrders.Add(quadrantOrder6);
-          quadrantOrders.Add(quadrantOrder7);
-          quadrantOrders.Add(quadrantOrder8);
-          quadrantOrders.Add(quadrantOrder9);
-          quadrantOrders.Add(quadrantOrder10);
-          quadrantCounter = -1;//we start at negative 1 so that we can increment, then return in GetNextOrder
-        }
+      private void LoadQuadrantOrders(){
+        quadrantOrders.Add(quadrantOrder1);
+        quadrantOrders.Add(quadrantOrder2);
+        quadrantOrders.Add(quadrantOrder3);
+        quadrantOrders.Add(quadrantOrder4);
+        quadrantOrders.Add(quadrantOrder5);
+        quadrantOrders.Add(quadrantOrder6);
+        quadrantOrders.Add(quadrantOrder7);
+        quadrantOrders.Add(quadrantOrder8);
+        quadrantOrders.Add(quadrantOrder9);
+        quadrantOrders.Add(quadrantOrder10);
+        quadrantCounter = -1;//we start at negative 1 so that we can increment, then return in GetNextOrder
+      }
 
 
     public List<int> GetNextOrder(){

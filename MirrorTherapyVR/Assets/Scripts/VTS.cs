@@ -23,6 +23,7 @@ public class VTS : MonoBehaviour
     public int ticksBeforeStart;//the number of ticks before stroking starts
     public int ticksPerStroke;//how many metronome ticks the stroke should last for
     public int ticksBetweenStrokes;
+    public ExperimentManager experimentManager;
 
     [Tooltip("0 indexed")]
     public int numberOfStrokes;//the number of times we do one stroke, not the number of times we do all possible strokes
@@ -81,11 +82,15 @@ public class VTS : MonoBehaviour
     }
 
     public void EndStroking(){
+      debugText.text = "stroking ended";
       paintbrush.SetActive(false);
       //turn on real hand
       mobileHand.SetActive(true);
-      //disable fake hand--do this last because this script is on it
+      //disable fake hand
       fixedHand.SetActive(false);
+      debugText.text = "CHECKPOINT1";//runs
+      experimentManager.LoadButtonsTask();//this line seems to be what does it
+      debugText.text = "CHECKPOINT2";//this does not get called
     }
 
     // Update is called once per frame-- FixedUpdate is called exactly 50X per second
