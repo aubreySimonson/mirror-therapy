@@ -11,7 +11,7 @@ using UnityEngine.UI;
 /// and knows about all of our quadrant lists.
 ///
 /// ???--> Aubrey (followspotfour@gmail.com)
-/// Last updated February 2023
+/// Last updated May 2023
 /// </summary>
 
 
@@ -26,7 +26,6 @@ public class ExperimentManager : MonoBehaviour
     public GameObject vtsGo;
     public ButtonsManager buttonsManager;
     public GameObject buttonsManagerGo;
-
     //you should probablt merge the unimanual and bimanual firefly tasks, and make it just a mode toggle at some point
     public FireflyManager fireflyManager;
     public BimanualFirefly bimanualFirefly;//doing the bimanual firefly task requires both the firely manager and the bimanual firefly scripts
@@ -34,6 +33,7 @@ public class ExperimentManager : MonoBehaviour
     public Logger logger;
 
     public Text instructionsText;
+    public GameObject nextTaskButton, allTasksGo;
 
     public bool useVTS;
     public bool mirrorHands;
@@ -72,7 +72,6 @@ public class ExperimentManager : MonoBehaviour
       quadrantOrder9 =  new List<int>(){1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
       quadrantOrder10 =  new List<int>(){1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
 
-      instructionsText.text = "HELLO FROM THE START FUNCTION";
       logger.Log("Experiment Start at " + Time.time);
       logger.Log("Use VTS: " + useVTS.ToString());
       logger.Log("Mirror Hands: " + mirrorHands.ToString());
@@ -83,6 +82,15 @@ public class ExperimentManager : MonoBehaviour
 
     //called by other scripts, to let experiment manager know to advance to the next task
     public void FinishTask(){
+      allTasksGo.SetActive(false);
+      nextTaskButton.SetActive(true);
+      instructionsText.text = "You've finished the task! Please remove the headset to answer some questions about your experience.";
+    }
+
+    //pressing the "next" button calls this
+    public void GoToNextTask(){
+      allTasksGo.SetActive(true);
+      nextTaskButton.SetActive(false);
       taskCounter++;
       NextTask(taskOrder[taskCounter]);
     }
