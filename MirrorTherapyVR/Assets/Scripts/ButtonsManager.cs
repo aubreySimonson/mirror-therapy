@@ -32,6 +32,9 @@ public class ButtonsManager : MonoBehaviour
         quadrantOrder = experimentManager.GetNextOrder();
         NextButton();
       }
+      else{
+        experimentManager.FinishTask();
+      }
     }
 
     //pressable buttons call this.

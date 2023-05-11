@@ -88,9 +88,7 @@ public class VTS : MonoBehaviour
       mobileHand.SetActive(true);
       //disable fake hand
       fixedHand.SetActive(false);
-      debugText.text = "CHECKPOINT1";//runs
-      experimentManager.LoadButtonsTask();//this line seems to be what does it
-      debugText.text = "CHECKPOINT2";//this does not get called
+      experimentManager.FinishTask();
     }
 
     // Update is called once per frame-- FixedUpdate is called exactly 50X per second
