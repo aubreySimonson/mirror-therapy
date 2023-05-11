@@ -51,10 +51,10 @@ public class FingerPinchDetector : MonoBehaviour
         {
             alreadyTriggered = true;
             //if all objects in have been touched, do the thing!
-            Destroy(GetComponent<BoxCollider>());//also for trying to make this not trigger over and over?
-            debugText.text = "calling loadVTS";//this runs over and over
-            experimentManager.LoadVTS();
-            Destroy(this);//and then make sure we don't do this again.
+            Destroy(GetComponent<BoxCollider>());//also for trying to make this not trigger over and over
+            debugText.text = "calling loadVTS";
+            experimentManager.FinishTask();
+            Destroy(this);//and then make sure we don't do this again
         }
     }//end update
 
