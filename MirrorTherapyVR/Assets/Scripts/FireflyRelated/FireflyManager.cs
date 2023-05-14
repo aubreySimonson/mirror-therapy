@@ -26,6 +26,9 @@ public class FireflyManager : MonoBehaviour
     private int fireflyCounter = 0;//how many fireflies have we grabbed in this round?
     private int roundsCounter = 0;//how many rounds have there been?
 
+    public FireflyGrabber rightHandFireflyGrabber, leftHandFireflyGrabber;
+    public bool isBimanual;
+
     public Text debugText;
 
     //start the next round of 10 button presses
@@ -42,8 +45,32 @@ public class FireflyManager : MonoBehaviour
       }
     }
 
+    public void Update(){
+      if(isBimanual){
+        if(rightHandFireflyGrabber.grabbingFirefly && leftHandFireflyGrabber.grabbingFirefly){
+          debugText.text = "both hands grabbing firefly";
+          NextFirefly(rightHandFireflyGrabber.firefly);
+        }
+      }
+      else{
+        if(rightHandFireflyGrabber.grabbingFirefly){
+          debugText.text = "one hand grabbing firefly";
+          NextFirefly(rightHandFireflyGrabber.firefly);
+        }
+        if(leftHandFireflyGrabber.grabbingFirefly){
+          debugText.text = "one hand grabbing firefly";
+          NextFirefly(leftHandFireflyGrabber.firefly);
+        }
+      }
+    }
+
     //firefly grabber calls this.
     public void NextFirefly(GameObject currentFirefly){
+      rightHandFireflyGrabber.touchingFirefly = false;
+      leftHandFireflyGrabber.touchingFirefly = false;
+      rightHandFireflyGrabber.grabbingFirefly = false;
+      leftHandFireflyGrabber.grabbingFirefly = false;
+
       goodSound.Play();
       Destroy(currentFirefly);
       if(fireflyCounter < 9){//0 indexed, 0-9
@@ -69,5 +96,11 @@ public class FireflyManager : MonoBehaviour
       else{
         NextRound();
       }
+    }
+
+    public void Restart(){
+      fireflyCounter = 0;
+      roundsCounter = 0;
+      NextRound();
     }
 }

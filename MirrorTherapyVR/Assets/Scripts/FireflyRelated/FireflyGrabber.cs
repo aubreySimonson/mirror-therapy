@@ -44,12 +44,5 @@ public class FireflyGrabber : MonoBehaviour
     private void GrabFirefly(){
       grabbingFirefly = true;
       debugText.text = "firefly grabbed";
-      if(!isBimanual){
-        //Destroy(firefly);
-        touchingFirefly = false;
-        //play win sound
-        //rell firefly manager about it
-        fireflyManager.NextFirefly(firefly);
-      }
     }
 }

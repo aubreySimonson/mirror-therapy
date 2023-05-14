@@ -745,8 +745,7 @@ MonoBehaviour:
   vtsGo: {fileID: 469016830}
   buttonsManager: {fileID: 88075551}
   buttonsManagerGo: {fileID: 88075550}
-  fireflyManager: {fileID: 0}
-  bimanualFirefly: {fileID: 0}
+  fireflyManager: {fileID: 852163277}
   fireflyGo: {fileID: 852163276}
   logger: {fileID: 223974230}
   instructionsText: {fileID: 944488734}
@@ -2406,6 +2405,9 @@ MonoBehaviour:
   fireflyPrefab: {fileID: 4885035451240684167, guid: 109d8dbcc76c84ab0972808290dff7f0, type: 3}
   goodSound: {fileID: 852163279}
   quadrantOrder: 
+  rightHandFireflyGrabber: {fileID: 1849046409}
+  leftHandFireflyGrabber: {fileID: 159671158}
+  isBimanual: 0
   debugText: {fileID: 944488734}
 --- !u!4 &852163278
 Transform:

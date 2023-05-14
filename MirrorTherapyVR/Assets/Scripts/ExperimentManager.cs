@@ -28,7 +28,6 @@ public class ExperimentManager : MonoBehaviour
     public GameObject buttonsManagerGo;
     //you should probablt merge the unimanual and bimanual firefly tasks, and make it just a mode toggle at some point
     public FireflyManager fireflyManager;
-    public BimanualFirefly bimanualFirefly;//doing the bimanual firefly task requires both the firely manager and the bimanual firefly scripts
     public GameObject fireflyGo;
     public Logger logger;
 
@@ -149,8 +148,6 @@ public class ExperimentManager : MonoBehaviour
       buttonsManagerGo.SetActive(false);
       fireflyGo.SetActive(false);
       fireflyManager.enabled = false;
-      bimanualFirefly.enabled = false;
-
     }
 
     public void LoadVTS(){
@@ -181,8 +178,8 @@ public class ExperimentManager : MonoBehaviour
       currentTask = Task.UnimanualFireflies;
       fireflyGo.SetActive(true);
       fireflyManager.enabled = true;
-      bimanualFirefly.enabled = false;
-      fireflyManager.NextRound();
+      fireflyManager.isBimanual = false;
+      fireflyManager.Restart();
 
       instructionsText.text = "Some kind of explanation of how to do the unimanual fireflies task";
 
@@ -196,8 +193,8 @@ public class ExperimentManager : MonoBehaviour
       currentTask = Task.BimanualFireflies;
       fireflyGo.SetActive(true);
       fireflyManager.enabled = true;
-      bimanualFirefly.enabled = true;
-      fireflyManager.NextRound();
+      fireflyManager.isBimanual = true;
+      fireflyManager.Restart();
 
       instructionsText.text = "Some kind of explanation of how to do the bimanual fireflies task";
 
