@@ -91,6 +91,7 @@ public class ExperimentManager : MonoBehaviour
       allTasksGo.SetActive(true);
       nextTaskButton.SetActive(false);
       taskCounter++;
+      quadrantCounter = -1;//we start at negative 1 so that we can increment, then return in GetNextOrder
       NextTask(taskOrder[taskCounter]);
     }
 

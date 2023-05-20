@@ -2376,7 +2376,6 @@ GameObject:
   - component: {fileID: 852163278}
   - component: {fileID: 852163277}
   - component: {fileID: 852163279}
-  - component: {fileID: 852163280}
   m_Layer: 0
   m_Name: FireflyManager
   m_TagString: Untagged
@@ -2523,22 +2522,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &852163280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852163276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62f3ee9c1085f4d82b47fb930a8dfbb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightHandFireflyGrabber: {fileID: 1849046409}
-  leftHandFireflyGrabber: {fileID: 159671158}
-  fireflyManager: {fileID: 852163277}
-  debugText: {fileID: 1722430320}
 --- !u!137 &875638343 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 13700000, guid: 442d5b4503ed83c4897ef44659446587, type: 3}

@@ -43,6 +43,9 @@ public class FireflyManager : MonoBehaviour
         GameObject tempFirefly = Instantiate(fireflyPrefab);
         NextFirefly(tempFirefly);
       }
+      else{
+        experimentManager.FinishTask();
+      }
     }
 
     public void Update(){
