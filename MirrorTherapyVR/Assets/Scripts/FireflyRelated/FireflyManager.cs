@@ -21,6 +21,9 @@ public class FireflyManager : MonoBehaviour
     public GameObject fireflyPrefab;
     public AudioSource goodSound;
 
+    //this is sort of spaghetti, but we need to tell the hands which type of mirroring to do
+    public HandPositionMirror leftHand, rightHand;
+
     public List<int> quadrantOrder;
 
     private int fireflyCounter = 0;//how many fireflies have we grabbed in this round?
@@ -99,6 +102,18 @@ public class FireflyManager : MonoBehaviour
       else{
         NextRound();
       }
+    }
+
+    public void SetBimanual(){
+      isBimanual = true;
+      rightHand.trueMirror = true;
+      leftHand.trueMirror = true;
+    }
+
+    public void SetUnimanual(){
+      isBimanual = false;
+      rightHand.trueMirror = false;
+      leftHand.trueMirror = false;  
     }
 
     public void Restart(){

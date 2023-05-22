@@ -19,7 +19,9 @@ using UnityEngine.UI;
 public class ExperimentManager : MonoBehaviour
 {
     public enum Task {Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Drumming, Hazard};
-    public List<Task> taskOrder = new List<Task> {Task.Sync, Task.VTS, Task.Buttons, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming, Task.Hazard};
+    //public List<Task> taskOrder = new List<Task> {Task.Sync, Task.VTS, Task.Buttons, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming, Task.Hazard};
+    //shorter list for debugging
+    public List<Task> taskOrder = new List<Task> {Task.Sync, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming, Task.Hazard};
     private int taskCounter = 0;
     public Task currentTask;//making it public lets us start somewhere else
     public VTS vts;
@@ -76,6 +78,7 @@ public class ExperimentManager : MonoBehaviour
       logger.Log("Mirror Hands: " + mirrorHands.ToString());
 
       LoadQuadrantOrders();
+      //SetHandsToNormal();--uncomment when you're done testing bimanual firefly things
       NextTask(Task.Sync);
     }//end start
 
@@ -90,6 +93,7 @@ public class ExperimentManager : MonoBehaviour
     public void GoToNextTask(){
       allTasksGo.SetActive(true);
       nextTaskButton.SetActive(false);
+      SetHandsToNormal();
       taskCounter++;
       quadrantCounter = -1;//we start at negative 1 so that we can increment, then return in GetNextOrder
       NextTask(taskOrder[taskCounter]);
@@ -127,6 +131,20 @@ public class ExperimentManager : MonoBehaviour
 
     public void LoadStartInstructions(){
       currentTask = Task.Sync;
+
+      instructionsText.text = "Hi, and welcome to our user study! ";
+      instructionsText.text+= "This is an excellent spot for any additional instructions we might need to include at the start. ";
+      instructionsText.text += "Take a look at your hand. And try to touch your thumb to each finger.";
+
+      //make sure everything that should be turned off is turned off
+      vtsGo.SetActive(false);
+      buttonsManagerGo.SetActive(false);
+      fireflyGo.SetActive(false);
+      fireflyManager.enabled = false;
+    }
+
+    //make the hands behave in the way they do for most tasks
+    public void SetHandsToNormal(){
       if(mirrorHands){
         rightHandMirrored.enabled = true;
         rightHandReal.enabled = false;
@@ -139,16 +157,6 @@ public class ExperimentManager : MonoBehaviour
       //we start with only the right hand, so we turn the left hand off
       leftHandMirrored.enabled = false;
       leftHandReal.enabled = false;
-
-      instructionsText.text = "Hi, and welcome to our user study! ";
-      instructionsText.text+= "This is an excellent spot for any additional instructions we might need to include at the start. ";
-      instructionsText.text += "Take a look at your hand. And try to touch your thumb to each finger.";
-
-      //make sure everything that should be turned off is turned off
-      vtsGo.SetActive(false);
-      buttonsManagerGo.SetActive(false);
-      fireflyGo.SetActive(false);
-      fireflyManager.enabled = false;
     }
 
     public void LoadVTS(){
@@ -179,8 +187,10 @@ public class ExperimentManager : MonoBehaviour
       currentTask = Task.UnimanualFireflies;
       fireflyGo.SetActive(true);
       fireflyManager.enabled = true;
-      fireflyManager.isBimanual = false;
+      fireflyManager.SetUnimanual();
       fireflyManager.Restart();
+
+      //turn on the other hand
 
       instructionsText.text = "Some kind of explanation of how to do the unimanual fireflies task";
 
@@ -191,10 +201,24 @@ public class ExperimentManager : MonoBehaviour
     }
 
     public void LoadBimanualFirefliesTask(){
+      //in the mirrored condition, both fake hands should be on
+      //int he real condition, both real hands should be on
+      if(mirrorHands){
+        rightHandMirrored.enabled = true;
+        rightHandReal.enabled = false;
+        leftHandMirrored.enabled = true;
+        leftHandReal.enabled = false;
+      }
+      else{
+        rightHandMirrored.enabled = false;
+        rightHandReal.enabled = true;
+        leftHandMirrored.enabled = false;
+        leftHandReal.enabled = true;
+      }
       currentTask = Task.BimanualFireflies;
       fireflyGo.SetActive(true);
       fireflyManager.enabled = true;
-      fireflyManager.isBimanual = true;
+      fireflyManager.SetBimanual();
       fireflyManager.Restart();
 
       instructionsText.text = "Some kind of explanation of how to do the bimanual fireflies task";

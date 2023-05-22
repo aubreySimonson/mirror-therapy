@@ -28,6 +28,7 @@ public class HandPositionMirror : MonoBehaviour
     public List<GameObject> fakeHandPoints;//points that match the position of all of the bones on the real hand
     public List<GameObject> fakeHandPointsMirrored;//a mirror of the fakeHandPoints
 
+    public bool trueMirror = false;
     public float comfortableDistance;//distance over from the world origin that's most comfortable to keep the hand at.
     private float adjust;//distance between hand points and comfortableDistance
     private Vector3 adjustedPosition;
@@ -90,8 +91,10 @@ public class HandPositionMirror : MonoBehaviour
           fakeHandPointsMirrored[bonesCounter].transform.position = Vector3.Reflect(fakeHandPoints[bonesCounter].transform.position, Vector3.right);
 
           //translate
-          adjustedPosition = new Vector3(fakeHandPointsMirrored[bonesCounter].transform.position.x+(adjust*2.00f), fakeHandPointsMirrored[bonesCounter].transform.position.y, fakeHandPointsMirrored[bonesCounter].transform.position.z);
-          fakeHandPointsMirrored[bonesCounter].transform.position = adjustedPosition;
+          if(!trueMirror && !wristSwap){
+            adjustedPosition = new Vector3(fakeHandPointsMirrored[bonesCounter].transform.position.x+(adjust*2.00f), fakeHandPointsMirrored[bonesCounter].transform.position.y, fakeHandPointsMirrored[bonesCounter].transform.position.z);
+            fakeHandPointsMirrored[bonesCounter].transform.position = adjustedPosition;
+          }
 
           fakeBones[bonesCounter].transform.position = fakeHandPointsMirrored[bonesCounter].transform.position;
           fakeBones[bonesCounter].transform.rotation = fakeHandPointsMirrored[bonesCounter].transform.rotation;

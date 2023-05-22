@@ -1202,6 +1202,9 @@ MonoBehaviour:
   fakeHandPointPrefab: {fileID: 5650809521026702779, guid: 17b151107d1404f63ac333c438570fc7, type: 3}
   fakeHandPoints: []
   fakeHandPointsMirrored: []
+  trueMirror: 0
+  wristSwap: 1
+  otherWrist: {fileID: 824663423}
   comfortableDistance: 0.2
   worldOrigin: {fileID: 0}
   debugText: {fileID: 1722430320}
@@ -2352,6 +2355,9 @@ MonoBehaviour:
   fakeHandPointPrefab: {fileID: 5650809521026702779, guid: 17b151107d1404f63ac333c438570fc7, type: 3}
   fakeHandPoints: []
   fakeHandPointsMirrored: []
+  trueMirror: 0
+  wristSwap: 1
+  otherWrist: {fileID: 824663423}
   comfortableDistance: -0.2
   worldOrigin: {fileID: 0}
   debugText: {fileID: 944488734}
@@ -2403,6 +2409,8 @@ MonoBehaviour:
   currentFireflyLocation: {fileID: 0}
   fireflyPrefab: {fileID: 4885035451240684167, guid: 109d8dbcc76c84ab0972808290dff7f0, type: 3}
   goodSound: {fileID: 852163279}
+  leftHand: {fileID: 824663424}
+  rightHand: {fileID: 378001186}
   quadrantOrder: 
   rightHandFireflyGrabber: {fileID: 1849046409}
   leftHandFireflyGrabber: {fileID: 159671158}
