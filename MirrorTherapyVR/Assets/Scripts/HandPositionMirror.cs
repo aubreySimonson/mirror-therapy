@@ -16,6 +16,7 @@ public class HandPositionMirror : MonoBehaviour
 
     public GameObject realHand;//should be a gameobject with OVRSkeleton on it
     public GameObject fakeHand;//should not have OVRSkeleton
+    public GameObject otherFakeHand;
     public List<Transform> bonesToSkip;//there are more fake bones than real bones
     OVRSkeleton skeleton;
 
@@ -97,6 +98,12 @@ public class HandPositionMirror : MonoBehaviour
 
           fakeBones[bonesCounter].transform.position = fakeHandPointsMirrored[bonesCounter].transform.position;
           fakeBones[bonesCounter].transform.rotation = fakeHandPointsMirrored[bonesCounter].transform.rotation;
+          //fakeHandHolder.transform.rotation = realBones[0].Transform.rotation;<--this doesn't do it
+          //fakeBones[bonesCounter].transform.rotation = ReflectRotation(fakeBones[bonesCounter].transform.rotation, Vector3.right);<--also wrong (obv)
+          //fakeBones[0].transform.rotation = ReflectRotation(fakeBones[0].transform.rotation, Vector3.right);<--nope.
+          //otherFakeHand.transform.rotation = realBones[0].Transform.rotation;<--nope.
+          //otherFakeHand.transform.rotation = realHand.transform.rotation;<--nope
+
           bonesCounter++;
         }
     }//end update

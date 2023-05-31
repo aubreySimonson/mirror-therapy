@@ -534,6 +534,7 @@ MonoBehaviour:
   grabbingFirefly: 0
   isBimanual: 1
   fingerMarker: {fileID: 1900452612}
+  otherFingerMarker: {fileID: 0}
   firefly: {fileID: 0}
   fireflyManager: {fileID: 852163277}
   debugText: {fileID: 643750375}
@@ -1168,6 +1169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   realHand: {fileID: 378001185}
   fakeHand: {fileID: 1900452610}
+  otherFakeHand: {fileID: 468731065}
   bonesToSkip:
   - {fileID: 1340276529}
   - {fileID: 1433525904}
@@ -2299,6 +2301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   realHand: {fileID: 824663423}
   fakeHand: {fileID: 468731065}
+  otherFakeHand: {fileID: 1900452610}
   bonesToSkip:
   - {fileID: 2100661081}
   - {fileID: 2100661080}
@@ -4352,6 +4355,7 @@ MonoBehaviour:
   grabbingFirefly: 0
   isBimanual: 1
   fingerMarker: {fileID: 2100661085}
+  otherFingerMarker: {fileID: 0}
   firefly: {fileID: 0}
   fireflyManager: {fileID: 852163277}
   debugText: {fileID: 643750375}
