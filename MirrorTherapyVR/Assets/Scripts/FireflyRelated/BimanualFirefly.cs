@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 
 /// <summary>
+/// OBSCELETE-- Firefly manager now incorporates this
 /// This script is part of MirrorTherapy
 /// Put this script wherever.
 /// During the bimanual firefly task, it keeps track of both firefly scripts.

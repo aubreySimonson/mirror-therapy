@@ -21,10 +21,16 @@ public class FireflyManager : MonoBehaviour
     public GameObject fireflyPrefab;
     public AudioSource goodSound;
 
+    //this is sort of spaghetti, but we need to tell the hands which type of mirroring to do
+    public HandPositionMirror leftHand, rightHand;
+
     public List<int> quadrantOrder;
 
     private int fireflyCounter = 0;//how many fireflies have we grabbed in this round?
     private int roundsCounter = 0;//how many rounds have there been?
+
+    public FireflyGrabber rightHandFireflyGrabber, leftHandFireflyGrabber;
+    public bool isBimanual;
 
     public Text debugText;
 
@@ -40,10 +46,37 @@ public class FireflyManager : MonoBehaviour
         GameObject tempFirefly = Instantiate(fireflyPrefab);
         NextFirefly(tempFirefly);
       }
+      else{
+        experimentManager.FinishTask();
+      }
+    }
+
+    public void Update(){
+      if(isBimanual){
+        if(rightHandFireflyGrabber.grabbingFirefly && leftHandFireflyGrabber.grabbingFirefly){
+          debugText.text = "both hands grabbing firefly";
+          NextFirefly(rightHandFireflyGrabber.firefly);
+        }
+      }
+      else{
+        if(rightHandFireflyGrabber.grabbingFirefly){
+          debugText.text = "one hand grabbing firefly";
+          NextFirefly(rightHandFireflyGrabber.firefly);
+        }
+        if(leftHandFireflyGrabber.grabbingFirefly){
+          debugText.text = "one hand grabbing firefly";
+          NextFirefly(leftHandFireflyGrabber.firefly);
+        }
+      }
     }
 
     //firefly grabber calls this.
     public void NextFirefly(GameObject currentFirefly){
+      rightHandFireflyGrabber.touchingFirefly = false;
+      leftHandFireflyGrabber.touchingFirefly = false;
+      rightHandFireflyGrabber.grabbingFirefly = false;
+      leftHandFireflyGrabber.grabbingFirefly = false;
+
       goodSound.Play();
       Destroy(currentFirefly);
       if(fireflyCounter < 9){//0 indexed, 0-9
@@ -69,5 +102,23 @@ public class FireflyManager : MonoBehaviour
       else{
         NextRound();
       }
+    }
+
+    public void SetBimanual(){
+      isBimanual = true;
+      rightHand.trueMirror = true;
+      leftHand.trueMirror = true;
+    }
+
+    public void SetUnimanual(){
+      isBimanual = false;
+      rightHand.trueMirror = false;
+      leftHand.trueMirror = false;  
+    }
+
+    public void Restart(){
+      fireflyCounter = 0;
+      roundsCounter = 0;
+      NextRound();
     }
 }

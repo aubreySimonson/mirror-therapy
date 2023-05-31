@@ -14,9 +14,9 @@ using UnityEngine.UI;
 public class HandPositionMirror : MonoBehaviour
 {
 
-
     public GameObject realHand;//should be a gameobject with OVRSkeleton on it
     public GameObject fakeHand;//should not have OVRSkeleton
+    public GameObject otherFakeHand;
     public List<Transform> bonesToSkip;//there are more fake bones than real bones
     OVRSkeleton skeleton;
 
@@ -28,6 +28,7 @@ public class HandPositionMirror : MonoBehaviour
     public List<GameObject> fakeHandPoints;//points that match the position of all of the bones on the real hand
     public List<GameObject> fakeHandPointsMirrored;//a mirror of the fakeHandPoints
 
+    public bool trueMirror = false;
     public float comfortableDistance;//distance over from the world origin that's most comfortable to keep the hand at.
     private float adjust;//distance between hand points and comfortableDistance
     private Vector3 adjustedPosition;
@@ -90,11 +91,19 @@ public class HandPositionMirror : MonoBehaviour
           fakeHandPointsMirrored[bonesCounter].transform.position = Vector3.Reflect(fakeHandPoints[bonesCounter].transform.position, Vector3.right);
 
           //translate
-          adjustedPosition = new Vector3(fakeHandPointsMirrored[bonesCounter].transform.position.x+(adjust*2.00f), fakeHandPointsMirrored[bonesCounter].transform.position.y, fakeHandPointsMirrored[bonesCounter].transform.position.z);
-          fakeHandPointsMirrored[bonesCounter].transform.position = adjustedPosition;
+          if(!trueMirror){
+            adjustedPosition = new Vector3(fakeHandPointsMirrored[bonesCounter].transform.position.x+(adjust*2.00f), fakeHandPointsMirrored[bonesCounter].transform.position.y, fakeHandPointsMirrored[bonesCounter].transform.position.z);
+            fakeHandPointsMirrored[bonesCounter].transform.position = adjustedPosition;
+          }
 
           fakeBones[bonesCounter].transform.position = fakeHandPointsMirrored[bonesCounter].transform.position;
           fakeBones[bonesCounter].transform.rotation = fakeHandPointsMirrored[bonesCounter].transform.rotation;
+          //fakeHandHolder.transform.rotation = realBones[0].Transform.rotation;<--this doesn't do it
+          //fakeBones[bonesCounter].transform.rotation = ReflectRotation(fakeBones[bonesCounter].transform.rotation, Vector3.right);<--also wrong (obv)
+          //fakeBones[0].transform.rotation = ReflectRotation(fakeBones[0].transform.rotation, Vector3.right);<--nope.
+          //otherFakeHand.transform.rotation = realBones[0].Transform.rotation;<--nope.
+          //otherFakeHand.transform.rotation = realHand.transform.rotation;<--nope
+
           bonesCounter++;
         }
     }//end update

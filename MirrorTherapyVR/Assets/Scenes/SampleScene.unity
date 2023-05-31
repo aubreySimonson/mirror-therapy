@@ -317,7 +317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37392896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 1.1, z: 0.5}
+  m_LocalPosition: {x: -0.1, y: 1.2, z: 0.5}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 852163278}
@@ -534,6 +534,7 @@ MonoBehaviour:
   grabbingFirefly: 0
   isBimanual: 1
   fingerMarker: {fileID: 1900452612}
+  otherFingerMarker: {fileID: 0}
   firefly: {fileID: 0}
   fireflyManager: {fileID: 852163277}
   debugText: {fileID: 643750375}
@@ -745,14 +746,14 @@ MonoBehaviour:
   vtsGo: {fileID: 469016830}
   buttonsManager: {fileID: 88075551}
   buttonsManagerGo: {fileID: 88075550}
-  fireflyManager: {fileID: 0}
-  bimanualFirefly: {fileID: 0}
+  fireflyManager: {fileID: 852163277}
   fireflyGo: {fileID: 852163276}
   logger: {fileID: 223974230}
   instructionsText: {fileID: 944488734}
+  debugText: {fileID: 957910394}
   nextTaskButton: {fileID: 227476437}
   allTasksGo: {fileID: 1436457191}
-  useVTS: 1
+  useVTS: 0
   mirrorHands: 1
   rightHandReal: {fileID: 378001187}
   leftHandReal: {fileID: 824663426}
@@ -1022,7 +1023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234211330}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 1.5, z: 0.5}
+  m_LocalPosition: {x: -0.1, y: 1.4, z: 0.5}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 852163278}
@@ -1168,6 +1169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   realHand: {fileID: 378001185}
   fakeHand: {fileID: 1900452610}
+  otherFakeHand: {fileID: 468731065}
   bonesToSkip:
   - {fileID: 1340276529}
   - {fileID: 1433525904}
@@ -1203,6 +1205,7 @@ MonoBehaviour:
   fakeHandPointPrefab: {fileID: 5650809521026702779, guid: 17b151107d1404f63ac333c438570fc7, type: 3}
   fakeHandPoints: []
   fakeHandPointsMirrored: []
+  trueMirror: 0
   comfortableDistance: 0.2
   worldOrigin: {fileID: 0}
   debugText: {fileID: 1722430320}
@@ -1310,6 +1313,7 @@ RectTransform:
   - {fileID: 944488733}
   - {fileID: 1722430319}
   - {fileID: 643750374}
+  - {fileID: 957910393}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2297,6 +2301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   realHand: {fileID: 824663423}
   fakeHand: {fileID: 468731065}
+  otherFakeHand: {fileID: 1900452610}
   bonesToSkip:
   - {fileID: 2100661081}
   - {fileID: 2100661080}
@@ -2353,6 +2358,7 @@ MonoBehaviour:
   fakeHandPointPrefab: {fileID: 5650809521026702779, guid: 17b151107d1404f63ac333c438570fc7, type: 3}
   fakeHandPoints: []
   fakeHandPointsMirrored: []
+  trueMirror: 0
   comfortableDistance: -0.2
   worldOrigin: {fileID: 0}
   debugText: {fileID: 944488734}
@@ -2377,7 +2383,6 @@ GameObject:
   - component: {fileID: 852163278}
   - component: {fileID: 852163277}
   - component: {fileID: 852163279}
-  - component: {fileID: 852163280}
   m_Layer: 0
   m_Name: FireflyManager
   m_TagString: Untagged
@@ -2405,7 +2410,12 @@ MonoBehaviour:
   currentFireflyLocation: {fileID: 0}
   fireflyPrefab: {fileID: 4885035451240684167, guid: 109d8dbcc76c84ab0972808290dff7f0, type: 3}
   goodSound: {fileID: 852163279}
+  leftHand: {fileID: 824663424}
+  rightHand: {fileID: 378001186}
   quadrantOrder: 
+  rightHandFireflyGrabber: {fileID: 1849046409}
+  leftHandFireflyGrabber: {fileID: 159671158}
+  isBimanual: 0
   debugText: {fileID: 944488734}
 --- !u!4 &852163278
 Transform:
@@ -2521,22 +2531,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &852163280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852163276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62f3ee9c1085f4d82b47fb930a8dfbb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightHandFireflyGrabber: {fileID: 1849046409}
-  leftHandFireflyGrabber: {fileID: 159671158}
-  fireflyManager: {fileID: 852163277}
-  debugText: {fileID: 1722430320}
 --- !u!137 &875638343 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 13700000, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -2756,6 +2750,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944488732}
+  m_CullTransparentMesh: 1
+--- !u!1 &957910392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 957910393}
+  - component: {fileID: 957910395}
+  - component: {fileID: 957910394}
+  m_Layer: 5
+  m_Name: ExperimentManagerDebug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &957910393
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957910392}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 464068966}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -101, y: -353.7}
+  m_SizeDelta: {x: 1000, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &957910394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957910392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 100
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &957910395
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957910392}
   m_CullTransparentMesh: 1
 --- !u!4 &963454205 stripped
 Transform:
@@ -3082,7 +3155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065494700}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 1.1, z: 0.5}
+  m_LocalPosition: {x: 0.1, y: 1.2, z: 0.5}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 852163278}
@@ -3608,7 +3681,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455916831}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 1.5, z: 0.5}
+  m_LocalPosition: {x: 0.1, y: 1.4, z: 0.5}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 852163278}
@@ -4282,6 +4355,7 @@ MonoBehaviour:
   grabbingFirefly: 0
   isBimanual: 1
   fingerMarker: {fileID: 2100661085}
+  otherFingerMarker: {fileID: 0}
   firefly: {fileID: 0}
   fireflyManager: {fileID: 852163277}
   debugText: {fileID: 643750375}
