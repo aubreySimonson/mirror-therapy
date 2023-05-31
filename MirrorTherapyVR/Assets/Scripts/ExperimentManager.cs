@@ -18,7 +18,7 @@ using UnityEngine.UI;
 
 public class ExperimentManager : MonoBehaviour
 {
-    public enum Task {Sync, UnimanualFireflies, BimanualFireflies, Drumming, Hazard, VTS, Buttons};//no matter what we do with taskOrder, it always uses this list
+    public enum Task {Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Drumming, Hazard};//no matter what we do with taskOrder, it always uses this list
     //public List<Task> taskOrder = new List<Task> {Task.Sync, Task.VTS, Task.Buttons, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming, Task.Hazard};
     //shorter list for debugging
     public List<Task> taskOrder = new List<Task> {Task.Sync, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming, Task.Hazard};
