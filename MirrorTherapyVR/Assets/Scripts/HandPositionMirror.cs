@@ -14,7 +14,6 @@ using UnityEngine.UI;
 public class HandPositionMirror : MonoBehaviour
 {
 
-
     public GameObject realHand;//should be a gameobject with OVRSkeleton on it
     public GameObject fakeHand;//should not have OVRSkeleton
     public List<Transform> bonesToSkip;//there are more fake bones than real bones
@@ -91,7 +90,7 @@ public class HandPositionMirror : MonoBehaviour
           fakeHandPointsMirrored[bonesCounter].transform.position = Vector3.Reflect(fakeHandPoints[bonesCounter].transform.position, Vector3.right);
 
           //translate
-          if(!trueMirror && !wristSwap){
+          if(!trueMirror){
             adjustedPosition = new Vector3(fakeHandPointsMirrored[bonesCounter].transform.position.x+(adjust*2.00f), fakeHandPointsMirrored[bonesCounter].transform.position.y, fakeHandPointsMirrored[bonesCounter].transform.position.z);
             fakeHandPointsMirrored[bonesCounter].transform.position = adjustedPosition;
           }

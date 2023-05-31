@@ -18,7 +18,7 @@ using UnityEngine.UI;
 
 public class ExperimentManager : MonoBehaviour
 {
-    public enum Task {Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Drumming, Hazard};
+    public enum Task {Sync, UnimanualFireflies, BimanualFireflies, Drumming, Hazard, VTS, Buttons};//no matter what we do with taskOrder, it always uses this list
     //public List<Task> taskOrder = new List<Task> {Task.Sync, Task.VTS, Task.Buttons, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming, Task.Hazard};
     //shorter list for debugging
     public List<Task> taskOrder = new List<Task> {Task.Sync, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming, Task.Hazard};
@@ -33,7 +33,7 @@ public class ExperimentManager : MonoBehaviour
     public GameObject fireflyGo;
     public Logger logger;
 
-    public Text instructionsText;
+    public Text instructionsText, debugText;
     public GameObject nextTaskButton, allTasksGo;
 
     public bool useVTS;
@@ -79,6 +79,7 @@ public class ExperimentManager : MonoBehaviour
 
       LoadQuadrantOrders();
       //SetHandsToNormal();--uncomment when you're done testing bimanual firefly things
+      debugText.text = "this should say unimanual: " + taskOrder[1].ToString();
       NextTask(Task.Sync);
     }//end start
 
@@ -96,6 +97,7 @@ public class ExperimentManager : MonoBehaviour
       SetHandsToNormal();
       taskCounter++;
       quadrantCounter = -1;//we start at negative 1 so that we can increment, then return in GetNextOrder
+      debugText.text = "now going to task: " + taskOrder[taskCounter].ToString();
       NextTask(taskOrder[taskCounter]);
     }
 
@@ -164,12 +166,14 @@ public class ExperimentManager : MonoBehaviour
       if(!useVTS){//if we're not doing synchronous visuotactile stimulation, skip straight to buttons task
         LoadButtonsTask();
       }
-      instructionsText.text = "Some kind of explanation of how to do the VTS situation, which you plan on writing later";
-      vtsGo.SetActive(true);
+      else{
+        instructionsText.text = "Some kind of explanation of how to do the VTS situation, which you plan on writing later";
+        vtsGo.SetActive(true);
 
-      //make sure everything that should be turned off is turned off
-      buttonsManagerGo.SetActive(false);
-      fireflyGo.SetActive(false);
+        //make sure everything that should be turned off is turned off
+        buttonsManagerGo.SetActive(false);
+        fireflyGo.SetActive(false);
+      }
     }
 
     public void LoadButtonsTask(){

@@ -18,7 +18,7 @@ public class FireflyGrabber : MonoBehaviour
     public bool touchingFirefly = false;
     public bool grabbingFirefly = false;
     public bool isBimanual;//if we're currently doing the bimanual task, we need to have this script not directly contact the firefly manager
-    public GameObject fingerMarker;
+    public GameObject fingerMarker, otherFingerMarker;
     public GameObject firefly;
     public FireflyManager fireflyManager;
     public Text debugText;
@@ -30,7 +30,7 @@ public class FireflyGrabber : MonoBehaviour
         touchingFirefly = true;
         firefly = other.gameObject;
       }
-      if(other.gameObject == fingerMarker && touchingFirefly){
+      if((other.gameObject == fingerMarker || other.gameObject == otherFingerMarker) && touchingFirefly){
         GrabFirefly();
       }
     }
