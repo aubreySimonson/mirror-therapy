@@ -26,7 +26,7 @@ public class ButtonsManager : MonoBehaviour
 
     //start the next round of 10 button presses
     public void NextRound(){
-      if(roundsCounter < 9){//0 indexed, 0-9
+      if(roundsCounter < 3){//0 indexed, 0-9
         buttonsCounter = 0;
         roundsCounter++;
         quadrantOrder = experimentManager.GetNextOrder();
@@ -39,7 +39,7 @@ public class ButtonsManager : MonoBehaviour
 
     //pressable buttons call this.
     public void NextButton(){
-      if(buttonsCounter < 9){//0 indexed, 0-9
+      if(buttonsCounter < 36){//0 indexed, 0-9
         //TODO: log the button press
         //figure out which button is next
         if(quadrantOrder[buttonsCounter] == 1){

@@ -47,12 +47,8 @@ public class ExperimentManager : MonoBehaviour
     private List<int> quadrantOrder2;
     private List<int> quadrantOrder3;
     private List<int> quadrantOrder4;
-    private List<int> quadrantOrder5;
-    private List<int> quadrantOrder6;
-    private List<int> quadrantOrder7;
-    private List<int> quadrantOrder8;
-    private List<int> quadrantOrder9;
-    private List<int> quadrantOrder10;
+    private List<int> quadrantOrder5;//you'll need a 5th one for the drumming
+
 
     public List<List<int>> quadrantOrders = new List<List<int>>();
 
@@ -62,16 +58,10 @@ public class ExperimentManager : MonoBehaviour
     void Start()
     {
       //TODO: replace these with real random numbers
-      quadrantOrder1 =  new List<int>(){1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
-      quadrantOrder2 =  new List<int>(){1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
-      quadrantOrder3 =  new List<int>(){1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
-      quadrantOrder4 =  new List<int>(){1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
-      quadrantOrder5 =  new List<int>(){1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
-      quadrantOrder6 =  new List<int>(){1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
-      quadrantOrder7 =  new List<int>(){1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
-      quadrantOrder8 =  new List<int>(){1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
-      quadrantOrder9 =  new List<int>(){1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
-      quadrantOrder10 =  new List<int>(){1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
+      quadrantOrder1 =  new List<int>(){2, 4, 1, 2,  1, 3, 4, 2,  3, 1, 4, 3,  2, 1, 3,  2, 4,  1,  2, 3, 4, 3, 1, 4, 2,  3, 1, 3,  2, 4,  1, 2, 1, 4, 3, 4, 2};
+      quadrantOrder2 =  new List<int>(){2, 1, 3, 4, 3, 1, 2, 4,  1, 4,  2, 3,  2, 1,  2, 3, 1, 4, 3, 4,  1, 3,  2, 4, 2,  3, 4, 2, 1, 3,  2, 4,  1, 4, 3, 1, 2};
+      quadrantOrder3 =  new List<int>(){3, 4, 2, 1, 3, 1, 2, 4,  1, 4, 3,  2,  3,  2,  3, 4,  1, 2, 1, 3, 1, 4,  2, 4, 3, 1, 2, 4, 2, 1, 4, 3,  2,  3, 4,  1,3};
+      quadrantOrder4 =  new List<int>(){4, 3, 1, 2, 4,  2, 3, 4,  1, 3,  2, 1, 4,  1, 3,  2, 4, 3, 1, 4, 2, 1, 2,  3, 4, 2,  3,  2, 4,  1, 2, 1, 3, 4, 3, 1, 4};
 
       logger.Log("Experiment Start at " + Time.time);
       logger.Log("Use VTS: " + useVTS.ToString());
@@ -237,12 +227,6 @@ public class ExperimentManager : MonoBehaviour
       quadrantOrders.Add(quadrantOrder2);
       quadrantOrders.Add(quadrantOrder3);
       quadrantOrders.Add(quadrantOrder4);
-      quadrantOrders.Add(quadrantOrder5);
-      quadrantOrders.Add(quadrantOrder6);
-      quadrantOrders.Add(quadrantOrder7);
-      quadrantOrders.Add(quadrantOrder8);
-      quadrantOrders.Add(quadrantOrder9);
-      quadrantOrders.Add(quadrantOrder10);
       quadrantCounter = -1;//we start at negative 1 so that we can increment, then return in GetNextOrder
     }
 

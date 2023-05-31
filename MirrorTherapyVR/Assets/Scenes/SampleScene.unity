@@ -427,7 +427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &88075551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,7 +753,7 @@ MonoBehaviour:
   debugText: {fileID: 957910394}
   nextTaskButton: {fileID: 227476437}
   allTasksGo: {fileID: 1436457191}
-  useVTS: 1
+  useVTS: 0
   mirrorHands: 1
   rightHandReal: {fileID: 378001187}
   leftHandReal: {fileID: 824663426}
