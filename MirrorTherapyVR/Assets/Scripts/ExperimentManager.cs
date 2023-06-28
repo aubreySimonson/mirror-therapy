@@ -18,10 +18,10 @@ using UnityEngine.UI;
 
 public class ExperimentManager : MonoBehaviour
 {
-    public enum Task {Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Drumming, Hazard};//no matter what we do with taskOrder, it always uses this list
+    public enum Task {Sync, Hazard, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Drumming};//no matter what we do with taskOrder, it always uses this list
     //public List<Task> taskOrder = new List<Task> {Task.Sync, Task.VTS, Task.Buttons, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming, Task.Hazard};
     //shorter list for debugging
-    public List<Task> taskOrder = new List<Task> {Task.Sync, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming, Task.Hazard};
+    public List<Task> taskOrder = new List<Task> {Task.Sync, Task.Hazard, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming};
     private int taskCounter = 0;
     public Task currentTask;//making it public lets us start somewhere else
     public VTS vts;
@@ -31,6 +31,7 @@ public class ExperimentManager : MonoBehaviour
     //you should probablt merge the unimanual and bimanual firefly tasks, and make it just a mode toggle at some point
     public FireflyManager fireflyManager;
     public GameObject fireflyGo;
+    public GameObject hazardsGo;
     public Logger logger;
 
     public Text instructionsText, debugText;
@@ -57,19 +58,19 @@ public class ExperimentManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      //TODO: replace these with real random numbers
-      quadrantOrder1 =  new List<int>(){2, 4, 1, 2,  1, 3, 4, 2,  3, 1, 4, 3,  2, 1, 3,  2, 4,  1,  2, 3, 4, 3, 1, 4, 2,  3, 1, 3,  2, 4,  1, 2, 1, 4, 3, 4, 2};
-      quadrantOrder2 =  new List<int>(){2, 1, 3, 4, 3, 1, 2, 4,  1, 4,  2, 3,  2, 1,  2, 3, 1, 4, 3, 4,  1, 3,  2, 4, 2,  3, 4, 2, 1, 3,  2, 4,  1, 4, 3, 1, 2};
-      quadrantOrder3 =  new List<int>(){3, 4, 2, 1, 3, 1, 2, 4,  1, 4, 3,  2,  3,  2,  3, 4,  1, 2, 1, 3, 1, 4,  2, 4, 3, 1, 2, 4, 2, 1, 4, 3,  2,  3, 4,  1,3};
-      quadrantOrder4 =  new List<int>(){4, 3, 1, 2, 4,  2, 3, 4,  1, 3,  2, 1, 4,  1, 3,  2, 4, 3, 1, 4, 2, 1, 2,  3, 4, 2,  3,  2, 4,  1, 2, 1, 3, 4, 3, 1, 4};
+      //these are our random numbers-- they're calculated by hand, and deserve further scrutiny
+      quadrantOrder1 =  new List<int>(){2, 4, 1, 2, 1, 3, 4, 2, 3, 1, 4, 3, 2, 1, 3, 2, 4, 1, 2, 3, 4, 3, 1, 4, 2,  3, 1, 3,  2, 4,  1, 2, 1, 4, 3, 4, 2};
+      quadrantOrder2 =  new List<int>(){2, 1, 3, 4, 3, 1, 2, 4, 1, 4, 2, 3, 2, 1, 2, 3, 1, 4, 3, 4,  1, 3,  2, 4, 2,  3, 4, 2, 1, 3,  2, 4,  1, 4, 3, 1, 2};
+      quadrantOrder3 =  new List<int>(){3, 4, 2, 1, 3, 1, 2, 4, 1, 4, 3, 2, 3, 2, 3, 4, 1, 2, 1, 3, 1, 4,  2, 4, 3, 1, 2, 4, 2, 1, 4, 3,  2,  3, 4,  1,3};
+      quadrantOrder4 =  new List<int>(){4, 3, 1, 2, 4, 2, 3, 4, 1, 3, 2, 1, 4, 1, 3, 2, 4, 3, 1, 4, 2, 1, 2,  3, 4, 2,  3,  2, 4,  1, 2, 1, 3, 4, 3, 1, 4};
 
       logger.Log("Experiment Start at " + Time.time);
       logger.Log("Use VTS: " + useVTS.ToString());
       logger.Log("Mirror Hands: " + mirrorHands.ToString());
 
       LoadQuadrantOrders();
-      //SetHandsToNormal();--uncomment when you're done testing bimanual firefly things
-      debugText.text = "this should say unimanual: " + taskOrder[1].ToString();
+      SetHandsToNormal();//--uncomment when you're done testing bimanual firefly things
+      debugText.text = "this should say hazard: " + taskOrder[1].ToString();
       NextTask(Task.Sync);
     }//end start
 
@@ -77,6 +78,7 @@ public class ExperimentManager : MonoBehaviour
     public void FinishTask(){
       allTasksGo.SetActive(false);
       nextTaskButton.SetActive(true);
+      hazardsGo.SetActive(false);
       instructionsText.text = "You've finished the task! Please remove the headset to answer some questions about your experience.";
     }
 
@@ -113,7 +115,7 @@ public class ExperimentManager : MonoBehaviour
           print ("We haven't made this yet");
           break;
       case Task.Hazard:
-          print ("We haven't made this yet");
+          LoadHazardsTask();
           break;
       default:
           print ("This shouldn't happen");
@@ -220,6 +222,18 @@ public class ExperimentManager : MonoBehaviour
       //make sure everything that should be turned off is turned off
       vtsGo.SetActive(false);
       buttonsManagerGo.SetActive(false);
+    }
+
+    public void LoadHazardsTask(){
+      currentTask = Task.Hazard;
+      instructionsText.text = "Some kind of explanation of how to do the hazard task";
+      hazardsGo.SetActive(true);
+      buttonsManagerGo.SetActive(true);
+      buttonsManager.StartHazardsTask();
+
+      //make sure everything that should be turned off is turned off
+      fireflyGo.SetActive(false);
+      vtsGo.SetActive(false);
     }
 
     private void LoadQuadrantOrders(){
