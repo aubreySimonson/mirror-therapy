@@ -41,7 +41,8 @@ public class ButtonsManager : MonoBehaviour
 
     //start the next round of 10 button presses
     public void NextRound(){
-      if(roundsCounter < 3 || avoidanceTask){//0 indexed, 0-9-- we only do avoidanceTask once
+      debugText.text = "next round called";
+      if(roundsCounter < 3 && !avoidanceTask){//0 indexed, 0-9-- we only do avoidanceTask once
         buttonsCounter = 0;
         roundsCounter++;
         quadrantOrder = experimentManager.GetNextOrder();
@@ -64,14 +65,14 @@ public class ButtonsManager : MonoBehaviour
 
     //pressable buttons call this.
     public void NextButton(){
-      debugText.text = "Next button called";//runs
+      debugText.text = "Next button called";
       //make sure all hazards are off
       foreach(HazardHandler handler in hazardHandlers){
         debugText.text = "We are in that foreach loop";
         handler.DeactivateAllHazards();
       }
 
-      debugText.text = "we successfully deactivate all the hazards";//doesn't run
+      debugText.text = "buttonsCounter = " + buttonsCounter;
 
       if(buttonsCounter < 36){//0 indexed, 0-35
         //TODO: log the button press
