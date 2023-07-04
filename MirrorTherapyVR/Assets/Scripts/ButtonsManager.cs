@@ -24,9 +24,25 @@ public class ButtonsManager : MonoBehaviour
 
     public Text debugText;
 
+    //hazard stuff
+    public bool avoidanceTask;
+    public List<HazardHandler> hazardHandlers;
+    public List<int> hazardOrder;
+    public List<int> hazardLocations;//you still need to figure these out
+
+
+    void Start(){
+      //1 is no hazard
+      //2 is hazards[0]
+      //3 is hazards[1]
+      hazardOrder = new List <int> {3, 1, 3, 2, 3, 3, 1, 2, 1, 2, 3, 1, 1, 3, 1, 3, 2, 3, 2, 2, 1, 1, 2, 2, 1, 1, 3, 1, 3, 2, 2, 2, 3, 1, 2, 3};
+      hazardLocations = new List<int>{0, 3, 4, 1, 2, 2, 5, 3, 5, 4, 5, 1, 5, 5, 4, 5, 2, 3, 4, 5, 2, 1, 1, 5, 3, 2, 5, 5, 2, 5, 1, 1, 4, 3, 3, 4, 5};
+    }
+
     //start the next round of 10 button presses
     public void NextRound(){
-      if(roundsCounter < 9){//0 indexed, 0-9
+      debugText.text = "next round called";
+      if(roundsCounter < 3 && !avoidanceTask){//0 indexed, 0-9-- we only do avoidanceTask once
         buttonsCounter = 0;
         roundsCounter++;
         quadrantOrder = experimentManager.GetNextOrder();
@@ -37,9 +53,28 @@ public class ButtonsManager : MonoBehaviour
       }
     }
 
+    public void StartHazardsTask(){
+      debugText.text = "Start hazards task called";
+      avoidanceTask = true;
+      quadrantOrder = experimentManager.GetNextOrder();//throw out one
+      quadrantOrder = experimentManager.GetNextOrder();//throw out two
+      quadrantOrder = experimentManager.GetNextOrder();//throw out three
+      quadrantOrder = experimentManager.GetNextOrder();//use the fourth
+      NextButton();
+    }
+
     //pressable buttons call this.
     public void NextButton(){
-      if(buttonsCounter < 9){//0 indexed, 0-9
+      debugText.text = "Next button called";
+      //make sure all hazards are off
+      foreach(HazardHandler handler in hazardHandlers){
+        debugText.text = "We are in that foreach loop";
+        handler.DeactivateAllHazards();
+      }
+
+      debugText.text = "buttonsCounter = " + buttonsCounter;
+
+      if(buttonsCounter < 36){//0 indexed, 0-35
         //TODO: log the button press
         //figure out which button is next
         if(quadrantOrder[buttonsCounter] == 1){
@@ -56,6 +91,10 @@ public class ButtonsManager : MonoBehaviour
         }
         //highlight the next button
         currentButton.Highlight();
+        if(avoidanceTask && hazardLocations[buttonsCounter]!=0){
+          int location = hazardLocations[buttonsCounter];
+          hazardHandlers[location-1].ActivateHazard(hazardOrder[buttonsCounter]);
+        }
         buttonsCounter++;
         debugText.text = "buttons counter: " + buttonsCounter + " rounds counter: " + roundsCounter;
       }

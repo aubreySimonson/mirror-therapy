@@ -80,6 +80,7 @@ public class HandPositionMirror : MonoBehaviour
         int bonesCounter = 0;
 
         Vector3 realWristPosition = realBones[0].Transform.position;
+        debugText.text = "Real: " + realBones[0].Transform.eulerAngles.ToString();
         adjust = realWristPosition.x - comfortableDistance;
 
         foreach(OVRBone bone in realBones){
@@ -106,6 +107,10 @@ public class HandPositionMirror : MonoBehaviour
 
           bonesCounter++;
         }
+        debugText.text += "   Fake: " + fakeBones[0].transform.eulerAngles.ToString();
+        //the following also does not work
+        //Vector3 wristRotation = new Vector3(realBones[0].Transform.eulerAngles.x, 365.0f - realBones[0].Transform.eulerAngles.y + 180.0f, realBones[0].Transform.eulerAngles.z);
+        //fakeBones[0].transform.eulerAngles = wristRotation;
     }//end update
 
     public List<OVRBone> GetRealBones(){

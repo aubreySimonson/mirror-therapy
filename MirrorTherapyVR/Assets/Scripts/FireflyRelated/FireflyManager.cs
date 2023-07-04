@@ -36,7 +36,7 @@ public class FireflyManager : MonoBehaviour
 
     //start the next round of 10 button presses
     public void NextRound(){
-      if(roundsCounter < 10){//we increment from 0 to 1 before the first round, making this 0 indexed
+      if(roundsCounter < 4){//we increment from 0 to 1 before the first round, making this 0 indexed
         fireflyCounter = 0;
         roundsCounter++;
         quadrantOrder = experimentManager.GetNextOrder();
@@ -79,7 +79,7 @@ public class FireflyManager : MonoBehaviour
 
       goodSound.Play();
       Destroy(currentFirefly);
-      if(fireflyCounter < 9){//0 indexed, 0-9
+      if(fireflyCounter < 36){//0 indexed, 0-9
         //TODO: log
         //figure out which button is next
         if(quadrantOrder[fireflyCounter] == 1){
@@ -113,7 +113,7 @@ public class FireflyManager : MonoBehaviour
     public void SetUnimanual(){
       isBimanual = false;
       rightHand.trueMirror = false;
-      leftHand.trueMirror = false;  
+      leftHand.trueMirror = false;
     }
 
     public void Restart(){
