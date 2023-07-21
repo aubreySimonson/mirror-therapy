@@ -18,21 +18,24 @@ using UnityEngine.UI;
 
 public class ExperimentManager : MonoBehaviour
 {
-    public enum Task {Sync, Hazard, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Drumming};//no matter what we do with taskOrder, it always uses this list
+    public enum Task {Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Hazard, Drumming};//no matter what we do with taskOrder, it always uses this list
     //public List<Task> taskOrder = new List<Task> {Task.Sync, Task.VTS, Task.Buttons, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming, Task.Hazard};
     //shorter list for debugging
-    public List<Task> taskOrder = new List<Task> {Task.Sync, Task.Hazard, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming};
+    public List<Task> taskOrder = new List<Task> {Task.Sync, Task.VTS, Task.Buttons, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Hazard, Task.Drumming};
     private int taskCounter = 0;
     public Task currentTask;//making it public lets us start somewhere else
+    public float timeOut = 120.0f;//number of seconds a participant can spend on a task before we make them do the next task
+    private float taskStartTime;//when the current task was started
+    private bool betweenTasks = false;
     public VTS vts;
     public GameObject vtsGo;
     public ButtonsManager buttonsManager;
     public GameObject buttonsManagerGo;
-    //you should probablt merge the unimanual and bimanual firefly tasks, and make it just a mode toggle at some point
     public FireflyManager fireflyManager;
     public GameObject fireflyGo;
     public GameObject hazardsGo;
     public Logger logger;
+
 
     public Text instructionsText, debugText;
     public GameObject nextTaskButton, allTasksGo;
@@ -42,13 +45,11 @@ public class ExperimentManager : MonoBehaviour
 
     public Renderer rightHandReal, leftHandReal, rightHandMirrored, leftHandMirrored;
 
-    //these are the orders of the quadrants for each of the 10 trials in each of the tasks
-    //9 are random, the 10th is staged to get us all possible movements between quadrants
     private List<int> quadrantOrder1;
     private List<int> quadrantOrder2;
     private List<int> quadrantOrder3;
     private List<int> quadrantOrder4;
-    private List<int> quadrantOrder5;//you'll need a 5th one for the drumming
+    private List<int> quadrantOrder5;//you'll need a 5th one for the drumming--do we?
 
 
     public List<List<int>> quadrantOrders = new List<List<int>>();
@@ -58,6 +59,7 @@ public class ExperimentManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+      taskStartTime = Time.time;
       //these are our random numbers-- they're calculated by hand, and deserve further scrutiny
       quadrantOrder1 =  new List<int>(){2, 4, 1, 2, 1, 3, 4, 2, 3, 1, 4, 3, 2, 1, 3, 2, 4, 1, 2, 3, 4, 3, 1, 4, 2,  3, 1, 3,  2, 4,  1, 2, 1, 4, 3, 4, 2};
       quadrantOrder2 =  new List<int>(){2, 1, 3, 4, 3, 1, 2, 4, 1, 4, 2, 3, 2, 1, 2, 3, 1, 4, 3, 4,  1, 3,  2, 4, 2,  3, 4, 2, 1, 3,  2, 4,  1, 4, 3, 1, 2};
@@ -69,21 +71,36 @@ public class ExperimentManager : MonoBehaviour
       logger.Log("Mirror Hands: " + mirrorHands.ToString());
 
       LoadQuadrantOrders();
-      SetHandsToNormal();//--uncomment when you're done testing bimanual firefly things
-      debugText.text = "this should say hazard: " + taskOrder[1].ToString();
+      SetHandsToNormal();
+      //debugText.text = "first item in task order: " + taskOrder[0].ToString();
+      debugText.text = "time out time is " + timeOut.ToString() + ". We this task should time out at " + (timeOut+taskStartTime).ToString();
       NextTask(Task.Sync);
     }//end start
 
+    void Update(){
+      if(!betweenTasks && Time.time>timeOut+taskStartTime){
+        buttonsManager.TurnOffTheLights();
+        fireflyManager.TurnOffTheLights();
+        FinishTask();
+      }
+    }
+
+
     //called by other scripts, to let experiment manager know to advance to the next task
     public void FinishTask(){
+      betweenTasks=true;
+      fireflyGo.SetActive(false);
+      buttonsManagerGo.SetActive(false);
       allTasksGo.SetActive(false);
-      nextTaskButton.SetActive(true);
       hazardsGo.SetActive(false);
+      nextTaskButton.SetActive(true);
       instructionsText.text = "You've finished the task! Please remove the headset to answer some questions about your experience.";
     }
 
     //pressing the "next" button calls this
     public void GoToNextTask(){
+      betweenTasks = false;
+      taskStartTime = Time.time;
       allTasksGo.SetActive(true);
       nextTaskButton.SetActive(false);
       SetHandsToNormal();
@@ -156,6 +173,7 @@ public class ExperimentManager : MonoBehaviour
     public void LoadVTS(){
       currentTask = Task.VTS;
       if(!useVTS){//if we're not doing synchronous visuotactile stimulation, skip straight to buttons task
+        taskCounter++;//skip VTS in the list
         LoadButtonsTask();
       }
       else{

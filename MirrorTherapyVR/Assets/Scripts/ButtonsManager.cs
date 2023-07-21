@@ -68,7 +68,6 @@ public class ButtonsManager : MonoBehaviour
       debugText.text = "Next button called";
       //make sure all hazards are off
       foreach(HazardHandler handler in hazardHandlers){
-        debugText.text = "We are in that foreach loop";
         handler.DeactivateAllHazards();
       }
 
@@ -101,5 +100,20 @@ public class ButtonsManager : MonoBehaviour
       else{
         NextRound();
       }
+    }//end next button
+
+    //for experiment manager to call if the task times out
+    public void TurnOffTheLights(){
+      debugText.text = "turning off the lights";
+      button1.UnHighlight();
+      button2.UnHighlight();
+      button3.UnHighlight();
+      button4.UnHighlight();
+      buttonsCounter = 0;
+      roundsCounter = 0;
+      foreach(HazardHandler handler in hazardHandlers){
+        handler.DeactivateAllHazards();
+      }
+      debugText.text = "lights turned off";
     }
 }

@@ -19,6 +19,7 @@ public class FireflyManager : MonoBehaviour
     public Transform fireflyLocation1, fireflyLocation2, fireflyLocation3, fireflyLocation4;
     public Transform currentFireflyLocation;
     public GameObject fireflyPrefab;
+    public GameObject currentFirefly;
     public AudioSource goodSound;
 
     //this is sort of spaghetti, but we need to tell the hands which type of mirroring to do
@@ -43,8 +44,8 @@ public class FireflyManager : MonoBehaviour
         Debug.Log("quadrant order at firefly counter is " + quadrantOrder[fireflyCounter]);
 
         //the following workaround is gross, and I'm sorry
-        GameObject tempFirefly = Instantiate(fireflyPrefab);
-        NextFirefly(tempFirefly);
+        currentFirefly = Instantiate(fireflyPrefab);
+        NextFirefly(currentFirefly);
       }
       else{
         experimentManager.FinishTask();
@@ -95,7 +96,7 @@ public class FireflyManager : MonoBehaviour
           currentFireflyLocation = fireflyLocation4;
         }
         //generate the next firefly
-        Instantiate(fireflyPrefab, currentFireflyLocation.position, Quaternion.identity);
+        currentFirefly = Instantiate(fireflyPrefab, currentFireflyLocation.position, Quaternion.identity);
         fireflyCounter++;
         debugText.text = "firefly counter: " + fireflyCounter + " rounds counter: " + roundsCounter;
       }
@@ -116,9 +117,20 @@ public class FireflyManager : MonoBehaviour
       leftHand.trueMirror = false;
     }
 
+    public void TurnOffTheLights(){
+      fireflyCounter = 0;
+      roundsCounter = 0;
+      if(currentFirefly!=null){
+        Destroy(currentFirefly);
+      }
+    }
+
     public void Restart(){
       fireflyCounter = 0;
       roundsCounter = 0;
+      if(currentFirefly!=null){
+        Destroy(currentFirefly);
+      }
       NextRound();
     }
 }
