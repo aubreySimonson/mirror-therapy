@@ -118,11 +118,14 @@ public class FireflyManager : MonoBehaviour
     }
 
     public void TurnOffTheLights(){
+      debugText.text = "firefly turn off the lights called";
       fireflyCounter = 0;
       roundsCounter = 0;
       if(currentFirefly!=null){
         Destroy(currentFirefly);
       }
+      RemoveStrayFireflies();
+      debugText.text = "firefly lights turned off";
     }
 
     public void Restart(){
@@ -131,6 +134,17 @@ public class FireflyManager : MonoBehaviour
       if(currentFirefly!=null){
         Destroy(currentFirefly);
       }
+      RemoveStrayFireflies();
       NextRound();
     }
+
+    //I don't know where this bug is coming from and at this point I am debugging with a hammer <3
+    public void RemoveStrayFireflies(){
+      GameObject[] fireflies;
+      fireflies = GameObject.FindGameObjectsWithTag("firefly");
+      foreach(GameObject firefly in fireflies){
+        debugText.text = "stray firefly found and destroyed";
+        Destroy(firefly);
+      }
+    }//end remove stray fireflies
 }

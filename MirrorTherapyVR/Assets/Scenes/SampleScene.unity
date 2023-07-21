@@ -477,7 +477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &88075551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,7 +851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   taskOrder: 00000000010000000200000003000000040000000500000006000000
   currentTask: 0
-  timeOut: 120
+  timeOut: 30
   vts: {fileID: 469016831}
   vtsGo: {fileID: 469016830}
   buttonsManager: {fileID: 88075551}

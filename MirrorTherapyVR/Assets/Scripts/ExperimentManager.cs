@@ -79,8 +79,8 @@ public class ExperimentManager : MonoBehaviour
 
     void Update(){
       if(!betweenTasks && Time.time>timeOut+taskStartTime){
-        buttonsManager.TurnOffTheLights();
         fireflyManager.TurnOffTheLights();
+        buttonsManager.TurnOffTheLights();
         FinishTask();
       }
     }
