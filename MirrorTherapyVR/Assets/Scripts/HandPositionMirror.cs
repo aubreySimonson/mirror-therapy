@@ -23,6 +23,7 @@ public class HandPositionMirror : MonoBehaviour
     //every transform in the fake hand
     public List<Transform> fakeBones;
     List<OVRBone> realBones;
+    private OVRBone realWrist;
 
     public GameObject fakeHandPointPrefab;//the spheres that show us where the bones are.
     public List<GameObject> fakeHandPoints;//points that match the position of all of the bones on the real hand
@@ -32,7 +33,6 @@ public class HandPositionMirror : MonoBehaviour
     public float comfortableDistance;//distance over from the world origin that's most comfortable to keep the hand at.
     private float adjust;//distance between hand points and comfortableDistance
     private Vector3 adjustedPosition;
-
     public GameObject worldOrigin;
 
     private Logger logger;
@@ -53,6 +53,7 @@ public class HandPositionMirror : MonoBehaviour
       //make real Bones skeleton
       realBones = new List<OVRBone>();
       SortBones();
+      realWrist = realBones[0];//this is a guess-- you have no idea what index this joint is at.
 
       //turn off the points on the real hand
       foreach(GameObject point in fakeHandPoints){
@@ -99,18 +100,27 @@ public class HandPositionMirror : MonoBehaviour
 
           fakeBones[bonesCounter].transform.position = fakeHandPointsMirrored[bonesCounter].transform.position;
           fakeBones[bonesCounter].transform.rotation = fakeHandPointsMirrored[bonesCounter].transform.rotation;
-          //fakeHandHolder.transform.rotation = realBones[0].Transform.rotation;<--this doesn't do it
-          //fakeBones[bonesCounter].transform.rotation = ReflectRotation(fakeBones[bonesCounter].transform.rotation, Vector3.right);<--also wrong (obv)
-          //fakeBones[0].transform.rotation = ReflectRotation(fakeBones[0].transform.rotation, Vector3.right);<--nope.
-          //otherFakeHand.transform.rotation = realBones[0].Transform.rotation;<--nope.
-          //otherFakeHand.transform.rotation = realHand.transform.rotation;<--nope
 
+          //then, do some nuts matrix math to make the wrist rotation and only the wrist rotation not mirrored.
+          //this code has not been tested, and was written largely by ChatGPT, so no one really knows how to works.
+          if{bonesCounter>0}{//we're just assuming that the real wrist is realBones[0]
+            Vector3 positionOffset = realBones[0].position - fakeBones[bonesCounter].transform.position;//this won't work the way you expect because it isn't a normal transform
+		        Vector3 rotationOffset = realBones[0].localEulerAngles - fakeBones[bonesCounter].transform.localEulerAngles;//same for this one
+
+            // Calculate the combined transformation matrix
+            Matrix4x4 transformationMatrix = Matrix4x4.TRS(
+                handTransform.position + handTransform.TransformVector(positionOffset),
+                handTransform.rotation * Quaternion.Euler(rotationOffset),
+                Vector3.one
+            );
+
+            // Apply the transformation to the finger
+            fakeBones[bonesCounter].transform.position = transformationMatrix.GetColumn(3);
+            fakeBones[bonesCounter].transform.rotation = transformationMatrix.rotation;
+          }
           bonesCounter++;
         }
         debugText.text += "   Fake: " + fakeBones[0].transform.eulerAngles.ToString();
-        //the following also does not work
-        //Vector3 wristRotation = new Vector3(realBones[0].Transform.eulerAngles.x, 365.0f - realBones[0].Transform.eulerAngles.y + 180.0f, realBones[0].Transform.eulerAngles.z);
-        //fakeBones[0].transform.eulerAngles = wristRotation;
     }//end update
 
     public List<OVRBone> GetRealBones(){
