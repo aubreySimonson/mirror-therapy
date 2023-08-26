@@ -103,21 +103,22 @@ public class HandPositionMirror : MonoBehaviour
 
           //then, do some nuts matrix math to make the wrist rotation and only the wrist rotation not mirrored.
           //this code has not been tested, and was written largely by ChatGPT, so no one really knows how to works.
-          if{bonesCounter>0}{//we're just assuming that the real wrist is realBones[0]
-            Vector3 positionOffset = realBones[0].position - fakeBones[bonesCounter].transform.position;//this won't work the way you expect because it isn't a normal transform
-		        Vector3 rotationOffset = realBones[0].localEulerAngles - fakeBones[bonesCounter].transform.localEulerAngles;//same for this one
+          //update this code does not do what you wanted it to do
+          // if(bonesCounter>0){//we're just assuming that the real wrist is realBones[0]
+          //   Vector3 positionOffset = realBones[0].position - fakeBones[bonesCounter].transform.position;//this won't work the way you expect because it isn't a normal transform
+		      //   Vector3 rotationOffset = realBones[0].localEulerAngles - fakeBones[bonesCounter].transform.localEulerAngles;//same for this one
 
-            // Calculate the combined transformation matrix
-            Matrix4x4 transformationMatrix = Matrix4x4.TRS(
-                handTransform.position + handTransform.TransformVector(positionOffset),
-                handTransform.rotation * Quaternion.Euler(rotationOffset),
-                Vector3.one
-            );
+          //   // Calculate the combined transformation matrix
+          //   Matrix4x4 transformationMatrix = Matrix4x4.TRS(
+          //       handTransform.position + handTransform.TransformVector(positionOffset),
+          //       handTransform.rotation * Quaternion.Euler(rotationOffset),
+          //       Vector3.one
+          //   );
 
-            // Apply the transformation to the finger
-            fakeBones[bonesCounter].transform.position = transformationMatrix.GetColumn(3);
-            fakeBones[bonesCounter].transform.rotation = transformationMatrix.rotation;
-          }
+          //   // Apply the transformation to the finger
+          //   fakeBones[bonesCounter].transform.position = transformationMatrix.GetColumn(3);
+          //   fakeBones[bonesCounter].transform.rotation = transformationMatrix.rotation;
+          // }
           bonesCounter++;
         }
         debugText.text += "   Fake: " + fakeBones[0].transform.eulerAngles.ToString();
