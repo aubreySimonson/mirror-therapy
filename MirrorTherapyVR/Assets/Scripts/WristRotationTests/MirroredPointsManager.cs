@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Manages all MirroredPoints. 
+/// Manages all MirroredPoints for one hand. 
 /// The newer, better version of HandPositionMirror,
 /// because we're now doing two *different* matrix transformations to the fake hand.
 /// Should go on the real hand wrist.
@@ -12,17 +12,21 @@ using UnityEngine;
 /// ???-->simonson.au@northeastern.edu
 /// </summary>
 
+public enum UnderlyingHandedness {Right, Left};//match the handedness of the real hand, not the fake hand-- god this is all confusing
+
+
 public class MirroredPointsManager : MonoBehaviour
 {
-    public MirroredPoint [] mirroredPoints;
+    public List<MirroredPoint> mirroredPoints;
     public GameObject realWrist, fakeWrist;
 
     OVRSkeleton skeleton;
     public GameObject realHand;//should be a gameobject with OVRSkeleton on it
 
 
-
     public float adjust;//how far to translate the other hand, if we aren't doing a true mirror
+
+    public UnderlyingHandedness underlyingHandedness;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +37,13 @@ public class MirroredPointsManager : MonoBehaviour
         }
 
         //get all mirroredPoints, so that we never have to deal with that in the inspector.
-        mirroredPoints = GameObject.FindObjectsOfType<MirroredPoint>();
+        MirroredPoint [] points = GameObject.FindObjectsOfType<MirroredPoint>();
+        mirroredPoints = new List<MirroredPoint>();
+        foreach(MirroredPoint p in points){
+            if(p.underlyingHandedness == underlyingHandedness){
+                mirroredPoints.Add(p);
+            }
+        }
         //you're going to then have to trim the above to only have the correct hand of points
 
         //assign real and fake wrists here, so that we never have to deal with that in the inspector

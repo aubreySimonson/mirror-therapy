@@ -26,6 +26,8 @@ public class MirroredPoint : MonoBehaviour
 
     public MirroredPointsManager pointsManager;
 
+    public UnderlyingHandedness underlyingHandedness;
+
     void Start(){
         if(fakeHandBone == null){
             fakeHandBone = gameObject;//assume that we put the script on the fake hand bone, and were just lazy
