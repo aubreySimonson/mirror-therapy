@@ -55,14 +55,17 @@ public class MirroredPoint : MonoBehaviour
         fakeHandBone.transform.position = realBone.Transform.position;
         fakeHandBone.transform.rotation = realBone.Transform.rotation;//this is quaternions
 
-        //flip it across the axis
-        fakeHandBone.transform.rotation = ReflectRotation(fakeHandBone.transform.rotation, Vector3.right);
-        fakeHandBone.transform.position = Vector3.Reflect(fakeHandBone.transform.position, Vector3.right);
+        //don't reflect the wrist-- we handle it differently
+        if(boneName!="wrist"){
+            //flip it across the axis
+            fakeHandBone.transform.rotation = ReflectRotation(fakeHandBone.transform.rotation, Vector3.right);
+            fakeHandBone.transform.position = Vector3.Reflect(fakeHandBone.transform.position, Vector3.right);
 
-          //translate
-        if(!trueMirror){
-            Vector3 adjustedPosition = new Vector3(fakeHandBone.transform.position.x+(pointsManager.adjust*2.00f), fakeHandBone.transform.position.y, fakeHandBone.transform.position.z);
-            fakeHandBone.transform.position = adjustedPosition;
+            //translate
+            if(!trueMirror){
+                Vector3 adjustedPosition = new Vector3(fakeHandBone.transform.position.x+(pointsManager.adjust*2.00f), fakeHandBone.transform.position.y, fakeHandBone.transform.position.z);
+                fakeHandBone.transform.position = adjustedPosition;
+            }
         }
     }
 
@@ -77,15 +80,17 @@ public class MirroredPoint : MonoBehaviour
     //call *after* points have been reflected, offset has been recalculated, and fake wrist has been rotated
     //second of two matrix transformaitons we do every frame...
     public void RotateFromWrist(){
-        // Calculate the combined transformation matrix
-        Matrix4x4 transformationMatrix = Matrix4x4.TRS(
-            fakeWrist.position + fakeWrist.TransformVector(positionOffset),
-            fakeWrist.rotation * Quaternion.Euler(rotationOffset),
-            Vector3.one
-        );
-        // Apply the transformation to the finger
-        fakeHandBone.transform.position = transformationMatrix.GetColumn(3);
-        fakeHandBone.transform.rotation = transformationMatrix.rotation;
+        if(boneName!="wrist"){
+            // Calculate the combined transformation matrix
+            Matrix4x4 transformationMatrix = Matrix4x4.TRS(
+                fakeWrist.position + fakeWrist.TransformVector(positionOffset),
+                fakeWrist.rotation * Quaternion.Euler(rotationOffset),
+                Vector3.one
+            );
+            // Apply the transformation to the finger
+            fakeHandBone.transform.position = transformationMatrix.GetColumn(3);
+            fakeHandBone.transform.rotation = transformationMatrix.rotation;
+        }
     }
 
 

@@ -233,7 +233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &233991493
 Transform:
   m_ObjectHideFlags: 0
@@ -570,7 +570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1198018414
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -748,7 +748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1240445815
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -939,7 +939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1514366404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,7 +955,10 @@ MonoBehaviour:
   mirroredPoints: []
   realWrist: {fileID: 1514366403}
   fakeWrist: {fileID: 1240445814}
+  realHand: {fileID: 0}
   adjust: 0
+  underlyingHandedness: 0
+  debugText: {fileID: 0}
 --- !u!65 &1514366405
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1146,7 +1149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1902307967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,8 +1164,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 1902307966}
   trueMirror: 0
-  realBone: {fileID: 1198018413}
+  boneName: 
   pointsManager: {fileID: 1514366404}
+  underlyingHandedness: 0
 --- !u!65 &1902307968
 BoxCollider:
   m_ObjectHideFlags: 0

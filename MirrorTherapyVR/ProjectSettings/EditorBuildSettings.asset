@@ -5,9 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/HandMirrorAttempt1.unity
+    guid: d85134c79451845d1a4b5c6ee326f873
+  - enabled: 1
+    path: Assets/Scenes/HandMirrorAttempt2.unity
+    guid: c004c8c2217c1406ca8c181fd6d6c90d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 5b572d653b0204f09be88cb5dafca7e2, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 226e5870bfdea4ebc8aabddeb033a211, type: 2}
