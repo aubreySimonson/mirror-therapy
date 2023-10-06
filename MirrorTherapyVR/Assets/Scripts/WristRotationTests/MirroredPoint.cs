@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// One for each point to be mirrored. 
@@ -28,10 +29,15 @@ public class MirroredPoint : MonoBehaviour
 
     public UnderlyingHandedness underlyingHandedness;
 
+    public GameObject originalParent;
+    public GameObject fakeHandPoint;//do geometric stuff on this instead of the actual fake bone, assign fake bone to this position after.
+
     void Start(){
         if(fakeHandBone == null){
             fakeHandBone = gameObject;//assume that we put the script on the fake hand bone, and were just lazy
         }
+
+        originalParent = gameObject.transform.parent.gameObject;
     }
 
     //setters
@@ -47,26 +53,40 @@ public class MirroredPoint : MonoBehaviour
         realBone = rB;
     }
 
+    public void matchFakeBonesToRealBones(){
+        //put them both in the same place
+        fakeHandBone.transform.position = realBone.Transform.position;
+        fakeHandBone.transform.rotation = realBone.Transform.rotation;//this is quaternions
+    }
+
+    public void PutFakeHandPointsAtRealBones(){
+        fakeHandPoint.transform.position = realBone.Transform.position;
+        fakeHandPoint.transform.rotation = realBone.Transform.rotation;
+    }
+
     //mirrors this point across the world origin for... one of the axis. The right one.
     //first of the two matrix transformations we do every frame...
     public void Reflect(){
 
-        //put them both in the same place
-        fakeHandBone.transform.position = realBone.Transform.position;
-        fakeHandBone.transform.rotation = realBone.Transform.rotation;//this is quaternions
+        //flip it across the axis
+        //fakeHandBone.transform.rotation = ReflectRotation(fakeHandBone.transform.rotation, Vector3.right);
+        //fakeHandBone.transform.position = Vector3.Reflect(fakeHandBone.transform.position, Vector3.right);
 
-        //don't reflect the wrist-- we handle it differently
-        if(boneName!="wrist"){
-            //flip it across the axis
-            fakeHandBone.transform.rotation = ReflectRotation(fakeHandBone.transform.rotation, Vector3.right);
-            fakeHandBone.transform.position = Vector3.Reflect(fakeHandBone.transform.position, Vector3.right);
+        fakeHandPoint.transform.rotation = ReflectRotation(fakeHandPoint.transform.rotation, Vector3.right);
+        fakeHandPoint.transform.position = Vector3.Reflect(fakeHandPoint.transform.position, Vector3.right);
 
-            //translate
-            if(!trueMirror){
-                Vector3 adjustedPosition = new Vector3(fakeHandBone.transform.position.x+(pointsManager.adjust*2.00f), fakeHandBone.transform.position.y, fakeHandBone.transform.position.z);
-                fakeHandBone.transform.position = adjustedPosition;
-            }
-        }
+
+        //translate
+        // if(!trueMirror){
+        //     Vector3 adjustedPosition = new Vector3(fakeHandBone.transform.position.x+(pointsManager.adjust*2.00f), fakeHandBone.transform.position.y, fakeHandBone.transform.position.z);
+        //     fakeHandBone.transform.position = adjustedPosition;
+        // }
+
+    }
+
+    public void Finalize(){
+        fakeHandBone.transform.position = fakeHandPoint.transform.position;
+        fakeHandBone.transform.rotation = fakeHandPoint.transform.rotation;
     }
 
     //figures out the distance between the fake wrist and this point
@@ -91,6 +111,10 @@ public class MirroredPoint : MonoBehaviour
             fakeHandBone.transform.position = transformationMatrix.GetColumn(3);
             fakeHandBone.transform.rotation = transformationMatrix.rotation;
         }
+    }
+
+    public void ResetParent(){
+        gameObject.transform.parent = originalParent.transform;
     }
 
 

@@ -200,6 +200,8 @@ MonoBehaviour:
   boneName: ring-2
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &23127126 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -222,6 +224,8 @@ MonoBehaviour:
   boneName: index-1
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &25102814 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400096, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -592,6 +596,8 @@ MonoBehaviour:
   boneName: pinky-1
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &152521723
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,6 +808,8 @@ MonoBehaviour:
   boneName: middle-1
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &187238235 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400064, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
@@ -962,6 +970,8 @@ MonoBehaviour:
   boneName: thumb-0
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &211187971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,6 +1455,8 @@ MonoBehaviour:
   boneName: middle-1
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &301958686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -1467,6 +1479,8 @@ MonoBehaviour:
   boneName: forearm
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &302988619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400092, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
@@ -1494,11 +1508,92 @@ MonoBehaviour:
   boneName: ring-1
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &316080948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400086, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
   m_PrefabInstance: {fileID: 2100661060}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &316188329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 316188330}
+  - component: {fileID: 316188332}
+  - component: {fileID: 316188331}
+  m_Layer: 5
+  m_Name: IndexDebug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &316188330
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316188329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 464068966}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -47.9, y: -384.2}
+  m_SizeDelta: {x: 1000, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &316188331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316188329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 100
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Index Debug
+--- !u!222 &316188332
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316188329}
+  m_CullTransparentMesh: 1
 --- !u!1 &323417347 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100024, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
@@ -1521,6 +1616,8 @@ MonoBehaviour:
   boneName: pinky-3
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &340100626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,7 +1747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -47.9, y: -370.8}
+  m_AnchoredPosition: {x: -47.9, y: -355.6}
   m_SizeDelta: {x: 1000, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &344824182
@@ -2096,6 +2193,8 @@ MonoBehaviour:
   boneName: forearm
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &451165436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400092, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -2123,6 +2222,8 @@ MonoBehaviour:
   boneName: index-2
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &464068962
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,6 +2323,9 @@ RectTransform:
   - {fileID: 1545333711}
   - {fileID: 344824181}
   - {fileID: 1275126244}
+  - {fileID: 316188330}
+  - {fileID: 932388209}
+  - {fileID: 1619542973}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2829,6 +2933,8 @@ MonoBehaviour:
   boneName: wrist
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &610889324 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100038, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -2851,6 +2957,8 @@ MonoBehaviour:
   boneName: thumb-1
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &616898233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2969,6 +3077,8 @@ MonoBehaviour:
   boneName: index-3
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &632686753
 GameObject:
   m_ObjectHideFlags: 0
@@ -3244,6 +3354,8 @@ MonoBehaviour:
   boneName: pinky-2
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &697021970 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400156, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
@@ -3447,6 +3559,217 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &732947264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 732947265}
+  - component: {fileID: 732947269}
+  - component: {fileID: 732947268}
+  - component: {fileID: 732947267}
+  m_Layer: 0
+  m_Name: Visible-Middle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &732947265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732947264}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_Children: []
+  m_Father: {fileID: 1693307295}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &732947267
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732947264}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &732947268
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732947264}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: edca7b82f453e4cd887c34563ffe8be0, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &732947269
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732947264}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &755174607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 755174612}
+  - component: {fileID: 755174611}
+  - component: {fileID: 755174610}
+  - component: {fileID: 755174609}
+  - component: {fileID: 755174608}
+  m_Layer: 0
+  m_Name: Fake Finger (index)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &755174608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755174607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a3db21a58f842fcb37021e2c79d7f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fakeHandBone: {fileID: 755174607}
+  trueMirror: 0
+  boneName: index-3
+  pointsManager: {fileID: 812632145}
+  underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
+--- !u!65 &755174609
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755174607}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &755174610
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755174607}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 015dd339e50ef4a80bda9cb5d4ed549e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &755174611
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755174607}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &755174612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755174607}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1272550090}
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &758089476
 GameObject:
   m_ObjectHideFlags: 0
@@ -3466,7 +3789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &758089477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3484,6 +3807,8 @@ MonoBehaviour:
   boneName: wrist
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!65 &758089478
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3555,7 +3880,7 @@ Transform:
   m_GameObject: {fileID: 758089476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -3741,6 +4066,8 @@ MonoBehaviour:
   boneName: middle-2
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &791867608
 GameObject:
   m_ObjectHideFlags: 0
@@ -3877,11 +4204,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mirroredPoints: []
   realWrist: {fileID: 812632143}
-  fakeWrist: {fileID: 758089476}
+  fakeWrist: {fileID: 605989428}
   realHand: {fileID: 812632143}
   adjust: 0
   underlyingHandedness: 0
   debugText: {fileID: 1275126245}
+  fakePointPrefab: {fileID: 3221494080388164865, guid: fe04c4f73ed174c7b9f9fe031fa19630, type: 3}
 --- !u!1001 &816663283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4708,6 +5036,85 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922837064}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &932388208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 932388209}
+  - component: {fileID: 932388211}
+  - component: {fileID: 932388210}
+  m_Layer: 5
+  m_Name: Wrist Debug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &932388209
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932388208}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 464068966}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -47.9, y: -395.6}
+  m_SizeDelta: {x: 1000, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &932388210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932388208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 100
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Wrist Debug
+--- !u!222 &932388211
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932388208}
+  m_CullTransparentMesh: 1
 --- !u!1 &943544619
 GameObject:
   m_ObjectHideFlags: 0
@@ -5663,6 +6070,8 @@ MonoBehaviour:
   boneName: ring-1
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &1142921594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400072, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -5708,6 +6117,8 @@ MonoBehaviour:
   boneName: thumb-1
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &1196163400
 GameObject:
   m_ObjectHideFlags: 0
@@ -5860,6 +6271,8 @@ MonoBehaviour:
   boneName: pinky-3
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &1207409701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400106, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
@@ -5887,6 +6300,8 @@ MonoBehaviour:
   boneName: thumb-2
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &1240747254 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100032, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
@@ -5909,6 +6324,8 @@ MonoBehaviour:
   boneName: ring-3
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &1249348086 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100018, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
@@ -5931,6 +6348,103 @@ MonoBehaviour:
   boneName: pinky-0
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
+--- !u!1 &1272550089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1272550090}
+  - component: {fileID: 1272550094}
+  - component: {fileID: 1272550093}
+  - component: {fileID: 1272550092}
+  m_Layer: 0
+  m_Name: Visible-Index
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1272550090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272550089}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_Children: []
+  m_Father: {fileID: 755174612}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1272550092
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272550089}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1272550093
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272550089}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 015dd339e50ef4a80bda9cb5d4ed549e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1272550094
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272550089}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1275126243
 GameObject:
   m_ObjectHideFlags: 0
@@ -5965,7 +6479,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -47.9, y: -383}
+  m_AnchoredPosition: {x: -47.9, y: -367.80002}
   m_SizeDelta: {x: 1000, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1275126245
@@ -6032,6 +6546,8 @@ MonoBehaviour:
   boneName: ring-2
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &1307327318
 GameObject:
   m_ObjectHideFlags: 0
@@ -6365,6 +6881,8 @@ MonoBehaviour:
   boneName: thumb-2
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &1392661414
 GameObject:
   m_ObjectHideFlags: 0
@@ -6993,6 +7511,8 @@ MonoBehaviour:
   boneName: thumb-tip
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &1442083588 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400088, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
@@ -7149,6 +7669,8 @@ MonoBehaviour:
   boneName: index-1
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &1442539543 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100020, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -7171,6 +7693,8 @@ MonoBehaviour:
   boneName: pinky-1
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &1446771429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400056, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -7293,6 +7817,8 @@ MonoBehaviour:
   boneName: thumb-3
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1001 &1490746528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7306,7 +7832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100158, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400158, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
       propertyPath: m_RootOrder
@@ -7508,6 +8034,7 @@ MonoBehaviour:
   adjust: 0
   underlyingHandedness: 1
   debugText: {fileID: 344824182}
+  fakePointPrefab: {fileID: 0}
 --- !u!1 &1494782287
 GameObject:
   m_ObjectHideFlags: 0
@@ -7783,6 +8310,8 @@ MonoBehaviour:
   boneName: middle-3
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &1545333708
 GameObject:
   m_ObjectHideFlags: 0
@@ -7974,6 +8503,8 @@ MonoBehaviour:
   boneName: middle-3
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &1585908235 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
@@ -8109,6 +8640,8 @@ MonoBehaviour:
   boneName: wrist
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &1613005346
 GameObject:
   m_ObjectHideFlags: 0
@@ -8239,6 +8772,85 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1619542972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1619542973}
+  - component: {fileID: 1619542975}
+  - component: {fileID: 1619542974}
+  m_Layer: 5
+  m_Name: Middle Debug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1619542973
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619542972}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 464068966}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -47.9, y: -407.1}
+  m_SizeDelta: {x: 1000, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1619542974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619542972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 100
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Middle Debug
+--- !u!222 &1619542975
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619542972}
+  m_CullTransparentMesh: 1
 --- !u!1 &1691817172
 GameObject:
   m_ObjectHideFlags: 0
@@ -8288,12 +8900,12 @@ GameObject:
   - component: {fileID: 1693307292}
   - component: {fileID: 1693307291}
   m_Layer: 0
-  m_Name: Fake Finger
+  m_Name: Fake Finger (Middle)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1693307291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8311,6 +8923,8 @@ MonoBehaviour:
   boneName: middle-3
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!65 &1693307292
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8320,7 +8934,7 @@ BoxCollider:
   m_GameObject: {fileID: 1693307290}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -8331,7 +8945,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693307290}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -8343,7 +8957,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: edca7b82f453e4cd887c34563ffe8be0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8382,8 +8996,9 @@ Transform:
   m_GameObject: {fileID: 1693307290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
-  m_Children: []
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 732947265}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8409,6 +9024,8 @@ MonoBehaviour:
   boneName: pinky-2
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &1710119734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400096, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
@@ -8436,6 +9053,8 @@ MonoBehaviour:
   boneName: index-3
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &1716174770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400100, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -8547,6 +9166,8 @@ MonoBehaviour:
   boneName: thumb-0
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &1748338552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400146, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -8743,6 +9364,8 @@ MonoBehaviour:
   boneName: middle-2
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!4 &1833444741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400074, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
@@ -9248,6 +9871,8 @@ MonoBehaviour:
   boneName: thumb-tip
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1001 &1973056971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9437,6 +10062,8 @@ MonoBehaviour:
   boneName: index-2
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &2000454154 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100018, guid: 442d5b4503ed83c4897ef44659446587, type: 3}
@@ -9459,6 +10086,8 @@ MonoBehaviour:
   boneName: pinky-0
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1001 &2008207397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10128,6 +10757,8 @@ MonoBehaviour:
   boneName: ring-3
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!137 &2068330994 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 13700000, guid: 88e2e1bfe11ec6c438b0ade27eaeded1, type: 3}
@@ -10160,6 +10791,8 @@ MonoBehaviour:
   boneName: thumb-3
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
+  originalParent: {fileID: 0}
+  fakeHandPoint: {fileID: 0}
 --- !u!1 &2089709519 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1857b8758244b4933b114e7d34f94b88, type: 3}

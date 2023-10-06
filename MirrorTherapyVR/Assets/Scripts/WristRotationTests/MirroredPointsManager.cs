@@ -32,6 +32,8 @@ public class MirroredPointsManager : MonoBehaviour
 
     public Text debugText;
 
+    public GameObject fakePointPrefab;
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,12 +52,12 @@ public class MirroredPointsManager : MonoBehaviour
                 mirroredPoints.Add(p);
             }
         }
-        //you're going to then have to trim the above to only have the correct hand of points
 
         //assign real and fake wrists here, so that we never have to deal with that in the inspector
         foreach(MirroredPoint mP in mirroredPoints){
             mP.SetRealWrist(realWrist.transform);
             mP.SetFakeWrist(fakeWrist.transform);
+            mP.fakeHandPoint = Instantiate(fakePointPrefab);
         }
 
         skeleton = realHand.GetComponent<OVRSkeleton>();
@@ -67,32 +69,48 @@ public class MirroredPointsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if we're doing the sensible translation thing, recalculate adjust...
+        debugText.text = "hello from update";
 
-        //make the fake hand an exact mirror of this one
+        //put the fake bones where the real bones are
+        foreach(MirroredPoint mP in mirroredPoints) {
+            //mP.matchFakeBonesToRealBones();
+            mP.PutFakeHandPointsAtRealBones();
+        }
+
+        // //get the wrist angle
+        float wristAngle = (realWrist.transform.eulerAngles.y)-90.0f;//make forwards 0, not 90
+        wristAngle = (wristAngle + 180.0f + 360.0f) % 360.0f - 180.0f;//remap to be between -180 and 180
+
+        debugText.text = "fake wrist angle: " + wristAngle;//this number is good
+
+        // //rotate the fake hand to center
+        // //fakeWrist.transform.eulerAngles = new Vector3(realWrist.transform.rotation.x, 0.0f, realWrist.transform.rotation.z);
+
+        // //then, reflect the fake hand...
         foreach(MirroredPoint mP in mirroredPoints){
             mP.Reflect();
         }
 
-        //recalculate the offset after that first matrix transformation...
+        //then, put the bones where the points we've been manipulating are
         foreach(MirroredPoint mP in mirroredPoints){
-            mP.RecalculateOffset();
+            mP.Finalize();
         }
 
-        //real wrist rotation drives fake wrist rotation
-        //fakeWrist.transform.rotation = realWrist.transform.rotation;//<--this makes every bone be backwards in the worst possible way.
-        //try to make it not-backwards
-        //...is this supposed to happen before we recalculate the offset
-        fakeWrist.transform.rotation = realWrist.transform.rotation * Quaternion.Euler(0, 180, 0);
-        
+        // foreach(MirroredPoint mP in mirroredPoints){
+        //     mP.gameObject.transform.parent = fakeWrist.transform;
+        // }
 
-        //rotate all of the fingers of the fake hand to the right spot
-        //(second matrix transformation...)
-        foreach(MirroredPoint mP in mirroredPoints){
-            mP.RotateFromWrist();
-        }
+        // //ROTATE!
 
-        debugText.text = "wrist is at " + mirroredPoints[0].gameObject.transform.position;
+        //fakeWrist.transform.eulerAngles = new Vector3(realWrist.transform.rotation.x, wristAngle, realWrist.transform.rotation.z);
+        fakeWrist.transform.Rotate(0.0f, wristAngle*2.0f, 0.0f, Space.World);
+        // //put the hierarchy right
+        // foreach(MirroredPoint mP in mirroredPoints){
+        //     mP.ResetParent();
+        // }
+
+       
+        //fakeWrist.transform.eulerAngles = new Vector3(fakeWrist.transform.rotation.x, wristAngle, fakeWrist.transform.rotation.z);
     }
 
     //OVRBones can't be assigned in the inspector. This is the best solution I've found thus far.
