@@ -6,8 +6,10 @@ using System;
 
 /// <summary>
 /// Manages all MirroredPoints for one hand. 
-/// The newer, better version of HandPositionMirror,
-/// because we're now doing two *different* matrix transformations to the fake hand.
+/// The newer, better version of HandPositionMirror.
+/// Macro rotation of wrist is not mirrored, micro-rotations are.
+/// Translation currently only mirrored-- 
+/// a linked, rather than mirrored version, should be added
 /// Should go on the real hand wrist.
 /// 
 /// Last edited October 2023
@@ -48,6 +50,7 @@ public class MirroredPointsManager : MonoBehaviour
         MirroredPoint [] points = GameObject.FindObjectsOfType<MirroredPoint>();
         mirroredPoints = new List<MirroredPoint>();
         foreach(MirroredPoint p in points){
+            //throw out the points for the other hand
             if(p.underlyingHandedness == underlyingHandedness){
                 mirroredPoints.Add(p);
             }
@@ -69,8 +72,6 @@ public class MirroredPointsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        debugText.text = "hello from update";
-
         //put the fake bones where the real bones are
         foreach(MirroredPoint mP in mirroredPoints) {
             //mP.matchFakeBonesToRealBones();
@@ -81,7 +82,7 @@ public class MirroredPointsManager : MonoBehaviour
         float wristAngle = (realWrist.transform.eulerAngles.y)-90.0f;//make forwards 0, not 90
         wristAngle = (wristAngle + 180.0f + 360.0f) % 360.0f - 180.0f;//remap to be between -180 and 180
 
-        debugText.text = "fake wrist angle: " + wristAngle;//this number is good
+        //debugText.text = "fake wrist angle: " + wristAngle;//this number is good
 
         // //rotate the fake hand to center
         // //fakeWrist.transform.eulerAngles = new Vector3(realWrist.transform.rotation.x, 0.0f, realWrist.transform.rotation.z);
@@ -299,7 +300,7 @@ public class MirroredPointsManager : MonoBehaviour
                 }
             }
         }
-        debugText.text = "bones were assigned";
+        //debugText.text = "bones were assigned";
     }
 
     private MirroredPoint GetBoneByName(string name){
