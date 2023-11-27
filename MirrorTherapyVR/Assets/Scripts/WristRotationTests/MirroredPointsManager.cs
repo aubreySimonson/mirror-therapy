@@ -33,7 +33,7 @@ public class MirroredPointsManager : MonoBehaviour
     public UnderlyingHandedness underlyingHandedness;//match the handedness of the real hand, not the fake hand
 
     public Text debugText;//for debugging
-    public MirroredPoint problemChild;//for debugging
+    public MirroredPoint problemChild;//for ghosts
 
     public GameObject fakePointPrefab;
 
@@ -69,23 +69,15 @@ public class MirroredPointsManager : MonoBehaviour
         }
 
         skeleton = realHand.GetComponent<OVRSkeleton>();
-        //debugText.text = "got skeleton";
         AssignBones();
-        //debugText.text = "bones assigned";
     }
 
     // Update is called once per frame
     void Update()
     {
-        // foreach(MirroredPoint mP in mirroredPoints){
-        //     mP.CheckForFuckery();//they are also not fucked here. literally what is happening
-        // }
         //put the fake bones where the real bones are
         foreach(MirroredPoint mP in mirroredPoints) {
             mP.PutFakeHandPointsAtRealBones();
-        }
-        foreach(MirroredPoint mP in mirroredPoints){
-            mP.CheckForFuckery();//they are also not fucked here. literally what is happening
         }
 
         // //get the wrist angle
@@ -100,23 +92,12 @@ public class MirroredPointsManager : MonoBehaviour
             mP.Reflect();
         }
 
-        //then, we do an absurd coroutine in order to make sure that all of the hand bones put themselves 
-        //at the reflected position /before/ we rotate the hand
-        // allPointsFinalized = true;//because we're going to check for an unfinalized point
-        // foreach(MirroredPoint mP in mirroredPoints){
-        //     if(!mP.isFinalized){
-        //         allPointsFinalized = false;
-        //     }
-        // }
-        // debugText.text = "are all points finalized? " + allPointsFinalized;
-        // //then, put the bones where the points we've been manipulating are
+        //then, put the bones where the points we've been manipulating are
         foreach(MirroredPoint mP in mirroredPoints){
             mP.FinalizePosition();
         }
-        //StartCoroutine(WaitForFinalization());
-        //FinalizationLoopHell();
 
-        //latest attempt:
+        //call exactly the code that's called in the function above, but from here this time
         foreach(MirroredPoint mP in mirroredPoints){
             mP.fakeHandBone.transform.position = mP.fakeHandPoint.transform.position;
             mP.fakeHandBone.transform.rotation = mP.fakeHandPoint.transform.rotation;
@@ -126,48 +107,9 @@ public class MirroredPointsManager : MonoBehaviour
         problemChild.fakeHandBone.transform.position = problemChild.fakeHandPoint.transform.position;
         problemChild.fakeHandBone.transform.rotation = problemChild.fakeHandPoint.transform.rotation;
 
-        fakeWrist.transform.Rotate(0.0f, wristAngle*2.0f, 0.0f, Space.World);
-        // foreach(MirroredPoint mP in mirroredPoints){
-        //     mP.CheckForFuckery();//there is no fuckery afoot here
-        // }
-    }
-
-    private void FinalizationLoopHell(){
-        allPointsFinalized = true;//because we're going to check for an unfinalized point
-        foreach(MirroredPoint mP in mirroredPoints){
-            if(!mP.isFinalized){
-                allPointsFinalized = false;
-            }
-        }
-        debugText.text = "are all points finalized? " + allPointsFinalized;
-        if(allPointsFinalized){
-            fakeWrist.transform.Rotate(0.0f, wristAngle*2.0f, 0.0f, Space.World);
-        }
-        else{
-            FinalizationLoopHell();
-        }
-    }
-
-    //finally rotate the wrist after all of the bones are where they're supposed to be
-    IEnumerator WaitForFinalization() {
-        while(!allPointsFinalized){
-            allPointsFinalized = true;//because we're going to check for an unfinalized point
-            foreach(MirroredPoint mP in mirroredPoints){
-                if(!mP.isFinalized){
-                    allPointsFinalized = false;
-                }
-            }
-            debugText.text = "are all points finalized? " + allPointsFinalized;
-            //then, put the bones where the points we've been manipulating are
-            foreach(MirroredPoint mP in mirroredPoints){
-                mP.FinalizePosition();
-            }
-        }
-        yield return new WaitUntil(() => allPointsFinalized == true);
-        //what if you finalize everything again here?
+        //then, rotate the whole hand from the wrist
         fakeWrist.transform.Rotate(0.0f, wristAngle*2.0f, 0.0f, Space.World);
     }
-    
 
     //OVRBones can't be assigned in the inspector. This is the best solution I've found thus far.
     private void AssignBones(){

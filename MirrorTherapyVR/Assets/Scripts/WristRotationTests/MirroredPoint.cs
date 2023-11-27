@@ -102,15 +102,6 @@ public class MirroredPoint : MonoBehaviour
         isFinalized = true;
     }
 
-    public void CheckForFuckery(){
-        if(fakeHandBone.transform.position == fakeHandPoint.transform.position){
-            fakeHandPoint.GetComponent<Renderer>().material = unfinalizedMat;
-        }
-        else{
-            fakeHandPoint.GetComponent<Renderer>().material = finalizedMat;
-        }
-    }
-
     //figures out the distance between the fake wrist and this point
     //called *after* reflect
     public void RecalculateOffset(){
