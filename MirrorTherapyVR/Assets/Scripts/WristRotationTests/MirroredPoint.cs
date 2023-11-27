@@ -30,10 +30,6 @@ public class MirroredPoint : MonoBehaviour
 
     public GameObject fakeHandPoint;//do geometric stuff on this instead of the actual fake bone, assign fake bone to this position after.
 
-    public Text debugText;//for debugging
-    public Material finalizedMat, unfinalizedMat;//also for debugging
-    public bool isFinalized;
-
     void Start(){
         if(fakeHandBone == null){
             fakeHandBone = gameObject;//assume that we put the script on the fake hand bone, and were just lazy
@@ -57,18 +53,11 @@ public class MirroredPoint : MonoBehaviour
         //put them both in the same place
         fakeHandBone.transform.position = realBone.Transform.position;
         fakeHandBone.transform.rotation = realBone.Transform.rotation;//this is quaternions
-
-        if(debugText!=null){
-            debugText.text = "matched fake bones to real bones";
-        }
     }
 
     public void PutFakeHandPointsAtRealBones(){
         fakeHandPoint.transform.position = realBone.Transform.position;
         fakeHandPoint.transform.rotation = realBone.Transform.rotation;
-        if(debugText!=null){
-            debugText.text = "put fake hand points at real bones";
-        }
     }
 
     //mirrors this point across the world origin for... one of the axis. The right one.
@@ -78,10 +67,7 @@ public class MirroredPoint : MonoBehaviour
         //flip it across the axis
         fakeHandPoint.transform.rotation = ReflectRotation(fakeHandPoint.transform.rotation, Vector3.right);
         fakeHandPoint.transform.position = Vector3.Reflect(fakeHandPoint.transform.position, Vector3.right);
-        if(debugText!=null){
-            debugText.text = "reflected bones";
-        }
-        isFinalized = false;
+
         //translate
         // if(!trueMirror){
         //     Vector3 adjustedPosition = new Vector3(fakeHandBone.transform.position.x+(pointsManager.adjust*2.00f), fakeHandBone.transform.position.y, fakeHandBone.transform.position.z);
@@ -91,15 +77,8 @@ public class MirroredPoint : MonoBehaviour
     }
 
     public void FinalizePosition(){
-        if(debugText!=null){
-            debugText.text = "finalize called";
-        }
         fakeHandBone.transform.position = fakeHandPoint.transform.position;
         fakeHandBone.transform.rotation = fakeHandPoint.transform.rotation;
-        if(debugText!=null){
-            debugText.text = "fake hand point position is " + fakeHandPoint.transform.position + " and fake hand bone position is " + fakeHandBone.transform.position;
-        }
-        isFinalized = true;
     }
 
     //figures out the distance between the fake wrist and this point

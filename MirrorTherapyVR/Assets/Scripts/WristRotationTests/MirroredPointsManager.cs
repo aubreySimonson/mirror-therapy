@@ -37,8 +37,6 @@ public class MirroredPointsManager : MonoBehaviour
 
     public GameObject fakePointPrefab;
 
-    //for a very dumb coroutine we run to make sure that all of the mirrored points finish putting themselves in the right place before we rotate them
-    private bool allPointsFinalized;
     private float wristAngle;//rotation of the underlying wrist
 
 
