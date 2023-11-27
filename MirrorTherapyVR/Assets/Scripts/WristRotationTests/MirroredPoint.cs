@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// but that's nice for organizational reasons.
 /// Managed by Mirrored Points Manager.
 /// 
-/// Last edited September 2023
+/// Last edited November 2023
 /// ???-->simonson.au@northeastern.edu
 /// </summary>
 public class MirroredPoint : MonoBehaviour
@@ -26,19 +26,18 @@ public class MirroredPoint : MonoBehaviour
 
     public MirroredPointsManager pointsManager;
 
-    public UnderlyingHandedness underlyingHandedness;
+    public UnderlyingHandedness underlyingHandedness;//match the handedness of the real hand, not the fake hand-- god this is all confusing
 
-    public GameObject originalParent;
     public GameObject fakeHandPoint;//do geometric stuff on this instead of the actual fake bone, assign fake bone to this position after.
 
-    public Text debugText;
+    public Text debugText;//for debugging
+    public Material finalizedMat, unfinalizedMat;//also for debugging
+    public bool isFinalized;
 
     void Start(){
         if(fakeHandBone == null){
             fakeHandBone = gameObject;//assume that we put the script on the fake hand bone, and were just lazy
         }
-
-        originalParent = gameObject.transform.parent.gameObject;
     }
 
     //setters
@@ -77,16 +76,12 @@ public class MirroredPoint : MonoBehaviour
     public void Reflect(){
 
         //flip it across the axis
-        //fakeHandBone.transform.rotation = ReflectRotation(fakeHandBone.transform.rotation, Vector3.right);
-        //fakeHandBone.transform.position = Vector3.Reflect(fakeHandBone.transform.position, Vector3.right);
-
         fakeHandPoint.transform.rotation = ReflectRotation(fakeHandPoint.transform.rotation, Vector3.right);
         fakeHandPoint.transform.position = Vector3.Reflect(fakeHandPoint.transform.position, Vector3.right);
         if(debugText!=null){
             debugText.text = "reflected bones";
         }
-
-
+        isFinalized = false;
         //translate
         // if(!trueMirror){
         //     Vector3 adjustedPosition = new Vector3(fakeHandBone.transform.position.x+(pointsManager.adjust*2.00f), fakeHandBone.transform.position.y, fakeHandBone.transform.position.z);
@@ -95,7 +90,7 @@ public class MirroredPoint : MonoBehaviour
 
     }
 
-    public void Finalize(){
+    public void FinalizePosition(){
         if(debugText!=null){
             debugText.text = "finalize called";
         }
@@ -103,6 +98,16 @@ public class MirroredPoint : MonoBehaviour
         fakeHandBone.transform.rotation = fakeHandPoint.transform.rotation;
         if(debugText!=null){
             debugText.text = "fake hand point position is " + fakeHandPoint.transform.position + " and fake hand bone position is " + fakeHandBone.transform.position;
+        }
+        isFinalized = true;
+    }
+
+    public void CheckForFuckery(){
+        if(fakeHandBone.transform.position == fakeHandPoint.transform.position){
+            fakeHandPoint.GetComponent<Renderer>().material = unfinalizedMat;
+        }
+        else{
+            fakeHandPoint.GetComponent<Renderer>().material = finalizedMat;
         }
     }
 
@@ -116,6 +121,7 @@ public class MirroredPoint : MonoBehaviour
     //moves this point based on however we rotated the fake hand wrist this frame
     //call *after* points have been reflected, offset has been recalculated, and fake wrist has been rotated
     //second of two matrix transformaitons we do every frame...
+    //this function currently isn't being used, and it might be better to delete it...
     public void RotateFromWrist(){
         if(boneName!="wrist"){
             // Calculate the combined transformation matrix
@@ -129,11 +135,6 @@ public class MirroredPoint : MonoBehaviour
             fakeHandBone.transform.rotation = transformationMatrix.rotation;
         }
     }
-
-    public void ResetParent(){
-        gameObject.transform.parent = originalParent.transform;
-    }
-
 
     private Vector3 GetPositionOffset(){
         //There's no reasonable explanation for the following mess of code.
