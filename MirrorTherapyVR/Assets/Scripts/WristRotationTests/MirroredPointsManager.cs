@@ -16,7 +16,7 @@ using System;
 /// ???-->simonson.au@northeastern.edu
 /// </summary>
 
-public enum UnderlyingHandedness {Right, Left};//match the handedness of the real hand, not the fake hand-- god this is all confusing
+public enum UnderlyingHandedness {Right, Left};//match the handedness of the real hand, not the fake hand
 
 
 public class MirroredPointsManager : MonoBehaviour
