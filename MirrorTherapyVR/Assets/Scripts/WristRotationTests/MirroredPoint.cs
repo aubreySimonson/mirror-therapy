@@ -19,8 +19,6 @@ public class MirroredPoint : MonoBehaviour
     private Vector3 positionOffset, rotationOffset;
     public GameObject fakeHandBone;//the part of the fake hand model controlled by this script.
 
-    public bool trueMirror;//if true, moving the real hand right moves the fake hand left, etc-- turn on for drumming
-
     public OVRBone realBone;//these aren't exposed in the inspector, so this is assigned by a sort of messy process
     public string boneName;//this is for letting the points manager map the OVR skeleton bones. It isn't the most elegant solution
 
@@ -60,13 +58,6 @@ public class MirroredPoint : MonoBehaviour
         //flip it across the axis
         fakeHandPoint.transform.rotation = ReflectRotation(fakeHandPoint.transform.rotation, Vector3.right);
         fakeHandPoint.transform.position = Vector3.Reflect(fakeHandPoint.transform.position, Vector3.right);
-
-        //translate
-        // if(!trueMirror){
-        //     Vector3 adjustedPosition = new Vector3(fakeHandBone.transform.position.x+(pointsManager.adjust*2.00f), fakeHandBone.transform.position.y, fakeHandBone.transform.position.z);
-        //     fakeHandBone.transform.position = adjustedPosition;
-        // }
-
     }
 
     public void FinalizePosition(){

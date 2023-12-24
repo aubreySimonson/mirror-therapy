@@ -191,7 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: ring-2
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -209,7 +208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: index-1
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -560,7 +558,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: pinky-1
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -628,7 +625,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: middle-1
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -779,7 +775,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: thumb-0
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -1243,7 +1238,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: middle-1
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -1261,7 +1255,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: forearm
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -1284,7 +1277,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: ring-1
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -1386,7 +1378,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: pinky-3
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -1797,7 +1788,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: forearm
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -1820,7 +1810,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: index-2
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -2500,7 +2489,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: wrist
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -2518,7 +2506,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: thumb-1
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -2637,7 +2624,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: index-3
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -2903,7 +2889,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: pinky-2
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -3152,7 +3137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: middle-2
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -3295,7 +3279,8 @@ MonoBehaviour:
   realWrist: {fileID: 812632143}
   fakeWrist: {fileID: 1490778734}
   realHand: {fileID: 812632143}
-  adjust: 0
+  trueMirror: 0
+  adjust: -0.3
   underlyingHandedness: 0
   debugText: {fileID: 1275126245}
   problemChild: {fileID: 1714393628}
@@ -4927,7 +4912,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: ring-1
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -4950,7 +4934,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: thumb-1
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -5098,7 +5081,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: pinky-3
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -5116,7 +5098,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: thumb-2
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -5139,7 +5120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: ring-3
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -5162,7 +5142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: pinky-0
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -5259,7 +5238,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: ring-2
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -5583,7 +5561,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: thumb-2
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -6202,7 +6179,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: thumb-tip
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -6359,7 +6335,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: index-1
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -6377,7 +6352,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: pinky-1
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -6564,7 +6538,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: thumb-3
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -9228,6 +9201,7 @@ MonoBehaviour:
   realWrist: {fileID: 1491912378}
   fakeWrist: {fileID: 1490778734}
   realHand: {fileID: 1491912378}
+  trueMirror: 0
   adjust: 0
   underlyingHandedness: 1
   debugText: {fileID: 344824182}
@@ -9499,7 +9473,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: middle-3
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -9681,7 +9654,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: middle-3
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -9799,7 +9771,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: wrist
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -10066,7 +10037,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: pinky-2
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -10084,7 +10054,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: index-3
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -10186,7 +10155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: thumb-0
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -10378,7 +10346,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: middle-2
   pointsManager: {fileID: 1491912380}
   underlyingHandedness: 1
@@ -10605,7 +10572,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: thumb-tip
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -10732,7 +10698,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: index-2
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -10750,7 +10715,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: pinky-0
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -11025,7 +10989,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: ring-3
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0
@@ -11043,7 +11006,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeHandBone: {fileID: 0}
-  trueMirror: 0
   boneName: thumb-3
   pointsManager: {fileID: 812632145}
   underlyingHandedness: 0

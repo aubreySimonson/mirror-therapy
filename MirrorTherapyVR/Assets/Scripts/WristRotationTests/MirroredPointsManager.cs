@@ -27,6 +27,8 @@ public class MirroredPointsManager : MonoBehaviour
     OVRSkeleton skeleton;
     public GameObject realHand;//should be a gameobject with OVRSkeleton on it
 
+    public bool trueMirror;//should it be translating the overall hand position or mirroring it?
+
 
     public float adjust;//how far to translate the other hand, if we aren't doing a true mirror
 
@@ -107,6 +109,12 @@ public class MirroredPointsManager : MonoBehaviour
 
         //then, rotate the whole hand from the wrist
         fakeWrist.transform.Rotate(0.0f, wristAngle*2.0f, 0.0f, Space.World);
+
+        //if we're translating, translate
+        if(!trueMirror){
+            Vector3 adjustedPosition = new Vector3(-fakeWrist.transform.position.x+(adjust), fakeWrist.transform.position.y, fakeWrist.transform.position.z);
+            fakeWrist.transform.position = adjustedPosition;
+        }
     }
 
     //OVRBones can't be assigned in the inspector. This is the best solution I've found thus far.
