@@ -3235,7 +3235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307532c5a4e3945ffada18f8f402748c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mirroredPoints: []
+  mirroredPoints:
+  - {fileID: 1714393628}
   realWrist: {fileID: 812632143}
   fakeWrist: {fileID: 1490778734}
   realHand: {fileID: 812632143}

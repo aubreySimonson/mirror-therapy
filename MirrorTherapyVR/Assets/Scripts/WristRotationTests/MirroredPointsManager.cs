@@ -109,7 +109,8 @@ public class MirroredPointsManager : MonoBehaviour
             problemChild.fakeHandBone.transform.position = problemChild.fakeHandPoint.transform.position;
             problemChild.fakeHandBone.transform.rotation = problemChild.fakeHandPoint.transform.rotation;
         }
-
+        //and then we do the same thing for a bunch of points on the other hand. 
+        //just adding problemChild to this list does not work-- you've tried.
         foreach(MirroredPoint problem in problemChildren){
             problem.fakeHandBone.transform.position = problem.fakeHandPoint.transform.position;
             problem.fakeHandBone.transform.rotation = problem.fakeHandPoint.transform.rotation;
