@@ -36,6 +36,7 @@ public class MirroredPointsManager : MonoBehaviour
 
     public Text debugText;//for debugging
     public MirroredPoint problemChild;//for ghosts
+    public List<MirroredPoint> problemChildren;
 
     public GameObject fakePointPrefab;
 
@@ -107,6 +108,11 @@ public class MirroredPointsManager : MonoBehaviour
         if(problemChild!=null){
             problemChild.fakeHandBone.transform.position = problemChild.fakeHandPoint.transform.position;
             problemChild.fakeHandBone.transform.rotation = problemChild.fakeHandPoint.transform.rotation;
+        }
+
+        foreach(MirroredPoint problem in problemChildren){
+            problem.fakeHandBone.transform.position = problem.fakeHandPoint.transform.position;
+            problem.fakeHandBone.transform.rotation = problem.fakeHandPoint.transform.rotation;
         }
 
         //then, rotate the whole hand from the wrist

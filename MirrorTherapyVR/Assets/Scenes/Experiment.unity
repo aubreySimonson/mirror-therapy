@@ -3244,6 +3244,7 @@ MonoBehaviour:
   underlyingHandedness: 0
   debugText: {fileID: 1275126245}
   problemChild: {fileID: 1714393628}
+  problemChildren: []
   fakePointPrefab: {fileID: 3221494080388164865, guid: fe04c4f73ed174c7b9f9fe031fa19630, type: 3}
 --- !u!1001 &816663283
 PrefabInstance:
@@ -11463,6 +11464,16 @@ MonoBehaviour:
   underlyingHandedness: 1
   debugText: {fileID: 344824182}
   problemChild: {fileID: 457683942}
+  problemChildren:
+  - {fileID: 457683942}
+  - {fileID: 1829421541}
+  - {fileID: 22064921}
+  - {fileID: 1578450254}
+  - {fileID: 1240747256}
+  - {fileID: 1249348088}
+  - {fileID: 110169108}
+  - {fileID: 1696612658}
+  - {fileID: 323417349}
   fakePointPrefab: {fileID: 3221494080388164865, guid: fe04c4f73ed174c7b9f9fe031fa19630, type: 3}
 --- !u!1 &1494782287
 GameObject:
