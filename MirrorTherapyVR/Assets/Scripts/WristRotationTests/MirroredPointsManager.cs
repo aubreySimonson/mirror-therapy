@@ -104,8 +104,10 @@ public class MirroredPointsManager : MonoBehaviour
         }
 
         //fix just the end of the index finger which is inexplicably a nightmare
-        problemChild.fakeHandBone.transform.position = problemChild.fakeHandPoint.transform.position;
-        problemChild.fakeHandBone.transform.rotation = problemChild.fakeHandPoint.transform.rotation;
+        if(problemChild!=null){
+            problemChild.fakeHandBone.transform.position = problemChild.fakeHandPoint.transform.position;
+            problemChild.fakeHandBone.transform.rotation = problemChild.fakeHandPoint.transform.rotation;
+        }
 
         //then, rotate the whole hand from the wrist
         fakeWrist.transform.Rotate(0.0f, wristAngle*2.0f, 0.0f, Space.World);
