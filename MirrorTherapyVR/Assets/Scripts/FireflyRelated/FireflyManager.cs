@@ -10,7 +10,7 @@ using UnityEngine.UI;
 ///This script and buttons manager could probably be made to inherit from the same class,
 ///rather than sharing so much copy-pasted code, if you wanted to do some refactoring.
 /// ???--> Aubrey (followspotfour@gmail.com)
-/// Last updated April 2023
+/// Last updated January 2024
 /// </summary>
 
 public class FireflyManager : MonoBehaviour
@@ -23,7 +23,7 @@ public class FireflyManager : MonoBehaviour
     public AudioSource goodSound;
 
     //this is sort of spaghetti, but we need to tell the hands which type of mirroring to do
-    public HandPositionMirror leftHand, rightHand;
+    public MirroredPointsManager leftHand, rightHand;
 
     public List<int> quadrantOrder;
 

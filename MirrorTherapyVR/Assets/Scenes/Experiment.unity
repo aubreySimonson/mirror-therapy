@@ -881,7 +881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &223974228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,10 +911,10 @@ MonoBehaviour:
   allTasksGo: {fileID: 1436457191}
   useVTS: 0
   mirrorHands: 1
-  rightHandReal: {fileID: 0}
-  leftHandReal: {fileID: 0}
-  rightHandMirrored: {fileID: 0}
-  leftHandMirrored: {fileID: 0}
+  rightHandReal: {fileID: 812632144}
+  leftHandReal: {fileID: 1491912379}
+  rightHandMirrored: {fileID: 1428519249}
+  leftHandMirrored: {fileID: 1477179136}
 --- !u!4 &223974229
 Transform:
   m_ObjectHideFlags: 0
@@ -944,12 +944,7 @@ MonoBehaviour:
   debugText: {fileID: 643750375}
   logEssentialFakeHandPoints: 1
   logEssentialRealHandPoints: 0
-  essentialFakeHandPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  essentialFakeHandPoints: []
   logHeadPose: 1
   recordOnPlay: 1
   isRecording: 1
@@ -3221,6 +3216,11 @@ Transform:
 --- !u!1 &812632143 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1870938896605422, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+  m_PrefabInstance: {fileID: 812632141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &812632144 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137619227449585070, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
   m_PrefabInstance: {fileID: 812632141}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &812632145
@@ -11442,6 +11442,11 @@ Transform:
 --- !u!1 &1491912378 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1870938896605422, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+  m_PrefabInstance: {fileID: 1491912376}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &1491912379 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137619227449585070, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
   m_PrefabInstance: {fileID: 1491912376}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1491912380
