@@ -3671,11 +3671,11 @@ MonoBehaviour:
   fireflyPrefab: {fileID: 4885035451240684167, guid: 109d8dbcc76c84ab0972808290dff7f0, type: 3}
   currentFirefly: {fileID: 0}
   goodSound: {fileID: 852163279}
-  leftHand: {fileID: 0}
-  rightHand: {fileID: 0}
+  leftHand: {fileID: 1491912380}
+  rightHand: {fileID: 812632145}
   quadrantOrder: 
-  rightHandFireflyGrabber: {fileID: 0}
-  leftHandFireflyGrabber: {fileID: 0}
+  rightHandFireflyGrabber: {fileID: 1307327321}
+  leftHandFireflyGrabber: {fileID: 190407808}
   isBimanual: 0
   debugText: {fileID: 1545333709}
 --- !u!4 &852163278

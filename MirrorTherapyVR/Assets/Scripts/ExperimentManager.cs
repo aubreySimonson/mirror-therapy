@@ -201,9 +201,7 @@ public class ExperimentManager : MonoBehaviour
       fireflyManager.enabled = true;
       fireflyManager.SetUnimanual();
       fireflyManager.Restart();
-
-      //turn on the other hand
-
+  
       instructionsText.text = "Some kind of explanation of how to do the unimanual fireflies task";
 
       //make sure everything that should be turned off is turned off
