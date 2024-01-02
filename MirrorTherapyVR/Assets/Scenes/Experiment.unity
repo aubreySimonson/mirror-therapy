@@ -896,7 +896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   taskOrder: 00000000010000000200000003000000040000000500000006000000
   currentTask: 0
-  timeOut: 30
+  timeOut: 120
   vts: {fileID: 469016831}
   vtsGo: {fileID: 469016830}
   buttonsManager: {fileID: 88075551}
@@ -909,7 +909,7 @@ MonoBehaviour:
   debugText: {fileID: 957910394}
   nextTaskButton: {fileID: 227476437}
   allTasksGo: {fileID: 1436457191}
-  useVTS: 0
+  useVTS: 1
   mirrorHands: 1
   rightHandReal: {fileID: 812632144}
   leftHandReal: {fileID: 1491912379}
@@ -1925,8 +1925,8 @@ MonoBehaviour:
   ticksBetweenStrokes: 1
   experimentManager: {fileID: 223974228}
   numberOfStrokes: 15
-  mobileHand: {fileID: 0}
-  mobileHandCollider: {fileID: 0}
+  mobileHand: {fileID: 1442182177}
+  mobileHandCollider: {fileID: 1307327318}
   fixedHand: {fileID: 816663285}
   paintbrush: {fileID: 1412096956}
   startPositions:
