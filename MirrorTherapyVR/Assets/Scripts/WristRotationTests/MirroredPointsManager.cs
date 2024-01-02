@@ -16,7 +16,7 @@ using System;
 /// ???-->simonson.au@northeastern.edu
 /// </summary>
 
-public enum UnderlyingHandedness {Right, Left};//match the handedness of the real hand, not the fake hand-- god this is all confusing
+public enum UnderlyingHandedness {Right, Left};//match the handedness of the real hand, not the fake hand
 
 
 public class MirroredPointsManager : MonoBehaviour
@@ -27,6 +27,8 @@ public class MirroredPointsManager : MonoBehaviour
     OVRSkeleton skeleton;
     public GameObject realHand;//should be a gameobject with OVRSkeleton on it
 
+    public bool trueMirror;//should it be translating the overall hand position or mirroring it?
+
 
     public float adjust;//how far to translate the other hand, if we aren't doing a true mirror
 
@@ -34,6 +36,7 @@ public class MirroredPointsManager : MonoBehaviour
 
     public Text debugText;//for debugging
     public MirroredPoint problemChild;//for ghosts
+    public List<MirroredPoint> problemChildren;
 
     public GameObject fakePointPrefab;
 
@@ -102,11 +105,25 @@ public class MirroredPointsManager : MonoBehaviour
         }
 
         //fix just the end of the index finger which is inexplicably a nightmare
-        problemChild.fakeHandBone.transform.position = problemChild.fakeHandPoint.transform.position;
-        problemChild.fakeHandBone.transform.rotation = problemChild.fakeHandPoint.transform.rotation;
+        if(problemChild!=null){
+            problemChild.fakeHandBone.transform.position = problemChild.fakeHandPoint.transform.position;
+            problemChild.fakeHandBone.transform.rotation = problemChild.fakeHandPoint.transform.rotation;
+        }
+        //and then we do the same thing for a bunch of points on the other hand. 
+        //just adding problemChild to this list does not work-- you've tried.
+        foreach(MirroredPoint problem in problemChildren){
+            problem.fakeHandBone.transform.position = problem.fakeHandPoint.transform.position;
+            problem.fakeHandBone.transform.rotation = problem.fakeHandPoint.transform.rotation;
+        }
 
         //then, rotate the whole hand from the wrist
         fakeWrist.transform.Rotate(0.0f, wristAngle*2.0f, 0.0f, Space.World);
+
+        //if we're translating, translate
+        if(!trueMirror){
+            Vector3 adjustedPosition = new Vector3(-fakeWrist.transform.position.x+(adjust), fakeWrist.transform.position.y, fakeWrist.transform.position.z);
+            fakeWrist.transform.position = adjustedPosition;
+        }
     }
 
     //OVRBones can't be assigned in the inspector. This is the best solution I've found thus far.

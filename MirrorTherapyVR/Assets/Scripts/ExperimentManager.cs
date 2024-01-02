@@ -18,13 +18,11 @@ using UnityEngine.UI;
 
 public class ExperimentManager : MonoBehaviour
 {
-    public enum Task {Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Hazard, Drumming};//no matter what we do with taskOrder, it always uses this list
-    //public List<Task> taskOrder = new List<Task> {Task.Sync, Task.VTS, Task.Buttons, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Drumming, Task.Hazard};
-    //shorter list for debugging
+    public enum Task {Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Hazard, Drumming};//no matter what we do with taskOrder, it always uses this list<--that's because you set it in the inspector, idiot    //shorter list for debugging
     public List<Task> taskOrder = new List<Task> {Task.Sync, Task.VTS, Task.Buttons, Task.UnimanualFireflies, Task.BimanualFireflies, Task.Hazard, Task.Drumming};
     private int taskCounter = 0;
     public Task currentTask;//making it public lets us start somewhere else
-    public float timeOut = 120.0f;//number of seconds a participant can spend on a task before we make them do the next task
+    public float timeOut = 1200.0f;//number of seconds a participant can spend on a task before we make them do the next task
     private float taskStartTime;//when the current task was started
     private bool betweenTasks = false;
     public VTS vts;
@@ -203,9 +201,7 @@ public class ExperimentManager : MonoBehaviour
       fireflyManager.enabled = true;
       fireflyManager.SetUnimanual();
       fireflyManager.Restart();
-
-      //turn on the other hand
-
+  
       instructionsText.text = "Some kind of explanation of how to do the unimanual fireflies task";
 
       //make sure everything that should be turned off is turned off

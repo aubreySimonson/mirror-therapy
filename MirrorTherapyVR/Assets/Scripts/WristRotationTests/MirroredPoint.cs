@@ -19,20 +19,18 @@ public class MirroredPoint : MonoBehaviour
     private Vector3 positionOffset, rotationOffset;
     public GameObject fakeHandBone;//the part of the fake hand model controlled by this script.
 
-    public bool trueMirror;//if true, moving the real hand right moves the fake hand left, etc-- turn on for drumming
-
-    public OVRBone realBone;//these aren't exposed in the inspector, which will make this super annoying to assign
+    public OVRBone realBone;//these aren't exposed in the inspector, so this is assigned by a sort of messy process
     public string boneName;//this is for letting the points manager map the OVR skeleton bones. It isn't the most elegant solution
 
     public MirroredPointsManager pointsManager;
 
-    public UnderlyingHandedness underlyingHandedness;//match the handedness of the real hand, not the fake hand-- god this is all confusing
+    public UnderlyingHandedness underlyingHandedness;//match the handedness of the real hand, not the fake hand
 
-    public GameObject fakeHandPoint;//do geometric stuff on this instead of the actual fake bone, assign fake bone to this position after.
+    public GameObject fakeHandPoint;//do transformations to this instead of the actual fake bone, assign fake bone to this position after.
 
     void Start(){
         if(fakeHandBone == null){
-            fakeHandBone = gameObject;//assume that we put the script on the fake hand bone, and were just lazy
+            fakeHandBone = gameObject;//if there's no bone connected, assume we at least put this script on the fakeHandBone gameobject
         }
     }
 
@@ -49,31 +47,17 @@ public class MirroredPoint : MonoBehaviour
         realBone = rB;
     }
 
-    public void matchFakeBonesToRealBones(){
-        //put them both in the same place
-        fakeHandBone.transform.position = realBone.Transform.position;
-        fakeHandBone.transform.rotation = realBone.Transform.rotation;//this is quaternions
-    }
-
     public void PutFakeHandPointsAtRealBones(){
         fakeHandPoint.transform.position = realBone.Transform.position;
         fakeHandPoint.transform.rotation = realBone.Transform.rotation;
     }
 
     //mirrors this point across the world origin for... one of the axis. The right one.
-    //first of the two matrix transformations we do every frame...
     public void Reflect(){
 
         //flip it across the axis
         fakeHandPoint.transform.rotation = ReflectRotation(fakeHandPoint.transform.rotation, Vector3.right);
         fakeHandPoint.transform.position = Vector3.Reflect(fakeHandPoint.transform.position, Vector3.right);
-
-        //translate
-        // if(!trueMirror){
-        //     Vector3 adjustedPosition = new Vector3(fakeHandBone.transform.position.x+(pointsManager.adjust*2.00f), fakeHandBone.transform.position.y, fakeHandBone.transform.position.z);
-        //     fakeHandBone.transform.position = adjustedPosition;
-        // }
-
     }
 
     public void FinalizePosition(){
@@ -86,24 +70,6 @@ public class MirroredPoint : MonoBehaviour
     public void RecalculateOffset(){
         positionOffset = GetPositionOffset();
 		rotationOffset = fakeWrist.localEulerAngles + fakeHandBone.transform.localEulerAngles;
-    }
-
-    //moves this point based on however we rotated the fake hand wrist this frame
-    //call *after* points have been reflected, offset has been recalculated, and fake wrist has been rotated
-    //second of two matrix transformaitons we do every frame...
-    //this function currently isn't being used, and it might be better to delete it...
-    public void RotateFromWrist(){
-        if(boneName!="wrist"){
-            // Calculate the combined transformation matrix
-            Matrix4x4 transformationMatrix = Matrix4x4.TRS(
-                fakeWrist.position + fakeWrist.TransformVector(positionOffset),
-                fakeWrist.rotation * Quaternion.Euler(rotationOffset),
-                Vector3.one
-            );
-            // Apply the transformation to the finger
-            fakeHandBone.transform.position = transformationMatrix.GetColumn(3);
-            fakeHandBone.transform.rotation = transformationMatrix.rotation;
-        }
     }
 
     private Vector3 GetPositionOffset(){

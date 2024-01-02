@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/HandMirrorAttempt1.unity
     guid: d85134c79451845d1a4b5c6ee326f873
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HandMirrorAttempt2.unity
     guid: c004c8c2217c1406ca8c181fd6d6c90d
+  - enabled: 1
+    path: Assets/Scenes/Experiment.unity
+    guid: 98b6731d07c9d4e8797d52b659275cd8
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 5b572d653b0204f09be88cb5dafca7e2, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 226e5870bfdea4ebc8aabddeb033a211, type: 2}
