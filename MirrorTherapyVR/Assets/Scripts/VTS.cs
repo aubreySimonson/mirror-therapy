@@ -88,6 +88,11 @@ public class VTS : MonoBehaviour
       mobileHand.SetActive(true);
       //disable fake hand
       fixedHand.SetActive(false);
+      //reset any things that need re-set
+      numberOfStrokesCompleted = 0;
+      currentlyStroking = false;
+      phase = Phase.NotStroking;
+      //go to next task
       experimentManager.FinishTask();
     }
 
