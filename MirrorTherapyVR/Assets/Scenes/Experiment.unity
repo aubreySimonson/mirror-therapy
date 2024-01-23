@@ -906,7 +906,7 @@ MonoBehaviour:
   hazardsGo: {fileID: 1691817172}
   logger: {fileID: 223974230}
   syncDetector: {fileID: 1442083629}
-  pinchCollider: {fileID: 0}
+  pinchCollider: {fileID: 1442083635}
   instructionsText: {fileID: 944488734}
   debugText: {fileID: 957910394}
   nextTaskButton: {fileID: 227476437}

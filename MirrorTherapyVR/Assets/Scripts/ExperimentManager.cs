@@ -78,7 +78,7 @@ public class ExperimentManager : MonoBehaviour
       pinchCollider.enabled = false;
       syncDetector.enabled = false;
       betweenTasks = true;//we have not started the first task yet
-      //NextTask(Task.Sync);//table controlls call this now
+      NextTask(Task.Callibrate);
     }//end start
 
     void Update(){
@@ -117,8 +117,11 @@ public class ExperimentManager : MonoBehaviour
     private void NextTask(Task nextTask){
       switch (nextTask)
       {
-      case Task.Sync:
+      case Task.Callibrate:
           LoadStartInstructions();
+          break;
+      case Task.Sync:
+          LoadSyncInstructions();
           break;
       case Task.VTS:
           LoadVTS();
@@ -145,13 +148,26 @@ public class ExperimentManager : MonoBehaviour
     }//end next task
 
     public void LoadStartInstructions(){
+      currentTask = Task.Callibrate;
+      syncDetector.enabled = false;
+      pinchCollider.enabled = false;
+
+      instructionsText.text = "Hi, and welcome to our user study! ";
+      instructionsText.text+= "Use the buttons to match the height of the virtual table to that of the physical table.";
+
+
+      //make sure everything that should be turned off is turned off
+      vtsGo.SetActive(false);
+      buttonsManagerGo.SetActive(false);
+      fireflyGo.SetActive(false);
+      fireflyManager.enabled = false;
+    }
+
+    public void LoadSyncInstructions(){
       currentTask = Task.Sync;
       syncDetector.enabled = true;
       pinchCollider.enabled = true;
-
-      instructionsText.text = "Hi, and welcome to our user study! ";
-      instructionsText.text+= "This is an excellent spot for any additional instructions we might need to include at the start. ";
-      instructionsText.text += "Take a look at your hand. And try to touch your thumb to each finger.";
+      instructionsText.text = "Take a look at your hand. And try to touch your thumb to each finger.";
 
       //make sure everything that should be turned off is turned off
       vtsGo.SetActive(false);
