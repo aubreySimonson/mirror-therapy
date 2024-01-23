@@ -11,15 +11,15 @@ using UnityEngine.UI;
 /// and knows about all of our quadrant lists.
 ///
 /// ???--> Aubrey (followspotfour@gmail.com)
-/// Last updated May 2023
+/// Last updated January 2024
 /// </summary>
 
 
 
 public class ExperimentManager : MonoBehaviour
 {
-    public enum Task {Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Hazard, Drumming};//no matter what we do with taskOrder, it always uses this list<--that's because you set it in the inspector, idiot    //shorter list for debugging
-    public List<Task> taskOrder = new List<Task> {Task.Sync, Task.VTS, Task.Buttons, Task.VTS, Task.UnimanualFireflies, Task.VTS, Task.BimanualFireflies, Task.VTS, Task.Hazard, Task.VTS, Task.Drumming};
+    public enum Task {Callibrate, Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Hazard, Drumming};//no matter what we do with taskOrder, it always uses this list<--that's because you set it in the inspector, idiot    //shorter list for debugging
+    public List<Task> taskOrder = new List<Task> {Task.Callibrate, Task.Sync, Task.VTS, Task.Buttons, Task.VTS, Task.UnimanualFireflies, Task.VTS, Task.BimanualFireflies, Task.VTS, Task.Hazard, Task.VTS, Task.Drumming};
     private int taskCounter = 0;
     public Task currentTask;//making it public lets us start somewhere else
     public float timeOut = 1200.0f;//number of seconds a participant can spend on a task before we make them do the next task
@@ -33,6 +33,9 @@ public class ExperimentManager : MonoBehaviour
     public GameObject fireflyGo;
     public GameObject hazardsGo;
     public Logger logger;
+
+    public FingerPinchDetector syncDetector;
+    public Collider pinchCollider;
 
 
     public Text instructionsText, debugText;
@@ -72,7 +75,10 @@ public class ExperimentManager : MonoBehaviour
       SetHandsToNormal();
       //debugText.text = "first item in task order: " + taskOrder[0].ToString();
       debugText.text = "time out time is " + timeOut.ToString() + ". We this task should time out at " + (timeOut+taskStartTime).ToString();
-      NextTask(Task.Sync);
+      pinchCollider.enabled = false;
+      syncDetector.enabled = false;
+      betweenTasks = true;//we have not started the first task yet
+      //NextTask(Task.Sync);//table controlls call this now
     }//end start
 
     void Update(){
@@ -140,6 +146,8 @@ public class ExperimentManager : MonoBehaviour
 
     public void LoadStartInstructions(){
       currentTask = Task.Sync;
+      syncDetector.enabled = true;
+      pinchCollider.enabled = true;
 
       instructionsText.text = "Hi, and welcome to our user study! ";
       instructionsText.text+= "This is an excellent spot for any additional instructions we might need to include at the start. ";
