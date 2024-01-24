@@ -1106,14 +1106,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227476437}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.08, z: 0.452}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.0666666, z: -1.9866666}
+  m_LocalScale: {x: 10, y: 3.333333, z: 6.666666}
   m_Children:
   - {fileID: 1100133768}
   - {fileID: 730850228}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 2179131308267868373}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &232610892
 GameObject:
@@ -1574,7 +1574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   table: {fileID: 1546428802820557423}
-  speed: 0.0005
+  speed: 0.001
 --- !u!4 &321614789
 Transform:
   m_ObjectHideFlags: 0
@@ -1590,7 +1590,7 @@ Transform:
   - {fileID: 1046307243}
   - {fileID: 1761320718}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &323417349
 MonoBehaviour:
@@ -3677,7 +3677,7 @@ MonoBehaviour:
   fakeWrist: {fileID: 1490778734}
   realHand: {fileID: 812632143}
   trueMirror: 0
-  adjust: -0.3
+  adjust: -0.2
   underlyingHandedness: 0
   debugText: {fileID: 1275126245}
   problemChild: {fileID: 1714393628}
@@ -6233,7 +6233,7 @@ Transform:
   - {fileID: 1490872254}
   - {fileID: 1318572549}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1381076772
 MonoBehaviour:
@@ -6554,16 +6554,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436457191}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.109, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.9699997, z: -5}
+  m_LocalScale: {x: 10, y: 3.333333, z: 6.666666}
   m_Children:
   - {fileID: 469016835}
   - {fileID: 88075552}
   - {fileID: 852163278}
   - {fileID: 1691817173}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 2179131308267868373}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1439735316
 PrefabInstance:
@@ -12211,7 +12211,7 @@ MonoBehaviour:
   fakeWrist: {fileID: 1442182207}
   realHand: {fileID: 1491912378}
   trueMirror: 0
-  adjust: 0.3
+  adjust: 0.2
   underlyingHandedness: 1
   debugText: {fileID: 344824182}
   problemChild: {fileID: 457683942}
@@ -13108,7 +13108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1691817173
 Transform:
   m_ObjectHideFlags: 0
@@ -14278,7 +14278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2091558898
 Transform:
   m_ObjectHideFlags: 0
@@ -14732,6 +14732,8 @@ Transform:
   - {fileID: 6296647827709392647}
   - {fileID: 8585088349643918558}
   - {fileID: 6499612722893653713}
+  - {fileID: 1436457192}
+  - {fileID: 227476438}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
