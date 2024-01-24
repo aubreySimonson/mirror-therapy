@@ -49,6 +49,7 @@ public class ButtonsManager : MonoBehaviour
         NextButton();
       }
       else{
+        TurnOffTheLights();
         experimentManager.FinishTask();
       }
     }

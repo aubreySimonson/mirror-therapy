@@ -18,8 +18,8 @@ using UnityEngine.UI;
 
 public class ExperimentManager : MonoBehaviour
 {
-    public enum Task {Callibrate, Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Hazard, Drumming};//no matter what we do with taskOrder, it always uses this list<--that's because you set it in the inspector, idiot    //shorter list for debugging
-    public List<Task> taskOrder = new List<Task> {Task.Callibrate, Task.Sync, Task.VTS, Task.Buttons, Task.VTS, Task.UnimanualFireflies, Task.VTS, Task.BimanualFireflies, Task.VTS, Task.Hazard, Task.VTS, Task.Drumming};
+    public enum Task {Callibrate, Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Hazard, Drumming, End};//no matter what we do with taskOrder, it always uses this list<--that's because you set it in the inspector, idiot    //shorter list for debugging
+    public List<Task> taskOrder = new List<Task> {Task.Callibrate, Task.Sync, Task.VTS, Task.Buttons, Task.VTS, Task.UnimanualFireflies, Task.VTS, Task.Hazard, Task.End};
     private int taskCounter = 0;
     public Task currentTask;//making it public lets us start somewhere else
     public float timeOut = 1200.0f;//number of seconds a participant can spend on a task before we make them do the next task
@@ -141,6 +141,9 @@ public class ExperimentManager : MonoBehaviour
       case Task.Hazard:
           LoadHazardsTask();
           break;
+      case Task.End:
+          instructionsText.text = "You're done! Please take off the headset.";
+          break;
       default:
           print ("This shouldn't happen");
           break;
@@ -212,7 +215,7 @@ public class ExperimentManager : MonoBehaviour
     public void LoadButtonsTask(){
       currentTask = Task.Buttons;
       instructionsText.text = "Some kind of explanation of how to do the buttons task";
-      vtsGo.SetActive(false);//this doesn't run
+      vtsGo.SetActive(false);
       buttonsManagerGo.SetActive(true);
       buttonsManager.NextRound();
 
@@ -264,6 +267,7 @@ public class ExperimentManager : MonoBehaviour
     }
 
     public void LoadHazardsTask(){
+      debugText.text = "yes, we get into the load hazards task function";
       currentTask = Task.Hazard;
       instructionsText.text = "Some kind of explanation of how to do the hazard task";
       hazardsGo.SetActive(true);
