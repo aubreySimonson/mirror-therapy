@@ -12,12 +12,13 @@ using UnityEngine.UI;
 /// It borrows many ideas from the repository located at https://github.com/a-kalus/virtual_rhi
 ///
 /// ???--> Aubrey (followspotfour@gmail.com)
-/// Last updated March 2023
+/// Last updated February 2024
 /// </summary>
 
 public class VTS : MonoBehaviour
 {
     public Text debugText;
+    public bool leftCylinderContacted, rightCylinderContacted;
     public AudioSource metronomeSound;
     public float tickTime;//the length of each metronome tick in seconds
     public int ticksBeforeStart;//the number of ticks before stroking starts
@@ -60,14 +61,16 @@ public class VTS : MonoBehaviour
       //}
       currentlyStroking = false;
       phase = Phase.NotStroking;
+      leftCylinderContacted = false;
+      rightCylinderContacted = false;
     }
 
-    void OnTriggerEnter(Collider other){
-      debugText.text = "collision happens";
-      if(other.gameObject == mobileHandCollider){
-        StartStroking();
-      }
-    }
+    // void OnTriggerEnter(Collider other){
+    //   debugText.text = "collision happens";
+    //   if(other.gameObject == mobileHandCollider){
+    //     StartStroking();
+    //   }
+    // }
 
     public void StartStroking(){
       debugText.text = "stroking started";
@@ -76,6 +79,8 @@ public class VTS : MonoBehaviour
       startTime = Time.time;
       currentlyStroking = true;
       phase = Phase.BeforeStarting;
+      leftCylinderContacted = false;
+      rightCylinderContacted = false;
       //start playing sound
       //disable real hand
       //turn on fake hand
@@ -123,7 +128,13 @@ public class VTS : MonoBehaviour
             }
           }//end else
         }//end Phase BetweenStrokes
-      }//end if
+      }//end if stroking
+      else{//if not currently stroking
+        if(leftCylinderContacted && rightCylinderContacted){
+          debugText.text = "collision happens";
+          StartStroking();
+        }
+      }
     }//end fixedupdate
 
     //we move all of the lerp stuff down here to keep fixedupdate less messy
