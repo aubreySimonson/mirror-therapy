@@ -6,11 +6,12 @@ public class UpButton : MonoBehaviour
 {
     public TableAdjust tableAdjust;
     public Collider handCollider;
+    public float adjustAmount;
 
 
     public void OnTriggerEnter(Collider other){
         if(other == handCollider){
-            tableAdjust.GoUp();
+            tableAdjust.GoUp(adjustAmount);
         }
     }
 }

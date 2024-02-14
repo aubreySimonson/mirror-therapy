@@ -13,11 +13,11 @@ public class TableAdjust : MonoBehaviour
         }
     }
     
-    public void GoUp(){
-        table.transform.Translate(Vector3.up * speed, Space.World);
+    public void GoUp(float amount){
+        table.transform.Translate(Vector3.up * amount, Space.World);
     }
 
-    public void GoDown(){
-        table.transform.Translate(Vector3.up * -speed, Space.World);
+    public void GoDown(float amount){
+        table.transform.Translate(Vector3.up * -amount, Space.World);
     }
 }
