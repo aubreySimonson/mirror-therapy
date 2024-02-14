@@ -31,7 +31,7 @@ public class VTS : MonoBehaviour
     private int numberOfStrokesCompleted = 0;
     private float startTime;//for whatever phase we're in, this is when it started
 
-    public GameObject mobileHand, mobileHandCollider, fixedHand;//during VTS, we turn off the hand and replace it with an identical model that won't move
+    public GameObject mobileHand, mobileHandCollider, fixedHandR, fixedHandL;//during VTS, we turn off the hand and replace it with an identical model that won't move
     public GameObject paintbrush;
 
     public List<Transform> startPositions;
@@ -75,7 +75,8 @@ public class VTS : MonoBehaviour
     public void StartStroking(){
       debugText.text = "stroking started";
       mobileHand.SetActive(false);
-      fixedHand.SetActive(true);
+      fixedHandR.SetActive(true);
+      fixedHandL.SetActive(true);      
       startTime = Time.time;
       currentlyStroking = true;
       phase = Phase.BeforeStarting;
@@ -92,7 +93,8 @@ public class VTS : MonoBehaviour
       //turn on real hand
       mobileHand.SetActive(true);
       //disable fake hand
-      fixedHand.SetActive(false);
+      fixedHandR.SetActive(false);
+      fixedHandL.SetActive(false);
       //reset any things that need re-set
       numberOfStrokesCompleted = 0;
       currentlyStroking = false;
