@@ -18,11 +18,11 @@ using UnityEngine.UI;
 
 public class ExperimentManager : MonoBehaviour
 {
-    public enum Task {Callibrate, Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Hazard, Drumming, End};//no matter what we do with taskOrder, it always uses this list<--that's because you set it in the inspector, idiot    //shorter list for debugging
+    public enum Task {Callibrate, Sync, VTS, Buttons, UnimanualFireflies, BimanualFireflies, Hazard, Drumming, End};
     public List<Task> taskOrder = new List<Task> {Task.Callibrate, Task.Sync, Task.VTS, Task.Buttons, Task.VTS, Task.UnimanualFireflies, Task.VTS, Task.Hazard, Task.End};
     private int taskCounter = 0;
     public Task currentTask;//making it public lets us start somewhere else
-    public float timeOut = 1200.0f;//number of seconds a participant can spend on a task before we make them do the next task
+    public float timeOut = 300.0f;//number of seconds a participant can spend on a task before we make them do the next task
     private float taskStartTime;//when the current task was started
     private bool betweenTasks = false;
     public VTS vts;
@@ -170,7 +170,7 @@ public class ExperimentManager : MonoBehaviour
       currentTask = Task.Sync;
       syncDetector.enabled = true;
       pinchCollider.enabled = true;
-      instructionsText.text = "Please look at your hand, and touch your thumb to each of your fingers.";
+      instructionsText.text = "Turn your virtual hand palm up. Touch each of your virtual fingers with your thumb.";
 
       //make sure everything that should be turned off is turned off
       vtsGo.SetActive(false);
@@ -203,7 +203,7 @@ public class ExperimentManager : MonoBehaviour
         GoToNextTask();//trying this instead of the above to see if that lets us do VTS after every step
       }
       else{
-        instructionsText.text = "Place your hands on the orange discs on the table, and hold them still.";
+        instructionsText.text = "Place your hands on the orange circles. Keep your hands there until instructed to move to the next task.";
         vtsGo.SetActive(true);
 
         //make sure everything that should be turned off is turned off
@@ -214,7 +214,7 @@ public class ExperimentManager : MonoBehaviour
 
     public void LoadButtonsTask(){
       currentTask = Task.Buttons;
-      instructionsText.text = "When buttons light up orange, please press them as quickly and accurately as possible with your index finger.";
+      instructionsText.text = "Task 1: Use your index finger to touch the orange buttons as quickly and accurately as you can.";
       vtsGo.SetActive(false);
       buttonsManagerGo.SetActive(true);
       buttonsManager.NextRound();
@@ -230,7 +230,7 @@ public class ExperimentManager : MonoBehaviour
       fireflyManager.SetUnimanual();
       fireflyManager.Restart();
   
-      instructionsText.text = "Grab fireflies (the yellow spheres) as quickly and accurately as you can using an overhand grab. ";
+      instructionsText.text = "Task 2: Use your hand to catch each yellow dot as quickly and accurately as you can.";
 
       //make sure everything that should be turned off is turned off
       vtsGo.SetActive(false);
@@ -269,7 +269,7 @@ public class ExperimentManager : MonoBehaviour
     public void LoadHazardsTask(){
       //debugText.text = "yes, we get into the load hazards task function";
       currentTask = Task.Hazard;
-      instructionsText.text = "When buttons light up orange, please press them as quickly and accurately as possible with your index finger.";
+      instructionsText.text = "Task 3: Use your virtual index finger to touch the orange buttons as quickly and accurately as you can.";
       hazardsGo.SetActive(true);
       buttonsManagerGo.SetActive(true);
       buttonsManager.StartHazardsTask();

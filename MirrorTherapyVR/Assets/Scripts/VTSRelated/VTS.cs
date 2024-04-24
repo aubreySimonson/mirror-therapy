@@ -56,9 +56,9 @@ public class VTS : MonoBehaviour
     {
       strokeSpeed = 1.0f/ticksPerStroke/tickTime/50.0f;//we're using fixedUpdate, which runs at exactly 50fps
       debugText.text = "stroke speed = " + strokeSpeed;
-      //if(metronomeSound==null){
-      //  metronomeSound = gameObject.GetComponent<AudioSource>();
-      //}
+      if(metronomeSound==null){
+       metronomeSound = gameObject.GetComponent<AudioSource>();
+      }
       currentlyStroking = false;
       phase = Phase.NotStroking;
       leftCylinderContacted = false;
@@ -83,12 +83,21 @@ public class VTS : MonoBehaviour
       leftCylinderContacted = false;
       rightCylinderContacted = false;
       //start playing sound
+      if(!metronomeSound.isPlaying){
+        InvokeRepeating("ClickMetronome", 1.0f, 1.0f);
+      }
       //disable real hand
       //turn on fake hand
     }
 
+    void ClickMetronome()
+    {
+        metronomeSound.Play(0);
+    }
+
     public void EndStroking(){
       debugText.text = "stroking ended";
+      CancelInvoke();
       paintbrush.SetActive(false);
       //turn on real hand
       mobileHand.SetActive(true);
@@ -101,6 +110,7 @@ public class VTS : MonoBehaviour
       phase = Phase.NotStroking;
       //go to next task
       experimentManager.FinishTask();
+      metronomeSound.Stop();
     }
 
     // Update is called once per frame-- FixedUpdate is called exactly 50X per second
