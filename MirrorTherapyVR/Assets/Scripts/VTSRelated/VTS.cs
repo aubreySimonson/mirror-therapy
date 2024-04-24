@@ -110,6 +110,8 @@ public class VTS : MonoBehaviour
       phase = Phase.NotStroking;
       //go to next task
       experimentManager.FinishTask();
+      leftCylinderContacted = false;
+      rightCylinderContacted = false;
       metronomeSound.Stop();
     }
 

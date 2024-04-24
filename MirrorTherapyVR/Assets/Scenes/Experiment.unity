@@ -2461,7 +2461,7 @@ MonoBehaviour:
   rightCylinderContacted: 0
   metronomeSound: {fileID: 469016832}
   tickTime: 1
-  ticksBeforeStart: 4
+  ticksBeforeStart: 5
   ticksPerStroke: 3
   ticksBetweenStrokes: 1
   experimentManager: {fileID: 223974228}
@@ -2495,7 +2495,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: aa9bdfaeab4a54adc8d2352568b39c89, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
