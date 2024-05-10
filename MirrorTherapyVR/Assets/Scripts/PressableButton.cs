@@ -20,12 +20,32 @@ public class PressableButton : MonoBehaviour
   public ButtonsManager buttonsManager;
   private bool highlighted = false;
   public Text debugText;
+   private IEnumerator coroutine;
 
   public void Highlight(){
     gameObject.GetComponent<Renderer>().material = highlightedMat;
     highlighted = true;
     //debugText.text = "highlighted";
   }
+  public void Highlight(bool withDelay){
+    if(withDelay){
+      //do with with a co-routine
+        coroutine = WaitAndHighlight(0.5f);
+        StartCoroutine(coroutine);
+    }
+    else{
+      gameObject.GetComponent<Renderer>().material = highlightedMat;
+      highlighted = true;
+    }
+  }
+
+  private IEnumerator WaitAndHighlight(float waitTime)
+  {
+      yield return new WaitForSeconds(waitTime);
+      gameObject.GetComponent<Renderer>().material = highlightedMat;
+      highlighted = true;
+  }
+
   public void UnHighlight(){
     gameObject.GetComponent<Renderer>().material = defaultMat;
     highlighted = false;

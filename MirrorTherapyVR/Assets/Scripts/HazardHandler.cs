@@ -9,14 +9,15 @@ using UnityEngine;
 /// but you didn't want to rely on the hierarchy order of hazards.
 ///
 /// ???--> Aubrey (followspotfour@gmail.com)
-/// Last updated June 2023
+/// Last updated May 2024
 /// </summary>
 
 public class HazardHandler : MonoBehaviour
 {
     public List<GameObject> hazards;
+    private IEnumerator coroutine;
 
-    public void ActivateHazard(int hazardIndex){
+    public void ActivateHazardAfterDelay(int hazardIndex){
       DeactivateAllHazards();
       if(hazardIndex>1){
         hazards[hazardIndex-2].SetActive(true);//-2 because the other list is 1 indexed, and 1 doesn't do anything

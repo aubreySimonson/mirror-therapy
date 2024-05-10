@@ -38,7 +38,7 @@ public class AvoidanceManager : MonoBehaviour
       foreach(HazardHandler hazardHandler in hazardHandlers){
         hazardHandler.DeactivateAllHazards();
       }
-      hazardHandlers[buttonsCounter].ActivateHazard(hazardOrder[buttonsCounter]);
+      hazardHandlers[buttonsCounter].ActivateHazardAfterDelay(hazardOrder[buttonsCounter]);
       if(buttonsCounter < 36){//0 indexed, 0-9
         //TODO: log the button press
         //figure out which button is next

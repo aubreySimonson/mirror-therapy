@@ -90,10 +90,10 @@ public class ButtonsManager : MonoBehaviour
           currentButton = button4;
         }
         //highlight the next button
-        currentButton.Highlight();
+        currentButton.Highlight(avoidanceTask);//true if we're doing the avoidance task, false if not
         if(avoidanceTask && hazardLocations[buttonsCounter]!=0){
           int location = hazardLocations[buttonsCounter];
-          hazardHandlers[location-1].ActivateHazard(hazardOrder[buttonsCounter]);
+          hazardHandlers[location-1].ActivateHazardAfterDelay(hazardOrder[buttonsCounter]);
         }
         buttonsCounter++;
         debugText.text = "buttons counter: " + buttonsCounter + " rounds counter: " + roundsCounter;
