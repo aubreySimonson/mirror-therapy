@@ -30,7 +30,7 @@ public class PressableButton : MonoBehaviour
   public void Highlight(bool withDelay){
     if(withDelay){
       //do with with a co-routine
-        coroutine = WaitAndHighlight(0.5f);
+        coroutine = WaitAndHighlight(0.2f);//0.5 was too long
         StartCoroutine(coroutine);
     }
     else{
