@@ -20,7 +20,8 @@ public class PressableButton : MonoBehaviour
   public ButtonsManager buttonsManager;
   private bool highlighted = false;
   public Text debugText;
-   private IEnumerator coroutine;
+  private IEnumerator coroutine;
+  public AudioSource buttonSound;
 
   public void Highlight(){
     gameObject.GetComponent<Renderer>().material = highlightedMat;
@@ -55,6 +56,7 @@ public class PressableButton : MonoBehaviour
   void OnTriggerEnter(Collider other){
     if(highlighted && other.gameObject.tag == "canPress"){
       UnHighlight();
+      buttonSound.Play();//play sound on click
       buttonsManager.NextButton();
     }
   }
