@@ -67,10 +67,6 @@ public class ExperimentManager : MonoBehaviour
       quadrantOrder3 =  new List<int>(){3, 4, 2, 1, 3, 1, 2, 4, 1, 4, 3, 2, 3, 2, 3, 4, 1, 2, 1, 3, 1, 4,  2, 4, 3, 1, 2, 4, 2, 1, 4, 3,  2,  3, 4,  1,3};
       quadrantOrder4 =  new List<int>(){4, 3, 1, 2, 4, 2, 3, 4, 1, 3, 2, 1, 4, 1, 3, 2, 4, 3, 1, 4, 2, 1, 2,  3, 4, 2,  3,  2, 4,  1, 2, 1, 3, 4, 3, 1, 4};
 
-      logger.Log("Experiment Start at " + Time.time);
-      logger.Log("Use VTS: " + useVTS.ToString());
-      logger.Log("Mirror Hands: " + mirrorHands.ToString());
-
       LoadQuadrantOrders();
       SetHandsToNormal();
       //debugText.text = "first item in task order: " + taskOrder[0].ToString();
@@ -78,6 +74,12 @@ public class ExperimentManager : MonoBehaviour
       pinchCollider.enabled = false;
       syncDetector.enabled = false;
       betweenTasks = true;//we have not started the first task yet
+
+      logger.Log("Experiment Start at " + Time.time);
+      logger.Log("Use VTS: " + useVTS.ToString());
+      logger.Log("Mirror Hands: " + mirrorHands.ToString());
+
+      logger.SetUpDataCollection();
       NextTask(Task.Callibrate);
     }//end start
 
@@ -92,6 +94,7 @@ public class ExperimentManager : MonoBehaviour
 
     //called by other scripts, to let experiment manager know to advance to the next task
     public void FinishTask(){
+      logger.Log("Finished task: " + currentTask.ToString());
       betweenTasks=true;
       fireflyGo.SetActive(false);
       buttonsManagerGo.SetActive(false);

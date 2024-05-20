@@ -19,7 +19,7 @@ using UnityEngine.Android;
 ///remember to set your Write Permissions to External in the Player settings
 ///
 /// ???--> Aubrey (followspotfour@gmail.com)
-/// Last updated February 2023
+/// Last updated May 2024
 /// </summary>
 
 public class Logger : MonoBehaviour
@@ -30,13 +30,17 @@ public class Logger : MonoBehaviour
     //this nasty system of booleans really should be an enum
     public bool logEssentialFakeHandPoints;
     public bool logEssentialRealHandPoints;
-    public List<OVRBone> essentialRealHandPoints;
+
+    //we do this odd little workaround because OVRBones can't be exposed in the inspector
+    private List<OVRBone> essentialRealHandBones;
+    public List<MirroredPoint> essentialRealHandPoints;
     public List<Transform> essentialFakeHandPoints;
     public bool logHeadPose;
     public bool recordOnPlay;
     public bool isRecording;
 
-    public HandPositionMirror handPositionMirror;
+    public MirroredPointsManager mirroredPointsManager;
+
     List<OVRBone> realHandPoints;
     private List<Transform> fakeHandPoints;
     public Transform headTransform;
@@ -61,7 +65,7 @@ public class Logger : MonoBehaviour
             Permission.RequestUserPermission(Permission.ExternalStorageWrite);
 
       string timeStamp = DateTime.Now.ToString("dd-MM-yyyy_hh-mm-ss"); //use date time as unique id for each participant
-      path = Application.persistentDataPath + timeStamp + "log.txt";//test printing at all for now-- add time stamps later
+      path = Application.persistentDataPath + timeStamp + "-log.txt";//test printing at all for now-- add time stamps later
       writer = new StreamWriter(path, true);
       writer.WriteLine("Start of study performed at " + timeStamp);
       writer.Flush();
@@ -79,7 +83,7 @@ public class Logger : MonoBehaviour
           recordedDataString += headTransform.rotation + itemDelimiter;
         }//end if
         if(logEssentialRealHandPoints){
-          foreach(OVRBone realHandPoint in essentialRealHandPoints){
+          foreach(OVRBone realHandPoint in essentialRealHandBones){
             recordedDataString += realHandPoint.Transform.position + itemDelimiter;
             recordedDataString += realHandPoint.Transform.rotation + itemDelimiter;
           }
@@ -113,9 +117,6 @@ public class Logger : MonoBehaviour
 
     public void SetUpDataCollection(){
       //we can't just put any of this in the start function because we need the hand to be assembled /before/ we ask for it
-      if(handPositionMirror == null){
-        handPositionMirror = (HandPositionMirror)FindObjectOfType(typeof(HandPositionMirror));
-      }
 
       columnHeaders += "TimeStamp" + itemDelimiter;
       //log column headings
@@ -124,14 +125,16 @@ public class Logger : MonoBehaviour
       }
 
       if(logEssentialRealHandPoints){//do this one after you do the fake hand-- maybe not at all
-        // //get hand points from HandPositionMirror
-        // realHandPoints = handPositionMirror.GetRealBones();
-        // debugText.text = "real hand points are " + realHandPoints[0].ToString();
-        // foreach(OVRBone handPoint in realHandPoints){
-        //   //we actually need to understand the order these happen in first
-        //   columnHeaders += "Real" + handPoint.Id.ToString() + "Pos" + itemDelimiter;
-        //   columnHeaders += "Real" + handPoint.Id.ToString() + "Rot" + itemDelimiter;
-        //}
+        //get all bones from mPs-- OVR Bones can't be exposed directly in the inspector, so this is our workaround
+        foreach(MirroredPoint mP in essentialRealHandPoints){
+          essentialRealHandBones.Add(mP.realBone);
+        }
+        //debugText.text = "real hand points are " + realHandPoints[0].ToString();
+        foreach(OVRBone handPoint in essentialRealHandBones){
+          //we actually need to understand the order these happen in first
+          columnHeaders += "Real" + handPoint.Id.ToString() + "Pos" + itemDelimiter;
+          columnHeaders += "Real" + handPoint.Id.ToString() + "Rot" + itemDelimiter;
+        }
       }//end real hand points
       if(logEssentialFakeHandPoints){
         foreach(Transform fakeBone in essentialFakeHandPoints){

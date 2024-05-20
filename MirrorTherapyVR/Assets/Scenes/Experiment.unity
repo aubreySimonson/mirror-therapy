@@ -944,13 +944,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugText: {fileID: 643750375}
-  logEssentialFakeHandPoints: 1
-  logEssentialRealHandPoints: 0
+  logEssentialFakeHandPoints: 0
+  logEssentialRealHandPoints: 1
+  essentialRealHandPoints:
+  - {fileID: 323417349}
+  - {fileID: 1240747256}
+  - {fileID: 1578450254}
+  - {fileID: 624727183}
+  - {fileID: 1737820213}
+  - {fileID: 1186331986}
+  - {fileID: 1381076772}
+  - {fileID: 1478058365}
+  - {fileID: 415304771}
   essentialFakeHandPoints: []
-  logHeadPose: 1
+  logHeadPose: 0
   recordOnPlay: 1
   isRecording: 1
-  handPositionMirror: {fileID: 0}
+  mirroredPointsManager: {fileID: 0}
   headTransform: {fileID: 0}
   itemDelimiter: ;
   lineBreak: '!'
