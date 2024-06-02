@@ -42,6 +42,8 @@ public class MirroredPointsManager : MonoBehaviour
 
     private float wristAngle;//rotation of the underlying wrist
 
+    public Logger logger;
+
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +73,9 @@ public class MirroredPointsManager : MonoBehaviour
 
         skeleton = realHand.GetComponent<OVRSkeleton>();
         AssignBones();
+        if(logger!=null){
+            logger.SetUpDataCollection();
+        }
     }
 
     // Update is called once per frame
@@ -313,6 +318,7 @@ public class MirroredPointsManager : MonoBehaviour
             }
         }
         //debugText.text = "bones were assigned";
+        logger.Log("bones were assigned");
     }
 
     private MirroredPoint GetBoneByName(string name){

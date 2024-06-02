@@ -79,7 +79,7 @@ public class ExperimentManager : MonoBehaviour
       logger.Log("Use VTS: " + useVTS.ToString());
       logger.Log("Mirror Hands: " + mirrorHands.ToString());
 
-      logger.SetUpDataCollection();
+      //logger.SetUpDataCollection();//mirrred points manager does this now
       NextTask(Task.Callibrate);
     }//end start
 

@@ -960,7 +960,6 @@ MonoBehaviour:
   logHeadPose: 0
   recordOnPlay: 1
   isRecording: 1
-  mirroredPointsManager: {fileID: 0}
   headTransform: {fileID: 0}
   itemDelimiter: ;
   lineBreak: '!'
@@ -2453,7 +2452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &469016831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4062,6 +4061,7 @@ MonoBehaviour:
   problemChild: {fileID: 1714393628}
   problemChildren: []
   fakePointPrefab: {fileID: 3221494080388164865, guid: fe04c4f73ed174c7b9f9fe031fa19630, type: 3}
+  logger: {fileID: 0}
 --- !u!54 &812632146
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12833,6 +12833,7 @@ MonoBehaviour:
   - {fileID: 1696612658}
   - {fileID: 323417349}
   fakePointPrefab: {fileID: 3221494080388164865, guid: fe04c4f73ed174c7b9f9fe031fa19630, type: 3}
+  logger: {fileID: 223974230}
 --- !u!54 &1491912381
 Rigidbody:
   m_ObjectHideFlags: 0

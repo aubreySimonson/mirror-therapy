@@ -39,8 +39,6 @@ public class Logger : MonoBehaviour
     public bool recordOnPlay;
     public bool isRecording;
 
-    public MirroredPointsManager mirroredPointsManager;
-
     List<OVRBone> realHandPoints;
     private List<Transform> fakeHandPoints;
     public Transform headTransform;
@@ -70,6 +68,7 @@ public class Logger : MonoBehaviour
       writer.WriteLine("Start of study performed at " + timeStamp);
       writer.Flush();
       writer.Close();
+      essentialRealHandBones = new List<OVRBone>();
     }//end start
 
     // Update is called once per frame
@@ -118,6 +117,7 @@ public class Logger : MonoBehaviour
     public void SetUpDataCollection(){
       //we can't just put any of this in the start function because we need the hand to be assembled /before/ we ask for it
 
+      Log("Set Up Data Collection was called");
       columnHeaders += "TimeStamp" + itemDelimiter;
       //log column headings
       if(logHeadPose){
@@ -125,16 +125,22 @@ public class Logger : MonoBehaviour
       }
 
       if(logEssentialRealHandPoints){//do this one after you do the fake hand-- maybe not at all
+        Log("Logging real hand points");//runs
         //get all bones from mPs-- OVR Bones can't be exposed directly in the inspector, so this is our workaround
         foreach(MirroredPoint mP in essentialRealHandPoints){
+          columnHeaders += "Real" + mP.boneName + "Pos" + itemDelimiter;
+          columnHeaders += "Real" + mP.boneName + "Rot" + itemDelimiter;
+          // Log("added " + mP.realBone.Id.ToString() + " to column headers");//adds bones, but, like, not the right bones?
           essentialRealHandBones.Add(mP.realBone);
+          Log("Added a bone");//doesn't run
         }
         //debugText.text = "real hand points are " + realHandPoints[0].ToString();
-        foreach(OVRBone handPoint in essentialRealHandBones){
-          //we actually need to understand the order these happen in first
-          columnHeaders += "Real" + handPoint.Id.ToString() + "Pos" + itemDelimiter;
-          columnHeaders += "Real" + handPoint.Id.ToString() + "Rot" + itemDelimiter;
-        }
+        // foreach(OVRBone handPoint in essentialRealHandBones){
+        //   //we actually need to understand the order these happen in first
+        //   columnHeaders += "Real" + handPoint.Id.ToString() + "Pos" + itemDelimiter;
+        //   columnHeaders += "Real" + handPoint.Id.ToString() + "Rot" + itemDelimiter;
+        //   Log("added " + handPoint.Id.ToString() + " to column headers");
+        // }
       }//end real hand points
       if(logEssentialFakeHandPoints){
         foreach(Transform fakeBone in essentialFakeHandPoints){
